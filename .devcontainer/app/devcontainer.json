@@ -15,7 +15,7 @@
                 "tonybaloney.vscode-pets"
             ],
             "settings": {
-                "[javascriptreact]": {
+                "[typescript]": {
                     "editor.defaultFormatter": "biomejs.biome",
                     "editor.formatOnSave": true,
                     "editor.formatOnType": true
