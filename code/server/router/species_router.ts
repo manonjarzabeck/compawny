@@ -11,6 +11,9 @@ class SpeciesRouter {
 		// le préfixe des routes est dans le serveur
 		this.router.get("/", new SpeciesController().index);
 
+		// variable de route : précédée par un :, suivie du nom de la variable
+		this.router.get("/:id", new SpeciesController().selectOne);
+
 		// retourner le routeur
 		return this.router;
 	};

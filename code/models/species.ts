@@ -4,4 +4,4 @@ type Species = {
 	name: string;
 };
 
-export default Species;
+export type { Species };
