@@ -8,7 +8,7 @@ class RouterService {
 				id: "root",
 
 				// préxife des routes
-				path: "",
+				path: "/",
 
 				// importation de la page
 				lazy: () => import("../layouts/root_layout"),
@@ -22,13 +22,19 @@ class RouterService {
 							{
 								id: "home",
 								index: true,
+								path: "",
 								lazy: () => import("../pages/index"),
 							},
-							// {
-							//   id: "about",
-							//   path: "about",
-							//   lazy: () => import("./about/route"),
-							// },
+							{
+								id: "contact",
+								path: "contact",
+								lazy: () => import("../pages/contact"),
+							},
+							{
+								id: "connexion",
+								path: "connexion",
+								lazy: () => import("../pages/connexion"),
+							},
 						],
 					},
 				],
