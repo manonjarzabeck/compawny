@@ -1,5 +1,7 @@
+import type { Role } from "../../models/role";
 import type { User } from "../../models/user";
 import MySQLService from "../service/mysql_service";
+import RoleRepository from "./role_repository";
 
 class UserRepository {
 	// nom de la table SQL
@@ -20,6 +22,18 @@ class UserRepository {
 		try {
 			// exécuter la requête SQL
 			const [query] = await connection.execute(sql);
+
+			// boucler sur les résultats pour récupérer les objets en relation (composition en POO)
+			for (let i = 0; i < (query as User[]).length; i++) {
+				// récupérer un résultat
+				const result = (query as User[])[i] as User;
+
+				// clés étrangères
+				result.role = (await new RoleRepository().SelectOne({
+					id: result.role_id,
+				})) as Role;
+			}
+
 			return query;
 			// retourner les résultats
 		} catch (error) {
@@ -46,7 +60,11 @@ class UserRepository {
 			const [query] = await connection.execute(sql, data);
 
 			// shift: récupérer le premier indice d'un array
-			const result = (query as User[]).shift();
+			const result = (query as User[]).shift() as User;
+
+			result.role = (await new RoleRepository().SelectOne({
+				id: result.role_id,
+			})) as Role;
 
 			return result;
 			// retourner les résultats

@@ -1,5 +1,9 @@
 import type { Animal } from "../../models/animal";
+import type { Asso } from "../../models/asso";
+import type { Species } from "../../models/species";
 import MySQLService from "../service/mysql_service";
+import AssoRepository from "./asso_repository";
+import SpeciesRepository from "./species_repository";
 
 class AnimalRepository {
 	// nom de la table SQL
@@ -20,6 +24,21 @@ class AnimalRepository {
 		try {
 			// exécuter la requête SQL
 			const [query] = await connection.execute(sql);
+			// boucler sur les résultats pour récupérer les objets en relation (composition en POO)
+			for (let i = 0; i < (query as Animal[]).length; i++) {
+				// récupérer un résultat
+				const result = (query as Animal[])[i] as Animal;
+
+				// clés étrangères
+				result.asso = (await new AssoRepository().SelectOne({
+					id: result.asso_id,
+				})) as Asso;
+
+				result.species = (await new SpeciesRepository().SelectOne({
+					id: result.species_id,
+				})) as Species;
+			}
+
 			return query;
 			// retourner les résultats
 		} catch (error) {
@@ -48,7 +67,15 @@ class AnimalRepository {
 			const [query] = await connection.execute(sql, data);
 
 			// shift: récupérer le premier indice d'un array
-			const result = (query as Animal[]).shift();
+			const result = (query as Animal[]).shift() as Animal;
+
+			result.asso = (await new AssoRepository().SelectOne({
+				id: result.asso_id,
+			})) as Asso;
+
+			result.species = (await new SpeciesRepository().SelectOne({
+				id: result.species_id,
+			})) as Species;
 
 			return result;
 			// retourner les résultats

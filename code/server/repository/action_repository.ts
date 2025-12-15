@@ -1,5 +1,7 @@
 import type { Action } from "../../models/action";
+import type { Asso } from "../../models/asso";
 import MySQLService from "../service/mysql_service";
+import AssoRepository from "./asso_repository";
 
 class ActionRepository {
 	// nom de la table SQL
@@ -20,6 +22,17 @@ class ActionRepository {
 		try {
 			// exécuter la requête SQL
 			const [query] = await connection.execute(sql);
+			// boucler sur les résultats pour récupérer les objets en relation (composition en POO)
+			for (let i = 0; i < (query as Action[]).length; i++) {
+				// récupérer un résultat
+				const result = (query as Action[])[i] as Action;
+
+				// clés étrangères
+				result.asso = (await new AssoRepository().SelectOne({
+					id: result.asso_id,
+				})) as Asso;
+			}
+
 			return query;
 			// retourner les résultats
 		} catch (error) {
@@ -48,7 +61,12 @@ class ActionRepository {
 			const [query] = await connection.execute(sql, data);
 
 			// shift: récupérer le premier indice d'un array
-			const result = (query as Action[]).shift();
+			const result = (query as Action[]).shift() as Action;
+
+			// clés étrangères
+			result.asso = (await new AssoRepository().SelectOne({
+				id: result.asso_id,
+			})) as Asso;
 
 			return result;
 			// retourner les résultats

@@ -1,5 +1,12 @@
+import Seo from "../components/seo";
+
 const ConnexionPage = () => {
-	return <div>Connexion Page</div>;
+	return (
+		<>
+			<Seo title="Connexion" description="Interface de connexion" url="" />
+			<div>Connexion Page</div>
+		</>
+	);
 };
 
 export default ConnexionPage;

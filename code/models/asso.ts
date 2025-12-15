@@ -1,3 +1,5 @@
+import type { Country } from "./country";
+
 type Asso = {
 	id: number;
 	name: string;
@@ -5,7 +7,9 @@ type Asso = {
 	description: string;
 	siteweb: string;
 	address: string;
+
 	country_id: number;
+	country: Country;
 };
 
 export type { Asso };
