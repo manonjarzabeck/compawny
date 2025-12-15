@@ -31,7 +31,7 @@ class ActionController {
 		console.log(req.params);
 
 		// récupération des résultats de la requête
-		const results = await new ActionRepository().SelectOne({ id: 1 });
+		const results = await new ActionRepository().SelectOne(req.params);
 
 		// si la requête renvoie une erreur
 		if (results instanceof Error) {

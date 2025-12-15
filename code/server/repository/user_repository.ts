@@ -53,11 +53,47 @@ class UserRepository {
 			WHERE ${this.table}.id = :id
 			;
        `;
+
+		// selectionner plusieurs enregistrements dans une liste
+
 		// try / catch : récupérer les résultats de la requête ou l'erreur
 		try {
 			// exécuter la requête SQL
 			// si la requête possède des variables, utiliser le paramètre de la méthode
 			const [query] = await connection.execute(sql, data);
+
+			// shift: récupérer le premier indice d'un array
+			const result = (query as User[]).shift() as User;
+
+			result.role = (await new RoleRepository().SelectOne({
+				id: result.role_id,
+			})) as Role;
+
+			return result;
+			// retourner les résultats
+		} catch (error) {
+			return error;
+		}
+	};
+
+	// selectionner plusieurs enregistrements dans une liste
+	public SelectInlist = async (list: string): Promise<User | unknown> => {
+		// connexion au serveur MySQL
+		const connection = await new MySQLService().connect();
+
+		// requête SQL
+		const sql = `
+            SELECT ${this.table}.*
+            FROM ${process.env.MYSQL_DATABASE}.${this.table}
+			WHERE ${this.table}.id IN (${list})
+			;
+       `;
+
+		// try / catch : récupérer les résultats de la requête ou l'erreur
+		try {
+			// exécuter la requête SQL
+			// si la requête possède des variables, utiliser le paramètre de la méthode
+			const [query] = await connection.execute(sql);
 
 			// shift: récupérer le premier indice d'un array
 			const result = (query as User[]).shift() as User;

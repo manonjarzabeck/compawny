@@ -127,26 +127,26 @@ INSERT INTO coeurdecompagnon_dev.action
 (12, 'Visite Refuge', 'a12.jpg', 'Portes ouvertes.', '2025-01-05 09:00:00', 1, 12),
 (13, 'Atelier Enfants', 'a13.jpg', 'Découverte des animaux.', '2025-01-30 13:00:00', 1, 13),
 (14, 'Stand Marché', 'a14.jpg', 'Stand associatif.', '2025-01-28 11:00:00', 1, 14),
-(15, 'Expo Photos', 'a15.jpg', 'Photos adoption réussies.', '2025-02-01 16:00:00', 0, 15)
+(15, 'Expo Photos', 'a15.jpg', 'Photos adoption réussies.', '2025-02-01 16:00:00', 1, 15)
 ;
 
 
 INSERT INTO coeurdecompagnon_dev.user_action (user_id, action_id) VALUES
 (1, 1),
 (2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6),
-(7, 7),
-(8, 8),
-(9, 9),
-(10, 10),
-(11, 11),
-(12, 12),
-(13, 13),
-(14, 14),
-(15, 15);
+(2, 3),
+(2, 4),
+(2, 5),
+(2, 6),
+(1, 7),
+(2, 8),
+(2, 9),
+(2, 10),
+(1, 11),
+(1, 12),
+(2, 13),
+(2, 14),
+(2, 15);
 
 
 INSERT INTO coeurdecompagnon_dev.action
@@ -237,4 +237,4 @@ INSERT INTO coeurdecompagnon_dev.animal
 -- DELETE FROM coeurdecompagnon_dev.action
 -- WHERE action.id = 1;
 
--- COMMIT;
+-- COMMIT; 

@@ -1,4 +1,5 @@
 import type { Asso } from "./asso";
+import type { User } from "./user";
 
 type Action = {
 	id: number;
@@ -7,8 +8,13 @@ type Action = {
 	description: string;
 	published: number;
 	is_active: boolean;
+
 	asso_id: number;
 	asso: Asso;
+
+	// liste concaténée des indentifiants des plats
+	user_ids: string;
+	users: User[];
 };
 
 export type { Action };

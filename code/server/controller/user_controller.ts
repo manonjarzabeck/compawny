@@ -31,7 +31,7 @@ class UserController {
 		console.log(req.params);
 
 		// récupération des résultats de la requête
-		const results = await new UserRepository().SelectOne({ id: 1 });
+		const results = await new UserRepository().SelectOne(req.params);
 
 		// si la requête renvoie une erreur
 		if (results instanceof Error) {
