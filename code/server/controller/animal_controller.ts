@@ -51,6 +51,32 @@ class AnimalController {
 			data: results,
 		});
 	};
+
+	public insert = async (req: Request, res: Response) => {
+		console.log(req.body);
+
+		// récupération des résultats de la requête
+		// req.body récupère
+		const results = await new AnimalRepository().insert(req.body);
+
+		// si la requête renvoie une erreur
+		if (results instanceof Error) {
+			res.status(400).json({
+				status: 400,
+				message:
+					process.env.NODE_ENV === "production" ? "Error" : results.message,
+			});
+
+			return;
+		}
+
+		// renvoyer une réponse avec un code de statut HTTP et au format JSON
+		res.status(201).json({
+			status: 201,
+			message: "Created",
+			data: results,
+		});
+	};
 }
 
 export default AnimalController;

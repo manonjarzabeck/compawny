@@ -1,3 +1,4 @@
+import type { QueryResult } from "mysql2";
 import type { Animal } from "../../models/animal";
 import type { Asso } from "../../models/asso";
 import type { Species } from "../../models/species";
@@ -78,6 +79,42 @@ class AnimalRepository {
 			})) as Species;
 
 			return result;
+			// retourner les résultats
+		} catch (error) {
+			return error;
+		}
+	};
+
+	// insérer un enregistrement
+	public insert = async (
+		data: Partial<Animal>,
+	): Promise<QueryResult | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requête SQL
+		const sql = `
+
+	INSERT INTO 
+		${process.env.MYSQL_DATABASE}.${this.table}
+	VALUE 
+	(
+	NULL,
+	:name,
+	:picture,
+	:arrival,
+	:asso_id,
+	:species_id
+	)
+	  ;
+		`;
+
+		try {
+			// exécuter la requête SQL
+			// si la requête possède des variables, utiliser le paramètre de la méthode
+			const [query] = await connection.execute(sql, data);
+
+			return query;
 			// retourner les résultats
 		} catch (error) {
 			return error;

@@ -17,13 +17,13 @@ class ActionRepository {
 		const sql = `
             SELECT 
 			${this.table}.*,
-			GROUP_CONCAT(user.id) AS user.ids
+			GROUP_CONCAT(user.id) AS user_ids
             FROM 
 			${process.env.MYSQL_DATABASE}.${this.table}
 			JOIN 
 			${process.env.MYSQL_DATABASE}.user_action
 			ON
-			user_action.action_id = action_id
+			user_action.action_id = action.id
 			JOIN 
 			${process.env.MYSQL_DATABASE}.user
 			ON
@@ -69,11 +69,25 @@ class ActionRepository {
 		// variable de requête : précédée d'un :, suivi du nom de la variable
 		// requêtes préparées (utilisation des variables de requêtes) : la requête est exécutée si elle ne représente pas de risque de sécurité
 		const sql = `
-            SELECT ${this.table}.*
-            FROM ${process.env.MYSQL_DATABASE}.${this.table}
+            SELECT 
+			${this.table}.*,
+			GROUP_CONCAT(user.id) AS user_ids
+            FROM 
+			${process.env.MYSQL_DATABASE}.${this.table}
+			JOIN 
+			${process.env.MYSQL_DATABASE}.user_action
+			ON
+			user_action.action_id = action.id
+			JOIN 
+			${process.env.MYSQL_DATABASE}.user
+			ON
+			user.id = user_action.user_id
 			WHERE ${this.table}.id = :id
+			GROUP BY
+			${this.table}.id
 			;
        `;
+
 		// try / catch : récupérer les résultats de la requête ou l'erreur
 		try {
 			// exécuter la requête SQL
@@ -87,6 +101,10 @@ class ActionRepository {
 			result.asso = (await new AssoRepository().SelectOne({
 				id: result.asso_id,
 			})) as Asso;
+
+			result.users = (await new UserRepository().SelectInlist(
+				result.user_ids,
+			)) as User[];
 
 			return result;
 			// retourner les résultats

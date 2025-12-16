@@ -73,3 +73,24 @@ CREATE TABLE coeurdecompagnon_dev.animal(
     FOREIGN KEY (species_id) REFERENCES coeurdecompagnon_dev.species(id),
     INDEX(name)
 );
+
+
+-- SELECT action.*, GROUP_CONCAT(user.id) as user_ids FROM coeurdecompagnon_dev.action JOIN coeurdecompagnon_dev.user_action ON user_action.action_id = action_id JOIN coeurdecompagnon_dev.user ON user.id = user_action.user_id GROUP BY action.id;
+
+
+-- SELECT 
+			-- ${this.table}.*,
+			-- GROUP_CONCAT(user.id) AS user.ids
+            -- FROM 
+			-- ${process.env.MYSQL_DATABASE}.${this.table}
+			-- JOIN 
+			-- ${process.env.MYSQL_DATABASE}.user_action
+			-- ON
+			-- user_action.action_id = action_id
+			-- JOIN 
+			-- ${process.env.MYSQL_DATABASE}.user
+			-- ON
+			-- user.id = user_action.user_id
+			-- GROUP BY
+			-- ${this.table}.id
+			-- ;

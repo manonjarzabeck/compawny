@@ -14,6 +14,9 @@ class Server {
 
 	// constructeur
 	constructor() {
+		// intégrer le middleware express JSON qui permet de récupérer la propriété body de la requête HTTP en JSON
+		this.app.use(express.json());
+
 		// relier le routeur à l'application
 		this.app.use(this.router);
 		// appel des routeurs

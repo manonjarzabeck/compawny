@@ -95,14 +95,18 @@ class UserRepository {
 			// si la requête possède des variables, utiliser le paramètre de la méthode
 			const [query] = await connection.execute(sql);
 
-			// shift: récupérer le premier indice d'un array
-			const result = (query as User[]).shift() as User;
+			// boucler sur les résultats pour récupérer les objets en relation (composition en POO)
+			for (let i = 0; i < (query as User[]).length; i++) {
+				// récupérer un résultat
+				const result = (query as User[])[i] as User;
 
-			result.role = (await new RoleRepository().SelectOne({
-				id: result.role_id,
-			})) as Role;
+				// clés étrangères
+				result.role = (await new RoleRepository().SelectOne({
+					id: result.role_id,
+				})) as Role;
+			}
 
-			return result;
+			return query;
 			// retourner les résultats
 		} catch (error) {
 			return error;
