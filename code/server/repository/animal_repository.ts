@@ -110,13 +110,42 @@ class AnimalRepository {
 		`;
 
 		try {
+			// démarrer une transaction SQL
+			// connection.beginTransaction();
+
+			// éxecution de la première requête
+			await connection.execute(sql, data);
+
 			// exécuter la requête SQL
 			// si la requête possède des variables, utiliser le paramètre de la méthode
+			// const [query] = await connection.execute(sql, data);
+
+			// deuxième requête SQL
+			// sql = `SET @id = LAST_INSERT_ID();`;
 			const [query] = await connection.execute(sql, data);
+			// troisième requête
+			/* 
+				INSERT INTO coeurdecompagnon_dev.user_action
+				VALUES 
+				(1, @actionuser_id),
+				(2, @actionuser_id)
+
+				split : extraire les données d'une chaîne de caractères en array 
+					1,2,3 >> [1,2,3]
+					[1,2,3] >> (1, @id), (2, @id), (3, @id)
+			*/
+			// const joinIds = data.user_ids?.split(",");
+			// console.log(joinIds);
+
+			// // valider la transaction SQL
+			// connection.commit();
 
 			return query;
 			// retourner les résultats
 		} catch (error) {
+			// annuler une transaction SQL
+			// connection.rollback();
+
 			return error;
 		}
 	};

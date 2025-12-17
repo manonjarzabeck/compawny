@@ -1,5 +1,5 @@
 -- Insérer des données
-INSERT INTO coeurdecompagnon_dev.role
+INSERT INTO compawny_dev.role
 VALUES
     ( NULL, "admin"),
     ( NULL, "user")
@@ -7,13 +7,13 @@ VALUES
 
 -- admin@admin.fr / admin
 -- user@user.fr / user
-INSERT INTO coeurdecompagnon_dev.user
+INSERT INTO compawny_dev.user
 VALUES
     ( NULL, "admin@admin.fr", "$argon2i$v=19$m=16,t=2,p=1$SHhIaUptM256UXBtZjF3VA$0cfqFjyvBxio+CPnUL6wAg", 1 ),
     ( NULL, "user@user.fr", "$argon2i$v=19$m=16,t=2,p=1$QkhldHlvT0t5b2p1N3RIYQ$pb81ZXmGAiRMnHhcZIlSZQ", 2 )
 ;
 
-INSERT INTO coeurdecompagnon_dev.country (id, name) VALUES
+INSERT INTO compawny_dev.country (id, name) VALUES
 (1, 'France'),
 (2, 'Belgium'),
 (3, 'Switzerland'),
@@ -32,7 +32,7 @@ INSERT INTO coeurdecompagnon_dev.country (id, name) VALUES
 ;
 
 
--- INSERT INTO coeurdecompagnon_dev.country
+-- INSERT INTO compawny_dev.country
 -- VALUES 
 --     ( NULL, "France" ),
 --     ( NULL, "Australie" ),
@@ -46,7 +46,7 @@ INSERT INTO coeurdecompagnon_dev.country (id, name) VALUES
 --     ( NULL, "Norvège" ),
 -- ;
 
-INSERT INTO coeurdecompagnon_dev.species (id, name) VALUES
+INSERT INTO compawny_dev.species (id, name) VALUES
 (1, 'Dog'),
 (2, 'Cat'),
 (3, 'Rabbit'),
@@ -65,7 +65,7 @@ INSERT INTO coeurdecompagnon_dev.species (id, name) VALUES
 ;
 
 
--- INSERT INTO coeurdecompagnon_dev.species
+-- INSERT INTO compawny_dev.species
 -- VALUES
 --     ( NULL, "Chat"),
 --     ( NULL, "Chien"),
@@ -80,7 +80,7 @@ INSERT INTO coeurdecompagnon_dev.species (id, name) VALUES
 -- ;
 
 
-INSERT INTO coeurdecompagnon_dev.asso
+INSERT INTO compawny_dev.asso
 (id, name, image, description, siteweb, address, country_id) VALUES
 (1, 'Les Pattes du Cœur', 'asso1.jpg', 'Refuge spécialisé dans les chiens abandonnés.', 'https://pattesducoeur.fr', '12 Rue des Animaux, Paris', 1),
 (2, 'Chats & Co', 'asso2.jpg', 'Association dédiée à la prise en charge des chats errants.', 'https://chatsandco.be', '27 Rue des Fleurs, Bruxelles', 2),
@@ -99,7 +99,7 @@ INSERT INTO coeurdecompagnon_dev.asso
 (15, 'Suomi Friends', 'asso15.jpg', 'Refuge finlandais.', 'https://suomifriends.fi', '9 Snow Street, Helsinki', 15)
 ;
 
--- INSERT INTO coeurdecompagnon_dev.asso
+-- INSERT INTO compawny_dev.asso
 -- VALUES 
 --     ( NULL, "la SPA de Gennevilliers", "IMG_SPA_GENEVILLIERS.jpeg", "
 -- Horaires :
@@ -111,7 +111,7 @@ INSERT INTO coeurdecompagnon_dev.asso
 -- 92230 Gennevilliers", 1 )
 -- ;
 
-INSERT INTO coeurdecompagnon_dev.action
+INSERT INTO compawny_dev.action
 (id, name, image, description, published, is_active, asso_id) VALUES
 (1, 'Journée Adoption Chiens', 'a1.jpg', 'Événement adoption chiens.', '2025-01-10 10:00:00', 1, 1),
 (2, 'Collecte Croquettes', 'a2.jpg', 'Collecte pour refuges.', '2025-01-15 09:00:00', 1, 2),
@@ -131,7 +131,7 @@ INSERT INTO coeurdecompagnon_dev.action
 ;
 
 
-INSERT INTO coeurdecompagnon_dev.user_action (user_id, action_id) VALUES
+INSERT INTO compawny_dev.user_action (user_id, action_id) VALUES
 (1, 1),
 (2, 2),
 (2, 3),
@@ -149,26 +149,26 @@ INSERT INTO coeurdecompagnon_dev.user_action (user_id, action_id) VALUES
 (2, 15);
 
 
-INSERT INTO coeurdecompagnon_dev.action
-(id, name, image, description, published, is_active, asso_id) VALUES
-(1, 'Journée Adoption Chiens', 'a1.jpg', 'Événement adoption chiens.', '2025-01-10 10:00:00', 1, 1),
-(2, 'Collecte Croquettes', 'a2.jpg', 'Collecte pour refuges.', '2025-01-15 09:00:00', 1, 2),
-(3, 'Soins Animaux', 'a3.jpg', 'Séance vétérinaire gratuite.', '2025-01-11 11:00:00', 1, 3),
-(4, 'Marche Solidaire', 'a4.jpg', 'Randonnée caritative.', '2025-01-12 08:00:00', 1, 4),
-(5, 'Atelier Chiots', 'a5.jpg', 'Atelier éducation canine.', '2025-01-18 14:00:00', 1, 5),
-(6, 'Séance Vaccination', 'a6.jpg', 'Vaccination solidaire.', '2025-01-16 13:00:00', 1, 6),
-(7, 'Distribution Couvertures', 'a7.jpg', 'Aide animaux l’hiver.', '2025-01-22 15:00:00', 1, 7),
-(8, 'Formation Bénévoles', 'a8.jpg', 'Formations bénévoles.', '2025-01-20 10:00:00', 1, 8),
-(9, 'Collecte Jouets', 'a9.jpg', 'Jouets pour animaux.', '2025-01-25 09:00:00', 1, 9),
-(10, 'Sauvetage Urgent', 'a10.jpg', 'Mission de sauvetage.', '2025-01-14 17:00:00', 1, 10),
-(11, 'Journée Adoptions Chats', 'a11.jpg', 'Rencontre chats.', '2025-01-08 10:00:00', 1, 11),
-(12, 'Visite Refuge', 'a12.jpg', 'Portes ouvertes.', '2025-01-05 09:00:00', 1, 12),
-(13, 'Atelier Enfants', 'a13.jpg', 'Découverte des animaux.', '2025-01-30 13:00:00', 1, 13),
-(14, 'Stand Marché', 'a14.jpg', 'Stand associatif.', '2025-01-28 11:00:00', 1, 14),
-(15, 'Expo Photos', 'a15.jpg', 'Photos adoption réussies.', '2025-02-01 16:00:00', 0, 15);
+-- INSERT INTO compawny_dev.action
+-- (id, name, image, description, published, is_active, asso_id) VALUES
+-- (1, 'Journée Adoption Chiens', 'a1.jpg', 'Événement adoption chiens.', '2025-01-10 10:00:00', 1, 1),
+-- (2, 'Collecte Croquettes', 'a2.jpg', 'Collecte pour refuges.', '2025-01-15 09:00:00', 1, 2),
+-- (3, 'Soins Animaux', 'a3.jpg', 'Séance vétérinaire gratuite.', '2025-01-11 11:00:00', 1, 3),
+-- (4, 'Marche Solidaire', 'a4.jpg', 'Randonnée caritative.', '2025-01-12 08:00:00', 1, 4),
+-- (5, 'Atelier Chiots', 'a5.jpg', 'Atelier éducation canine.', '2025-01-18 14:00:00', 1, 5),
+-- (6, 'Séance Vaccination', 'a6.jpg', 'Vaccination solidaire.', '2025-01-16 13:00:00', 1, 6),
+-- (7, 'Distribution Couvertures', 'a7.jpg', 'Aide animaux l’hiver.', '2025-01-22 15:00:00', 1, 7),
+-- (8, 'Formation Bénévoles', 'a8.jpg', 'Formations bénévoles.', '2025-01-20 10:00:00', 1, 8),
+-- (9, 'Collecte Jouets', 'a9.jpg', 'Jouets pour animaux.', '2025-01-25 09:00:00', 1, 9),
+-- (10, 'Sauvetage Urgent', 'a10.jpg', 'Mission de sauvetage.', '2025-01-14 17:00:00', 1, 10),
+-- (11, 'Journée Adoptions Chats', 'a11.jpg', 'Rencontre chats.', '2025-01-08 10:00:00', 1, 11),
+-- (12, 'Visite Refuge', 'a12.jpg', 'Portes ouvertes.', '2025-01-05 09:00:00', 1, 12),
+-- (13, 'Atelier Enfants', 'a13.jpg', 'Découverte des animaux.', '2025-01-30 13:00:00', 1, 13),
+-- (14, 'Stand Marché', 'a14.jpg', 'Stand associatif.', '2025-01-28 11:00:00', 1, 14),
+-- (15, 'Expo Photos', 'a15.jpg', 'Photos adoption réussies.', '2025-02-01 16:00:00', 0, 15);
 
 
-INSERT INTO coeurdecompagnon_dev.animal
+INSERT INTO compawny_dev.animal
 (id, name, picture, arrival, asso_id, species_id) VALUES
 (1, 'Rex', 'rex.jpg', '2025-01-10', 1, 1),
 (2, 'Misty', 'misty.jpg', '2025-01-12', 2, 2),
@@ -187,7 +187,7 @@ INSERT INTO coeurdecompagnon_dev.animal
 (15, 'Viper', 'viper.jpg', '2025-01-16', 15, 15);
 
 
--- INSERT INTO coeurdecompagnon_dev.animal
+-- INSERT INTO compawny_dev.animal
 -- VALUES
 --     ( NULL, "Cookie", "Cookie_picture.jpeg", "2025-10-08", 1, 2 ),
 --     ( NULL, "Gipsy", "Gipsy_picture.jpeg", "2025-08-22", 1, 2 )
@@ -197,7 +197,7 @@ INSERT INTO coeurdecompagnon_dev.animal
 -- START TRANSACTION;
 
 -- -- Requête 1
--- INSERT INTO coeurdecompagnon_dev.action
+-- INSERT INTO compawny_dev.action
 -- VALUES (NULL, "Promener les chiens", "promenade.jpeg", "Pourquoi promener un chien", "2025-10-22 11:04:12", true, 1 )
 -- ; 
 
@@ -205,7 +205,7 @@ INSERT INTO coeurdecompagnon_dev.animal
 -- SET @actionuser_id = LAST_INSERT_ID();
 
 -- -- Requête 2
--- INSERT INTO coeurdecompagnon_dev.user_action
+-- INSERT INTO compawny_dev.user_action
 -- VALUES 
 --     (1, @actionuser_id),
 --     (2, @actionuser_id)
@@ -214,27 +214,27 @@ INSERT INTO coeurdecompagnon_dev.animal
 -- COMMIT;
 
 -- mettre à jour un enregistrement 
--- UPDATE coeurdecompagnon_dev.animal
+-- UPDATE compawny_dev.animal
 -- SET animal.name = "Roxy"
 -- WHERE animal.id = 1
 -- ;
 
 -- supprimer un enregistrement 
--- DELETE FROM coeurdecompagnon_dev.animal
+-- DELETE FROM compawny_dev.animal
 -- WHERE animal.id = 2
 -- ;
 
 -- sélectionner toutes les colonnes d'une table 
 -- SELECT action.* 
 -- SELECT country.name
--- FROM coeurdecompagnon_dev.asso
+-- FROM compawny_dev.asso
 
 -- START TRANSACTION;
 
--- DELETE FROM coeurdecompagnon_dev.user_action
+-- DELETE FROM compawny_dev.user_action
 -- WHERE user_action.action_id = 1;
 
--- DELETE FROM coeurdecompagnon_dev.action
+-- DELETE FROM compawny_dev.action
 -- WHERE action.id = 1;
 
 -- COMMIT; 
