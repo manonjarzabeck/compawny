@@ -1,10 +1,9 @@
-import NavBar from "./navbar";
+import Navigation from "./navigation";
 
 const Header = () => {
 	return (
 		<header>
-			<NavBar />
-			{/* logo */}
+			<Navigation />
 		</header>
 	);
 };

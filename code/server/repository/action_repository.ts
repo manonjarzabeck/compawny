@@ -114,6 +114,7 @@ class ActionRepository {
 		}
 	};
 
+	// méthode d'insertion d'un enregistrement
 	public insert = async (
 		data: Partial<Action>,
 	): Promise<QueryResult | unknown> => {
@@ -178,6 +179,170 @@ class ActionRepository {
 			`;
 
 			const [query] = await connection.execute(sql);
+
+			// valider la transaction SQL
+			connection.commit();
+
+			return query;
+			// retourner les résultats
+		} catch (error) {
+			// annuler une transaction SQL
+			connection.rollback();
+
+			return error;
+		}
+	};
+
+	// méthode de mise à jour d'un enregistrement
+	public update = async (
+		data: Partial<Action>,
+	): Promise<QueryResult | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requête SQL
+		let sql = `
+
+	UPDATE 
+		${process.env.MYSQL_DATABASE}.${this.table}
+	SET
+
+		name = :name,
+		image = :image,
+		description = :description,
+		published = :published,
+		is_active = :is_active,
+		asso_id = :asso_id
+
+	WHERE
+	${this.table}.id = :id
+	  ;
+		`;
+
+		try {
+			// démarrer une transaction SQL
+			connection.beginTransaction();
+
+			// éxecution de la première requête
+			await connection.execute(sql, data);
+
+			// // exécuter la requête SQL
+			// // si la requête possède des variables, utiliser le paramètre de la méthode
+			// // const [query] = await connection.execute(sql, data);
+
+			// deuxième requête SQL
+			sql = `
+			DELETE FROM
+			 ${process.env.MYSQL_DATABASE}.user_action
+			WHERE
+			 user_action.action_id = :id
+			;
+			`;
+			await connection.execute(sql, data);
+
+			// // const [query] = await connection.execute(sql, data); // troisième requête
+			// /*
+			// 	INSERT INTO coeurdecompagnon_dev.user_action
+			// 	VALUES
+			// 	(1, @actionuser_id),
+			// 	(2, @actionuser_id)
+
+			// 	split : extraire les données d'une chaîne de caractères en array
+			// 		1,2,3 >> [1,2,3]
+			// 		[1,2,3] >> (1, @id), (2, @id), (3, @id)
+			// */
+			const joinIds = data.user_ids
+				?.split(",")
+				.map((value) => `(${value}, :id)`)
+				.join();
+			// console.log(joinIds);
+
+			sql = `
+			 INSERT INTO
+			 ${process.env.MYSQL_DATABASE}.user_action
+			 VALUES
+			 ${joinIds}
+			 ;
+			 `;
+
+			const [query] = await connection.execute(sql, data);
+
+			// valider la transaction SQL
+			connection.commit();
+
+			return query;
+			// retourner les résultats
+		} catch (error) {
+			// annuler une transaction SQL
+			connection.rollback();
+
+			return error;
+		}
+	};
+
+	public delete = async (
+		data: Partial<Action>,
+	): Promise<QueryResult | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requête SQL
+		let sql = `
+
+			DELETE FROM
+			 ${process.env.MYSQL_DATABASE}.user_action
+			WHERE
+			 user_action.action_id = :id
+			;
+		`;
+
+		try {
+			// démarrer une transaction SQL
+			connection.beginTransaction();
+
+			// éxecution de la première requête
+			await connection.execute(sql, data);
+
+			// // exécuter la requête SQL
+			// // si la requête possède des variables, utiliser le paramètre de la méthode
+			// // const [query] = await connection.execute(sql, data);
+
+			// deuxième requête SQL
+			sql = `
+			DELETE FROM
+			 ${process.env.MYSQL_DATABASE}.${this.table}
+			WHERE
+			 ${this.table}.id = :id
+			;
+			`;
+
+			// await connection.execute(sql, data);
+			// // const [query] = await connection.execute(sql, data); // troisième requête
+			// /*
+			// 	INSERT INTO coeurdecompagnon_dev.user_action
+			// 	VALUES
+			// 	(1, @actionuser_id),
+			// 	(2, @actionuser_id)
+
+			// 	split : extraire les données d'une chaîne de caractères en array
+			// 		1,2,3 >> [1,2,3]
+			// 		[1,2,3] >> (1, @id), (2, @id), (3, @id)
+			// */
+			// const joinIds = data.user_ids
+			// 	?.split(",")
+			// 	.map((value) => `(${value}, :id)`)
+			// 	.join();
+			// // console.log(joinIds);
+
+			// sql = `
+			//  INSERT INTO
+			//  ${process.env.MYSQL_DATABASE}.user_action
+			//  VALUES
+			//  ${joinIds}
+			//  ;
+			//  `;
+
+			const [query] = await connection.execute(sql, data);
 
 			// valider la transaction SQL
 			connection.commit();

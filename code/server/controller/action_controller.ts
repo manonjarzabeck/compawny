@@ -77,6 +77,58 @@ class ActionController {
 			data: results,
 		});
 	};
+
+	public update = async (req: Request, res: Response) => {
+		console.log(req.body);
+
+		// récupération des résultats de la requête
+		// req.body récupère
+		const results = await new ActionRepository().update(req.body);
+
+		// si la requête renvoie une erreur
+		if (results instanceof Error) {
+			res.status(400).json({
+				status: 400,
+				message:
+					process.env.NODE_ENV === "production" ? "Error" : results.message,
+			});
+
+			return;
+		}
+
+		// renvoyer une réponse avec un code de statut HTTP et au format JSON
+		res.status(200).json({
+			status: 200,
+			message: "Updated",
+			data: results,
+		});
+	};
+
+	public delete = async (req: Request, res: Response) => {
+		console.log(req.body);
+
+		// récupération des résultats de la requête
+		// req.body récupère
+		const results = await new ActionRepository().delete(req.body);
+
+		// si la requête renvoie une erreur
+		if (results instanceof Error) {
+			res.status(400).json({
+				status: 400,
+				message:
+					process.env.NODE_ENV === "production" ? "Error" : results.message,
+			});
+
+			return;
+		}
+
+		// renvoyer une réponse avec un code de statut HTTP et au format JSON
+		res.status(200).json({
+			status: 200,
+			message: "Deleted",
+			data: results,
+		});
+	};
 }
 
 export default ActionController;

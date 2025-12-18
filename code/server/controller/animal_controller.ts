@@ -73,7 +73,7 @@ class AnimalController {
 		// renvoyer une réponse avec un code de statut HTTP et au format JSON
 		res.status(201).json({
 			status: 201,
-			message: "Created",
+			message: "Updated",
 			data: results,
 		});
 	};

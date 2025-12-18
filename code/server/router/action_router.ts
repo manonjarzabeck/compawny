@@ -18,8 +18,16 @@ class ActionRouter {
 		// variable de route : précédée par un :, suivie du nom de la variable
 		this.router.get("/:id", new ActionController().selectOne);
 
+		// ajouter un enregistrement
 		// utilisation du middleware multer
 		this.router.post("/", this.multer.any(), new ActionController().insert);
+
+		// mettre à jour un enregistrement
+		// utilisation du middleware multer
+		this.router.put("/", this.multer.any(), new ActionController().update);
+
+		// supprimer un enregistrement
+		this.router.delete("/", new ActionController().delete);
 
 		// retourner le routeur
 		return this.router;
