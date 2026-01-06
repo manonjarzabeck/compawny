@@ -23,17 +23,28 @@ class RouterService {
 								id: "home",
 								index: true,
 								path: "",
-								lazy: () => import("../pages/index"),
+								lazy: () => import("../pages/homepage/index"),
 							},
 							{
 								id: "contact",
 								path: "contact",
-								lazy: () => import("../pages/contact"),
+								lazy: () => import("../pages/contact/contact"),
 							},
 							{
-								id: "connexion",
-								path: "connexion",
-								lazy: () => import("../pages/connexion"),
+								id: "authentification",
+								path: "authentification",
+								lazy: () =>
+									import("../pages/authentification/authentification"),
+							},
+							{
+								id: "action",
+								path: "action",
+								lazy: () => import("../pages/actions/action"),
+							},
+							{
+								id: "mentions",
+								path: "mentions",
+								lazy: () => import("../pages/mentions/mentions"),
 							},
 						],
 					},

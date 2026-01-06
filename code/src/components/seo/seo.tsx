@@ -1,5 +1,5 @@
 import React from "react";
-import type { SeoProps } from "../models/props/seo_props";
+import type { SeoProps } from "../../models/props/seo_props";
 
 const Seo = ({ title, description, url }: SeoProps) => {
 	return (

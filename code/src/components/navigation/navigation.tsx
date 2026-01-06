@@ -3,7 +3,7 @@
 // import { useState } from "react";
 import { NavLink } from "react-router";
 
-import styles from "../assets/css/navigation.module.css";
+import styles from "../navigation/navigation.module.css";
 
 const NavBar = () => {
 	// créer un état hook useState
@@ -20,7 +20,9 @@ const NavBar = () => {
 	return (
 		<nav className={styles.navbar}>
 			<NavLink to={"/"}>Le guide du bénévole 👉🏼</NavLink>
-			<NavLink to={"/Contact"}>Ils en parlent 💭</NavLink>
+			<NavLink to={"/contact"}>Ils en parlent 💭</NavLink>
+			<NavLink to={"/action"}>Voir les actions 🫂</NavLink>
+			<NavLink to={"/authentification"}>Connexion/Inscription</NavLink>
 		</nav>
 	);
 };
