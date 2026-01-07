@@ -21,8 +21,9 @@ const NavBar = () => {
 		<nav className={styles.navbar}>
 			<NavLink to={"/"}>Le guide du bénévole 👉🏼</NavLink>
 			<NavLink to={"/contact"}>Ils en parlent 💭</NavLink>
-			<NavLink to={"/action"}>Voir les actions 🫂</NavLink>
-			<NavLink to={"/authentification"}>Connexion/Inscription</NavLink>
+			<NavLink to={"/action"}>Voir les actions 🐈</NavLink>
+			<NavLink to={"/authentification"}>Connexion/Inscription 👤</NavLink>
+			<NavLink to={"/admin"}>Espace Admin 🔐</NavLink>
 		</nav>
 	);
 };

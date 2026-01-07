@@ -42,9 +42,24 @@ class RouterService {
 								lazy: () => import("../pages/actions/action"),
 							},
 							{
+								id: "action-detail",
+								path: "actions/:id",
+								lazy: () => import("../pages/action-details/action-details"),
+							},
+							{
 								id: "mentions",
 								path: "mentions",
 								lazy: () => import("../pages/mentions/mentions"),
+							},
+							{
+								id: "admin",
+								path: "admin",
+								lazy: () => import("../pages/admin/adminHomepage"),
+							},
+							{
+								id: "admin/actions",
+								path: "admin/actions",
+								lazy: () => import("../pages/admin/actionsCrud"),
 							},
 						],
 					},

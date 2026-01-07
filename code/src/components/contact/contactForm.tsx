@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./ContactPage.module.css";
+import styles from "./contactForm.module.css";
 
-const ContactPage = () => {
+const ContactForm = () => {
 	return (
 		<form className={styles.form}>
 			<h2>Contact</h2>
@@ -30,4 +30,4 @@ const ContactPage = () => {
 	);
 };
 
-export default ContactPage;
+export default ContactForm;

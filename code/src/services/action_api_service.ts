@@ -1,4 +1,3 @@
-import { response } from "express";
 import type { Action } from "../../models/action";
 import type { ApiResponse } from "../models/api_response";
 
@@ -22,6 +21,17 @@ class ActionApiService {
 		const results = await response.json();
 
 		// retourner les résultats
+		return results;
+	};
+
+	public selectOne = async (id: number): Promise<ApiResponse<Action>> => {
+		const request = new Request(
+			`${import.meta.env.VITE_API_URL}${this.prefix}/${id}`,
+		);
+
+		const response = await fetch(request);
+		const results = await response.json();
+
 		return results;
 	};
 }
