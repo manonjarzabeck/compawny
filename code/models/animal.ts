@@ -6,6 +6,7 @@ type Animal = {
 	name: string;
 	picture: string;
 	arrival: number;
+	description: string;
 	asso_id: number;
 	species_id: number;
 

@@ -16,7 +16,7 @@ CREATE TABLE compawny_dev.user(
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(150) NOT NULL,
     role_id TINYINT(1) UNSIGNED NOT NULL,
-    FOREIGN KEY user(role_id) REFERENCES compawny_dev.role(id),
+    FOREIGN KEY (role_id) REFERENCES compawny_dev.role(id),
     INDEX (email)
  );
 
@@ -47,10 +47,9 @@ CREATE TABLE compawny_dev.action(
     name VARCHAR(50) NOT NULL,
     image VARCHAR(50) NOT NULL,
     description TEXT NOT NULL,
-    published DATETIME NOT NULL,
     is_active BOOLEAN NOT NULL,
     asso_id TINYINT UNSIGNED NOT NULL,
-    FOREIGN KEY action(asso_id) REFERENCES compawny_dev.asso(id),
+    FOREIGN KEY (asso_id) REFERENCES compawny_dev.asso(id),
     INDEX(name)
     );
 
@@ -65,8 +64,9 @@ CREATE TABLE compawny_dev.user_action(
 CREATE TABLE compawny_dev.animal(
     id TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    picture VARCHAR(50) NOT NULL,
+    picture VARCHAR(50) NOT NULL, 
     arrival DATE NOT NULL,
+    description TEXT NOT NULL,
     asso_id TINYINT UNSIGNED NOT NULL,
     species_id TINYINT UNSIGNED NOT NULL,
     FOREIGN KEY (asso_id) REFERENCES compawny_dev.asso(id),

@@ -1,0 +1,60 @@
+.hero {
+	background-color: #fdf1e6;
+	padding: 2rem 1.5rem;
+	text-align: center;
+}
+
+.hero__title {
+	font-size: 1.4rem;
+	font-weight: 600;
+	color: #4b3f35;
+	margin-bottom: 2rem;
+}
+
+.hero__image {
+	width: 100%;
+	max-width: 320px;
+	margin: 0 auto 2rem;
+	display: block;
+}
+
+.hero__description {
+	font-size: 1rem;
+	color: #5a4a42;
+	line-height: 1.6;
+	margin-bottom: 2rem;
+}
+
+.scrollbtn {
+	background: none;
+	border: none;
+	font-size: 2rem;
+	cursor: pointer;
+	color: #c08a6a;
+	animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(6px);
+	}
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+	.hero__title {
+		font-size: 1.8rem;
+	}
+
+	.hero__image {
+		max-width: 420px;
+	}
+
+	.hero__description {
+		font-size: 1.1rem;
+	}
+}

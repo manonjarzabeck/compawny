@@ -44,7 +44,18 @@ class RouterService {
 							{
 								id: "action-detail",
 								path: "actions/:id",
-								lazy: () => import("../pages/action-details/action-details"),
+								lazy: () =>
+									import("../pages/actions/action-details/action-details"),
+							},
+							{
+								id: "animal",
+								path: "animal",
+								lazy: () => import("../pages/adoptions-sos/adoption-sos"),
+							},
+							{
+								id: "asso",
+								path: "asso",
+								lazy: () => import("../pages/asso-monde/asso-monde"),
 							},
 							{
 								id: "mentions",
@@ -56,10 +67,23 @@ class RouterService {
 								path: "admin",
 								lazy: () => import("../pages/admin/adminHomepage"),
 							},
+
 							{
-								id: "admin/actions",
-								path: "admin/actions",
-								lazy: () => import("../pages/admin/actionsCrud"),
+								id: "admin/action-form",
+								path: "admin/action-form",
+								lazy: () =>
+									import("../pages/admin/admin_action/actionsCrudForm"),
+							},
+							{
+								id: "admin/asso-form",
+								path: "admin/asso-form",
+								lazy: () => import("../pages/admin/admin_asso/assoCrudForm"),
+							},
+							{
+								id: "admin/adoption-form",
+								path: "admin/adoption-form",
+								lazy: () =>
+									import("../pages/admin/admin_adoption/adoptionCrudForm"),
 							},
 						],
 					},

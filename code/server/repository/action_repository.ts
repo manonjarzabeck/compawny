@@ -21,11 +21,11 @@ class ActionRepository {
 			GROUP_CONCAT(user.id) AS user_ids
             FROM 
 			${process.env.MYSQL_DATABASE}.${this.table}
-			JOIN 
+			LEFT JOIN 
 			${process.env.MYSQL_DATABASE}.user_action
 			ON
 			user_action.action_id = action.id
-			JOIN 
+			LEFT JOIN 
 			${process.env.MYSQL_DATABASE}.user
 			ON
 			user.id = user_action.user_id
@@ -75,11 +75,11 @@ class ActionRepository {
 			GROUP_CONCAT(user.id) AS user_ids
             FROM 
 			${process.env.MYSQL_DATABASE}.${this.table}
-			JOIN 
+			LEFT JOIN 
 			${process.env.MYSQL_DATABASE}.user_action
 			ON
 			user_action.action_id = action.id
-			JOIN 
+			LEFT JOIN 
 			${process.env.MYSQL_DATABASE}.user
 			ON
 			user.id = user_action.user_id
@@ -122,7 +122,7 @@ class ActionRepository {
 		const connection = await new MySQLService().connect();
 
 		// requête SQL
-		let sql = `
+		const sql = `
 
 	INSERT INTO 
 		${process.env.MYSQL_DATABASE}.${this.table}
@@ -144,15 +144,16 @@ class ActionRepository {
 			connection.beginTransaction();
 
 			// éxecution de la première requête
-			await connection.execute(sql, data);
+			const [query] = await connection.execute(sql, data);
 
 			// exécuter la requête SQL
 			// si la requête possède des variables, utiliser le paramètre de la méthode
 			// const [query] = await connection.execute(sql, data);
 
 			// deuxième requête SQL
-			sql = `SET @id = LAST_INSERT_ID();`;
-			await connection.execute(sql, data);
+			// sql = `SET @id = LAST_INSERT_ID();`;
+			// const [query] = await connection.execute(sql, data);
+
 			// const [query] = await connection.execute(sql, data); // troisième requête
 			/* 
 				INSERT INTO coeurdecompagnon_dev.user_action
@@ -164,21 +165,22 @@ class ActionRepository {
 					1,2,3 >> [1,2,3]
 					[1,2,3] >> (1, @id), (2, @id), (3, @id)
 			*/
-			const joinIds = data.user_ids
-				?.split(",")
-				.map((value) => `(${value}, @id)`)
-				.join();
-			// console.log(joinIds);
 
-			sql = `
-			INSERT INTO 
-			${process.env.MYSQL_DATABASE}.user_action
-			VALUES
-			${joinIds}
-			;
-			`;
+			// const joinIds = data.user_ids
+			// 	?.split(",")
+			// 	.map((value) => `(${value}, @id)`)
+			// 	.join();
+			// // console.log(joinIds);
 
-			const [query] = await connection.execute(sql);
+			// sql = `
+			// INSERT INTO
+			// ${process.env.MYSQL_DATABASE}.user_action
+			// VALUES
+			// ${joinIds}
+			// ;
+			// `;
+
+			// const [query] = await connection.execute(sql);
 
 			// valider la transaction SQL
 			connection.commit();
@@ -201,7 +203,7 @@ class ActionRepository {
 		const connection = await new MySQLService().connect();
 
 		// requête SQL
-		let sql = `
+		const sql = `
 
 	UPDATE 
 		${process.env.MYSQL_DATABASE}.${this.table}
@@ -224,21 +226,21 @@ class ActionRepository {
 			connection.beginTransaction();
 
 			// éxecution de la première requête
-			await connection.execute(sql, data);
+			const [query] = await connection.execute(sql, data);
 
 			// // exécuter la requête SQL
 			// // si la requête possède des variables, utiliser le paramètre de la méthode
 			// // const [query] = await connection.execute(sql, data);
 
 			// deuxième requête SQL
-			sql = `
-			DELETE FROM
-			 ${process.env.MYSQL_DATABASE}.user_action
-			WHERE
-			 user_action.action_id = :id
-			;
-			`;
-			await connection.execute(sql, data);
+			// sql = `
+			// DELETE FROM
+			//  ${process.env.MYSQL_DATABASE}.user_action
+			// WHERE
+			//  user_action.action_id = :id
+			// ;
+			// `;
+			// await connection.execute(sql, data);
 
 			// // const [query] = await connection.execute(sql, data); // troisième requête
 			// /*
@@ -251,21 +253,21 @@ class ActionRepository {
 			// 		1,2,3 >> [1,2,3]
 			// 		[1,2,3] >> (1, @id), (2, @id), (3, @id)
 			// */
-			const joinIds = data.user_ids
-				?.split(",")
-				.map((value) => `(${value}, :id)`)
-				.join();
-			// console.log(joinIds);
+			// const joinIds = data.user_ids
+			// 	?.split(",")
+			// 	.map((value) => `(${value}, :id)`)
+			// 	.join();
+			// // console.log(joinIds);
 
-			sql = `
-			 INSERT INTO
-			 ${process.env.MYSQL_DATABASE}.user_action
-			 VALUES
-			 ${joinIds}
-			 ;
-			 `;
+			// sql = `
+			//  INSERT INTO
+			//  ${process.env.MYSQL_DATABASE}.user_action
+			//  VALUES
+			//  ${joinIds}
+			//  ;
+			//  `;
 
-			const [query] = await connection.execute(sql, data);
+			// const [query] = await connection.execute(sql, data);
 
 			// valider la transaction SQL
 			connection.commit();
@@ -287,13 +289,15 @@ class ActionRepository {
 		const connection = await new MySQLService().connect();
 
 		// requête SQL
-		let sql = `
+		const sql = `
 
+		
 			DELETE FROM
-			 ${process.env.MYSQL_DATABASE}.user_action
+			 ${process.env.MYSQL_DATABASE}.${this.table}
 			WHERE
-			 user_action.action_id = :id
+			 ${this.table}.id = :id
 			;
+		
 		`;
 
 		try {
@@ -301,20 +305,20 @@ class ActionRepository {
 			connection.beginTransaction();
 
 			// éxecution de la première requête
-			await connection.execute(sql, data);
+			const [query] = await connection.execute(sql, data);
 
 			// // exécuter la requête SQL
 			// // si la requête possède des variables, utiliser le paramètre de la méthode
 			// // const [query] = await connection.execute(sql, data);
 
 			// deuxième requête SQL
-			sql = `
-			DELETE FROM
-			 ${process.env.MYSQL_DATABASE}.${this.table}
-			WHERE
-			 ${this.table}.id = :id
-			;
-			`;
+			// sql = `
+			// DELETE FROM
+			//  ${process.env.MYSQL_DATABASE}.${this.table}
+			// WHERE
+			//  ${this.table}.id = :id
+			// ;
+			// `;
 
 			// await connection.execute(sql, data);
 			// // const [query] = await connection.execute(sql, data); // troisième requête
@@ -342,7 +346,7 @@ class ActionRepository {
 			//  ;
 			//  `;
 
-			const [query] = await connection.execute(sql, data);
+			// const [query] = await connection.execute(sql, data);
 
 			// valider la transaction SQL
 			connection.commit();

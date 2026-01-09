@@ -2,6 +2,7 @@ import express from "express";
 import ActionRouter from "../router/action_router";
 import AnimalRouter from "../router/animal_router";
 import AssoRouter from "../router/asso_router";
+import CountryRouter from "../router/country_router";
 import HomepageRouter from "../router/homepage_router";
 import RoleRouter from "../router/role_router";
 import SpeciesRouter from "../router/species_router";
@@ -33,6 +34,7 @@ class Server {
 		this.router.use("/api/asso", new AssoRouter().getRoutes());
 		this.router.use("/api/role", new RoleRouter().getRoutes());
 		this.router.use("/api/user", new UserRouter().getRoutes());
+		this.router.use("/api/country", new CountryRouter().getRoutes());
 	};
 
 	// démarrer le serveur

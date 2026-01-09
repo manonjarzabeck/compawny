@@ -6,13 +6,12 @@ type Action = {
 	name: string;
 	image: string;
 	description: string;
-	published: number;
 	is_active: boolean;
 
 	asso_id: number;
 	asso: Asso;
 
-	// liste concaténée des indentifiants des plats
+	// liste concaténée des indentifiants des user
 	user_ids: string;
 	users: User[];
 };

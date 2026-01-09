@@ -1,3 +1,4 @@
+import AssoList from "../../components/asso/asso_list";
 import Seo from "../../components/seo/seo";
 
 const AssoMondePage = () => {
@@ -8,7 +9,8 @@ const AssoMondePage = () => {
 				description="Associations dans le monde"
 				url=""
 			/>
-			<div>Associations mondiales</div>
+			<h2>Associations mondiales</h2>
+			<AssoList />
 		</>
 	);
 };

@@ -6,14 +6,8 @@ const ActionListItem = ({ data }: ActionListItemProps) => {
 	return (
 		<article>
 			<h2>
-				{data.name}
-				<NavLink to={`/actions/${data.id}`}>Voir</NavLink>
+				<NavLink to={`/actions/${data.id}`}>{data.name}</NavLink>
 			</h2>
-
-			<p>
-				{/* / cible le dossier public */}
-				<img src="" alt="" />
-			</p>
 			<div> {data.description}</div>
 		</article>
 	);

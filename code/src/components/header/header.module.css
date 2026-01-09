@@ -1,0 +1,26 @@
+.header {
+	display: flex;
+	align-items: center;
+	padding: 12px 20px;
+	background: var(--sable-rose);
+	border-bottom: 1px solid #eee;
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.logo {
+	width: 50%;
+	height: 50%;
+	object-fit: contain;
+}
+
+.title {
+	font-size: 1rem;
+	font-weight: 700;
+	color: var(--marron-gris);
+	margin: 0;
+}
