@@ -1,26 +1,46 @@
-.header {
+.publicHeader {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	padding: 12px 20px;
 	background: var(--sable-rose);
-	border-bottom: 1px solid #eee;
+	width: 100%;
+	position: relative;
 }
 
-.brand {
+.publicBrand {
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: 5px;
 }
 
-.logo {
-	width: 50%;
-	height: 50%;
+.publicLogo {
+	width: 30%;
+	height: 30%;
 	object-fit: contain;
+	margin-top: 10px;
 }
 
-.title {
-	font-size: 1rem;
+.publicTitle {
+	font-size: 3rem;
 	font-weight: 700;
 	color: var(--marron-gris);
-	margin: 0;
+	font-family: var(--font-title);
+	margin-top: 60px;
+}
+
+@media (min-width: 768px) {
+	.publicHeader {
+		flex-direction: column;
+		align-items: stretch;
+		/* padding: 0.8rem 1rem; */
+	}
+
+	.publicLogo {
+		width: 6rem;
+	}
+
+	.publicTitle {
+		font-size: 3rem;
+		margin-top: 20px;
+	}
 }

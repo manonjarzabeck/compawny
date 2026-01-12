@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import ActionRouter from "../router/action_router";
 import AnimalRouter from "../router/animal_router";
@@ -17,6 +18,13 @@ class Server {
 	constructor() {
 		// intégrer le middleware express JSON qui permet de récupérer la propriété body de la requête HTTP en JSON
 		this.app.use(express.json());
+
+		// intégrer le middleware CORS - Cross Origin Resource Sharing - qui permet d'autoriser l'accès aux ressources à des origines différentes (protocole, port, sous-domaine)
+		this.app.use(
+			cors({
+				origin: process.env.ORIGINS?.split(","),
+			}),
+		);
 
 		// relier le routeur à l'application
 		this.app.use(this.router);

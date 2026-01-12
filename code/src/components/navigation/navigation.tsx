@@ -25,18 +25,6 @@ const NavBar = () => {
 			<NavLink to={"/contact"} className={styles.navLink}>
 				Ils en parlent 💭
 			</NavLink>
-			<NavLink to={"/action"} className={styles.navLink}>
-				Voir les actions 🐈
-			</NavLink>
-			<NavLink to={"/asso"} className={styles.navLink}>
-				Voir les associations 🌍
-			</NavLink>
-			<NavLink to={"/animal"} className={styles.navLink}>
-				Voir les animaux SOS à l'adoption 🐶
-			</NavLink>
-			<NavLink to={"/authentification"} className={styles.navLink}>
-				Connexion/Inscription 👤
-			</NavLink>
 			<NavLink to={"/admin"} className={styles.navLink}>
 				Espace Admin 🔐
 			</NavLink>

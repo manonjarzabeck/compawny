@@ -1,14 +1,13 @@
-/* Polices  */
-
-/* Variables CSS */
 :root {
+	--font-title: "Nunito", sans-serif;
+	--font-body: "Inter", sans-serif;
+
 	--marron-gris: #544541;
 	--sable-rose: #feedde;
 	--orange-gris: #efcab3;
 	--rose-clair: #f6c9c6;
+	--nav-bar: #ffdfd2;
 }
-
-/* Balises HTML */
 
 * {
 	box-sizing: border-box;

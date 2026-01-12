@@ -24,9 +24,33 @@ class ActionApiService {
 		return results;
 	};
 
+	// séléction d'un enregistrement
 	public selectOne = async (id: number): Promise<ApiResponse<Action>> => {
 		const request = new Request(
 			`${import.meta.env.VITE_API_URL}${this.prefix}/${id}`,
+		);
+
+		const response = await fetch(request);
+		const results = await response.json();
+
+		return results;
+	};
+
+	// insertion d'un enregistrement
+	public insert = async (data: FormData): Promise<ApiResponse<Action>> => {
+		const request = new Request(
+			`${import.meta.env.VITE_API_URL}${this.prefix}`,
+			{
+				method: "post",
+				/*
+				si le formulaire contient un champ de fichier
+				la propriété body renvoie un objet formData
+				si le formulaire ne contient pas de champ de fichier
+				la propriété body renvoie du JSON : JSON.stringify(...)
+				ajouter l'en tête Content-Type: application/json
+				*/
+				body: data,
+			},
 		);
 
 		const response = await fetch(request);

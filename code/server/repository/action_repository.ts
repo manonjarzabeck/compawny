@@ -132,7 +132,6 @@ class ActionRepository {
 		:name,
 		:image,
 		:description,
-		:published,
 		:is_active,
 		:asso_id
 	)
@@ -212,7 +211,6 @@ class ActionRepository {
 		name = :name,
 		image = :image,
 		description = :description,
-		published = :published,
 		is_active = :is_active,
 		asso_id = :asso_id
 

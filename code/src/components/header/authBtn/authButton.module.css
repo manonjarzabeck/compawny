@@ -1,0 +1,64 @@
+/* 
+.authBtnSection {
+	display: flex;
+	gap: 0.5rem;
+ } 
+
+.authBtn {
+	display: flex;
+	padding: 0.4rem 0.9rem;
+	border-radius: 999px;
+	background-color: #e7b8a3;
+	color: #4a3f35;
+	text-decoration: none;
+	font-size: 0.85rem;
+	align-self: flex-end;
+	margin-top: 8px;
+}
+
+.authBth.outline {
+	background-color: transparent;
+	border: 1px solid #4a3f35;
+} */
+
+.authBtnSection {
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-start;
+	width: 100%;
+	position: absolute;
+	top: 0.6rem;
+	right: 0.5rem;
+	/* z-index: 10; */
+}
+
+.authBtn {
+	display: inline-block;
+	padding: 0.6rem 0.8rem;
+	background-color: var(--rose-clair);
+	color: var(--marron-gris);
+	border: 1px solid var(--marron-gris);
+	border-radius: 80px;
+	font-size: 0.7rem;
+	font-family: var(--font-body);
+	text-decoration: none;
+	font-weight: 300;
+	cursor: pointer;
+}
+
+.authBtn:hover {
+	opacity: 0.9;
+}
+
+@media (min-width: 768px) {
+	.authBtnSection {
+		justify-content: flex-end;
+		align-items: center;
+		margin-top: -0.2rem; /* ajuste si besoin */
+	}
+
+	.authBtn {
+		font-size: 0.9rem;
+		padding: 0.5rem 1rem;
+	}
+}

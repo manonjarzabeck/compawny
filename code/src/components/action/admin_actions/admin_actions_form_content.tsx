@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import type { ZodIssue } from "zod/v3";
 import type { Action } from "../../../../models/action";
 import type { AdminActionsFormContentProps } from "../../../models/props/admin/admin_actions_form_content_props";
+import ActionApiService from "../../../services/action_api_service";
 
 const AdminActionsFormContent = ({
 	asso,
@@ -32,8 +33,10 @@ const AdminActionsFormContent = ({
 	// data stocke la saisie du formulaire
 	const submitForm = async (data: Partial<Action>) => {
 		// normaliser les données saisies : se baser sur les données testées dans flashpost pour que les données
-		// const normalizedData = { ...data };
-		const validation = await validator(data);
+		const normalizedData = { ...data };
+
+		// validation de la saisie avec validateur côté serveur
+		const validation = await validator(normalizedData);
 
 		// si la validation échoue
 		if (validation instanceof Error) {
@@ -46,11 +49,29 @@ const AdminActionsFormContent = ({
 				return errors;
 			});
 
-			// définir l'état
+			// définir l'état affichant les messages d'erreur côté serveur
 			setServerErrors(errors);
 
 			return;
 		}
+
+		// si la validation réussie
+		// si le formulaire contient un champ de fichier : envoyer vers l'API un objet de type formData
+		const formData = new FormData();
+
+		formData.set("id", normalizedData.id as unknown as string);
+		formData.set("name", normalizedData.name as unknown as string);
+		formData.set("image", normalizedData.image as unknown as string);
+		formData.set(
+			"description",
+			normalizedData.description as unknown as string,
+		);
+		formData.set("is_active", normalizedData.is_active ? "1" : "0");
+		formData.set("asso_id", normalizedData.asso_id as unknown as string);
+
+		const process = await new ActionApiService().insert(formData);
+
+		// console.log(process);
 	};
 
 	return (
@@ -72,15 +93,15 @@ const AdminActionsFormContent = ({
 						type="text"
 						id={nameId}
 						{...register("name", {
-							// required: "Le nom est obligatoire",
-							// minLength: {
-							// 	value: 2,
-							// 	message: "Un nom doit comporter, au minimum, 2 caractères",
-							// },
-							// maxLength: {
-							// 	value: 100,
-							// 	message: "Un nom doit comporter, au maximum, 100 caractères",
-							// },
+							required: "Le nom est obligatoire",
+							minLength: {
+								value: 2,
+								message: "Un nom doit comporter, au minimum, 2 caractères",
+							},
+							maxLength: {
+								value: 50,
+								message: "Un nom doit comporter, au maximum, 50 caractères",
+							},
 						})}
 					/>
 					{/* Afficher les messages d'erreur : utiliser le name du champ, définit dans register */}
@@ -91,19 +112,67 @@ const AdminActionsFormContent = ({
 				</p>
 				<p>
 					<label htmlFor={imageId}>Image :</label>
-					<input type="text" {...register("image")} id={imageId} />
+					<input
+						type="text"
+						id={imageId}
+						{...register("image", {
+							required: "L'image est obligatoire",
+							minLength: {
+								value: 2,
+								message: "Une image doit comporter, au minimum, 2 caractères",
+							},
+							maxLength: {
+								value: 50,
+								message: "Une image doit comporter, au maximum, 50 caractères",
+							},
+						})}
+					/>
+					{/* Afficher les messages d'erreur : utiliser le name du champ, définit dans register */}
+					<small role="alert">
+						{" "}
+						{errors.image?.message ?? serverErrors?.image}
+					</small>
 				</p>
 				<p>
 					<label htmlFor={descriptionId}>Description :</label>
-					<textarea {...register("description")} id={descriptionId} />
+					<textarea
+						id={descriptionId}
+						{...register("description", {
+							required: "La description est obligatoire",
+							minLength: {
+								value: 2,
+								message:
+									"La description doit comporter, au minimum, 20 caractères",
+							},
+							maxLength: {
+								value: 300,
+								message:
+									"La description doit comporter, au maximum, 300 caractères",
+							},
+						})}
+					/>
+					{/* Afficher les messages d'erreur : utiliser le name du champ, définit dans register */}
+					<small role="alert">
+						{" "}
+						{errors.description?.message ?? serverErrors?.description}
+					</small>
 				</p>
 				<p>
 					<label htmlFor={isactiveId}>En ligne :</label>
-					<input type="checkbox" {...register("is_active")} id={isactiveId} />
+					<input type="checkbox" id={isactiveId} {...register("is_active")} />
 				</p>
 				<div>
-					<label htmlFor={assoId}>Asso</label>
-					<select {...register("asso_id")}>
+					<label htmlFor={assoId}>Association :</label>
+					<select
+						{...register("asso_id", {
+							required: "L'association est obligatoire",
+							valueAsNumber: true,
+							min: {
+								value: 1,
+								message: "Veuillez sélectionner une association",
+							},
+						})}
+					>
 						<option value="">Sélectionner une association</option>
 						{asso.map((item) => {
 							return (
@@ -112,8 +181,8 @@ const AdminActionsFormContent = ({
 								</option>
 							);
 						})}
-						{/* pour les foreign key, les convertir en number ( ID ), mettre un minimum 1, et un message " la section est obligatoire, bla bla bla" */}
 					</select>
+					<small role="alert"> {errors.asso_id?.message}</small>
 				</div>
 
 				<p>
