@@ -58,6 +58,57 @@ class ActionApiService {
 
 		return results;
 	};
+
+	public update = async (data: FormData): Promise<ApiResponse<Action>> => {
+		// configurer la requête HTTP
+		const request = new Request(
+			`${import.meta.env.VITE_API_URL}${this.prefix}`,
+			{
+				method: "put",
+				/* si le formulaire contient un champ de fichier, la propriété body renvoie un objet formData. 
+				Si le formulaire ne contient pas de champ de fichier, la propriété renvoie du JSON (JSON stringify)... ajouter l'en-tête Content-Type:  */
+				body: data,
+			},
+		);
+
+		// executer la requete HTTP
+		const response = await fetch(request);
+
+		// convertir la réponse en JSON
+		// sérialiser : convertir des données complexes (objets, array) en chaine de caractères
+		// désérialiser : convertir une chaine de caractères en données complexes : objets, array...
+		const results = await response.json();
+
+		// retourner les résultats
+		return results;
+	};
+
+	public delete = async (
+		data: Partial<Action>,
+	): Promise<ApiResponse<Action>> => {
+		// configurer la requête HTTP
+		const request = new Request(
+			`${import.meta.env.VITE_API_URL}${this.prefix}`,
+			{
+				method: "delete",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			},
+		);
+
+		// executer la requete HTTP
+		const response = await fetch(request);
+
+		// convertir la réponse en JSON
+		// sérialiser : convertir des données complexes (objets, array) en chaine de caractères
+		// désérialiser : convertir une chaine de caractères en données complexes : objets, array...
+		const results = await response.json();
+
+		// retourner les résultats
+		return results;
+	};
 }
 
 export default ActionApiService;

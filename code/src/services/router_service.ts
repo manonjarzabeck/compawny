@@ -67,12 +67,16 @@ class RouterService {
 								path: "admin",
 								lazy: () => import("../pages/admin/adminHomepage"),
 							},
-
 							{
 								id: "admin/action-form",
-								path: "admin/action-form",
+								path: "admin/action-form/:id?",
 								lazy: () =>
 									import("../pages/admin/admin_action/actionsCrudForm"),
+							},
+							{
+								id: "admin/action-form-delete",
+								path: "admin/action-form-delete/:id?",
+								lazy: () => import("../pages/admin/admin_action/delete"),
 							},
 							{
 								id: "admin/asso-form",

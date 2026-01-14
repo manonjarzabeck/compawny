@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useId, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import type { ZodIssue } from "zod/v3";
 import type { Action } from "../../../../models/action";
 import type { AdminActionsFormContentProps } from "../../../models/props/admin/admin_actions_form_content_props";
@@ -10,6 +11,7 @@ import ActionApiService from "../../../services/action_api_service";
 const AdminActionsFormContent = ({
 	asso,
 	validator,
+	dataToUpdate,
 }: AdminActionsFormContentProps) => {
 	// créer des indentifiants pour les champs de formulaire
 	const nameId = useId();
@@ -29,10 +31,27 @@ const AdminActionsFormContent = ({
 		formState: { errors },
 	} = useForm<Partial<Action>>();
 
+	// préremplir le formulaire avant l'affichage du composant
+	useEffect(() => {
+		// si des données sont à méttre à jour
+		if (dataToUpdate) {
+			// normaliser les données saisies : se baser sur les données testées dans flashpost pour que les données marchent
+
+			const normalizedData = { ...dataToUpdate };
+			reset(normalizedData);
+		}
+	}, [dataToUpdate, reset]);
+
+	// message lié à la soumission du formulaire
+	const [message, setMessage] = useState<string>("");
+
+	// useNavigate permet de créer une redirection
+	const navigate = useNavigate();
+
 	// soumission du formulaire
 	// data stocke la saisie du formulaire
 	const submitForm = async (data: Partial<Action>) => {
-		// normaliser les données saisies : se baser sur les données testées dans flashpost pour que les données
+		// normaliser les données saisies : se baser sur les données testées dans flashpost pour que les données marchent
 		const normalizedData = { ...data };
 
 		// validation de la saisie avec validateur côté serveur
@@ -69,9 +88,22 @@ const AdminActionsFormContent = ({
 		formData.set("is_active", normalizedData.is_active ? "1" : "0");
 		formData.set("asso_id", normalizedData.asso_id as unknown as string);
 
-		const process = await new ActionApiService().insert(formData);
+		// requête HTTP vers l'API
+		const process = dataToUpdate
+			? await new ActionApiService().update(formData)
+			: await new ActionApiService().insert(formData);
 
-		// console.log(process);
+		// si la requête HTTP a réussie
+		if ([200, 201].indexOf(process.status) !== -1) {
+			// redirection
+			navigate("/admin");
+		}
+
+		// si la requête HTTP échoue
+		else if ([400].indexOf(process.status) !== -1) {
+			// afficher un message
+			setMessage(process.data as unknown as string);
+		}
 	};
 
 	return (
@@ -187,7 +219,7 @@ const AdminActionsFormContent = ({
 
 				<p>
 					<input type="hidden" id={idId} {...register("id")} />
-					<button type="submit">Ajouter une action</button>
+					<button type="submit">Soumettre</button>
 				</p>
 			</form>
 		</>
