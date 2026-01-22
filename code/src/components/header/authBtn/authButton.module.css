@@ -1,27 +1,4 @@
-/* 
-.authBtnSection {
-	display: flex;
-	gap: 0.5rem;
- } 
-
-.authBtn {
-	display: flex;
-	padding: 0.4rem 0.9rem;
-	border-radius: 999px;
-	background-color: #e7b8a3;
-	color: #4a3f35;
-	text-decoration: none;
-	font-size: 0.85rem;
-	align-self: flex-end;
-	margin-top: 8px;
-}
-
-.authBth.outline {
-	background-color: transparent;
-	border: 1px solid #4a3f35;
-} */
-
-.authBtnSection {
+/* .authBtnSection {
 	display: flex;
 	justify-content: flex-end;
 	align-items: flex-start;
@@ -29,7 +6,6 @@
 	position: absolute;
 	top: 0.6rem;
 	right: 0.5rem;
-	/* z-index: 10; */
 }
 
 .authBtn {
@@ -39,7 +15,7 @@
 	color: var(--marron-gris);
 	border: 1px solid var(--marron-gris);
 	border-radius: 80px;
-	font-size: 0.7rem;
+	font-size: 0.5rem;
 	font-family: var(--font-body);
 	text-decoration: none;
 	font-weight: 300;
@@ -54,11 +30,39 @@
 	.authBtnSection {
 		justify-content: flex-end;
 		align-items: center;
-		margin-top: -0.2rem; /* ajuste si besoin */
+		margin-top: -0.2rem; 
 	}
 
 	.authBtn {
 		font-size: 0.9rem;
 		padding: 0.5rem 1rem;
 	}
+} */
+
+.authBtnSection {
+	display: flex;
+	align-items: center;
+}
+
+.authBtn {
+	padding: clamp(0.4rem, 1vw, 0.65rem) clamp(0.7rem, 2vw, 1rem);
+	background-color: var(--rose-clair);
+	color: var(--marron-gris);
+	border: 1px solid var(--marron-gris);
+	border-radius: 999px;
+
+	font-family: var(--font-body);
+	font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+	font-weight: 400;
+
+	text-decoration: none;
+	white-space: nowrap;
+	transition:
+		transform 0.15s ease,
+		box-shadow 0.15s ease;
+}
+
+.authBtn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }

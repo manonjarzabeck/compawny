@@ -22,10 +22,11 @@ class AdminActionFormValidator {
 				.string("Le nom est obligatoire")
 				.min(2, "Un nom doit comporter, au minimum, 2 caractères")
 				.max(100, "Un nom doit comporter, au maximum, 50 caractères"),
-			image: z
-				.string("L'image est obligatoire")
-				.min(2, "L'image doit comporter, au minimum, 2 caractères")
-				.max(100, "L'image comporter, au maximum, 50 caractères"),
+			image: z.union([
+				z.string().nullable(),
+				// contrainte obligatoire
+				z.file("L'image est obligatoire"),
+			]),
 
 			asso_id: z.coerce
 				.number()

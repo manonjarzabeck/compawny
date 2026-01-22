@@ -1,6 +1,6 @@
 "use client";
-import { ChevronDown } from "lucide-react";
-import styles from "./hero-section.module.css";
+
+import styles from "./scroll-button.module.css";
 
 function ScrollButton() {
 	const handleScroll = () => {
@@ -17,7 +17,7 @@ function ScrollButton() {
 			onClick={handleScroll}
 			aria-label="Faire défiler sur la section suivante = Le guide du bénévole"
 		>
-			<ChevronDown size={28} strokeWidth={2} />
+			↓
 		</button>
 	);
 }

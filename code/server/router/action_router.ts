@@ -7,7 +7,7 @@ class ActionRouter {
 	private router = express.Router();
 
 	// multer permet de gérer le transfert de fichiers
-	private multer = multer({ dest: "public" });
+	private multer = multer({ dest: `${process.env.PUBLIC_DIR}/img/action` });
 
 	// liste des routes
 	public getRoutes = () => {

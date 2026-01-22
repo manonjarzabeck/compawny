@@ -1,5 +1,7 @@
 import type { Request, Response } from "express";
+import type { Action } from "../../models/action";
 import ActionRepository from "../repository/action_repository";
+import FileService from "../service/file_service";
 
 class ActionController {
 	// méthode reliée à la route en GET située dans le routeur
@@ -28,7 +30,7 @@ class ActionController {
 
 	public selectOne = async (req: Request, res: Response) => {
 		// récupérer la variable de route
-		console.log(req.params);
+		// console.log(req.params);
 
 		// récupération des résultats de la requête
 		const results = await new ActionRepository().SelectOne(req.params);
@@ -53,11 +55,26 @@ class ActionController {
 	};
 
 	public insert = async (req: Request, res: Response) => {
-		console.log(req.body);
+		// console.log(req.body);
+		// console.log(req.files);
+
+		//req.files permet de récupérer les fichiers transférés
+		const file = (
+			req.files as Express.Multer.File[]
+		).shift() as Express.Multer.File;
+
+		// instancier le service de fichiers
+		const fileService = new FileService();
+
+		// renommer le fichier transféré et récupérer le nom complet
+		const fullname = await fileService.rename(file);
 
 		// récupération des résultats de la requête
 		// req.body récupère
-		const results = await new ActionRepository().insert(req.body);
+		const results = await new ActionRepository().insert({
+			...req.body,
+			image: fullname,
+		});
 
 		// si la requête renvoie une erreur
 		if (results instanceof Error) {
@@ -79,11 +96,29 @@ class ActionController {
 	};
 
 	public update = async (req: Request, res: Response) => {
-		console.log(req.body);
+		// console.log(req.body);
+
+		//req.files permet de récupérer les fichiers transférés
+		const file = (
+			req.files as Express.Multer.File[]
+		).shift() as Express.Multer.File;
+
+		// instancier le service de fichiers
+		const fileService = new FileService();
+
+		let fullname: string;
+
+		if (file) {
+			// renommer le fichier transféré et récupérer le nom complet
+			fullname = await fileService.rename(file);
+		} else {
+			fullname = ((await new ActionRepository().SelectOne(req.body)) as Action)
+				.image;
+		}
 
 		// récupération des résultats de la requête
 		// req.body récupère
-		const results = await new ActionRepository().update(req.body);
+		const results = await new ActionRepository().update({...req.body, image: fullname});
 
 		// si la requête renvoie une erreur
 		if (results instanceof Error) {
@@ -105,7 +140,7 @@ class ActionController {
 	};
 
 	public delete = async (req: Request, res: Response) => {
-		console.log(req.body);
+		// console.log(req.body);
 
 		// récupération des résultats de la requête
 		// req.body récupère

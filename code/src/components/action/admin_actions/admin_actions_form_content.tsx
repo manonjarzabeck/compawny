@@ -52,7 +52,7 @@ const AdminActionsFormContent = ({
 	// data stocke la saisie du formulaire
 	const submitForm = async (data: Partial<Action>) => {
 		// normaliser les données saisies : se baser sur les données testées dans flashpost pour que les données marchent
-		const normalizedData = { ...data };
+		const normalizedData = { ...data, image: (data.image as string)[0] };
 
 		// validation de la saisie avec validateur côté serveur
 		const validation = await validator(normalizedData);
@@ -145,19 +145,16 @@ const AdminActionsFormContent = ({
 				<p>
 					<label htmlFor={imageId}>Image :</label>
 					<input
-						type="text"
+						type="file"
 						id={imageId}
-						{...register("image", {
-							required: "L'image est obligatoire",
-							minLength: {
-								value: 2,
-								message: "Une image doit comporter, au minimum, 2 caractères",
-							},
-							maxLength: {
-								value: 50,
-								message: "Une image doit comporter, au maximum, 50 caractères",
-							},
-						})}
+						{...register(
+							"image",
+							dataToUpdate
+								? {}
+								: {
+										required: "L'image est obligatoire",
+									},
+						)}
 					/>
 					{/* Afficher les messages d'erreur : utiliser le name du champ, définit dans register */}
 					<small role="alert">

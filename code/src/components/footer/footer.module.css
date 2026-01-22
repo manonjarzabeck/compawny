@@ -1,3 +1,27 @@
 .footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.2rem;
 	background-color: var(--sable-rose);
+	padding: 1rem;
+	font-family: var(--font-body);
+}
+
+.brand {
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--marron-gris);
+}
+
+.legal {
+	font-size: 0.8rem;
+	color: var(--marron-gris);
+	text-decoration: none;
+	transition: 0.2s ease;
+}
+.legal:hover {
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	text-decoration-thickness: 1px;
 }
