@@ -31,14 +31,12 @@
 .navbar {
 	width: 100%;
 	background-color: var(--nav-bar);
-
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	gap: clamp(0.75rem, 3vw, 2rem);
-
-	padding: clamp(0.6rem, 2vw, 1.2rem);
+	gap: 2.5rem;
+	padding: 0.5rem;
 }
 
 .navLink {

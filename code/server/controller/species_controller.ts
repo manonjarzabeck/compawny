@@ -27,9 +27,6 @@ class SpeciesController {
 	};
 
 	public selectOne = async (req: Request, res: Response) => {
-		// récupérer la variable de route
-		console.log(req.params);
-
 		// récupération des résultats de la requête
 		const results = await new SpeciesRepository().SelectOne(req.params);
 

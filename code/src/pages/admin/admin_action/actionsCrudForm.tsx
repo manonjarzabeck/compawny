@@ -1,15 +1,16 @@
 import { use } from "react";
 import type { Action } from "../../../../models/action";
-import type { Asso } from "../../../../models/asso";
+import type { Association } from "../../../../models/association";
 import AdminActionsFormContent from "../../../components/action/admin_actions/admin_actions_form_content";
 import type { AdminActionsParams } from "../../../models/params/admin_actions_params";
 import ActionApiService from "../../../services/action_api_service";
-import AssoApiService from "../../../services/asso_api_service";
+import AssociationApiService from "../../../services/association_api_service";
 import AdminActionFormValidator from "../../../validators/admin/admin_action_form_validator";
 
 const AdminActionsForm = ({ params }: AdminActionsParams) => {
 	// récuperer les Users
-	const asso = use(new AssoApiService().selectAll()).data as Asso[];
+	const association = use(new AssociationApiService().selectAll())
+		.data as Association[];
 
 	const { id } = params;
 
@@ -24,7 +25,7 @@ const AdminActionsForm = ({ params }: AdminActionsParams) => {
 
 	return (
 		<AdminActionsFormContent
-			asso={asso}
+			association={association}
 			validator={new AdminActionFormValidator().validate}
 			dataToUpdate={dataToUpdate}
 		/>

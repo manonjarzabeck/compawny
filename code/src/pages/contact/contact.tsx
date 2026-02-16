@@ -1,4 +1,4 @@
-import ContactForm from "../../components/contact/contactForm";
+import ContactForm from "../../components/contact/contactForm/contactForm";
 import Seo from "../../components/seo/seo";
 
 const AvisContactPage = () => {

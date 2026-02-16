@@ -2,7 +2,7 @@
 
 import styles from "./scroll-button.module.css";
 
-function ScrollButton() {
+const ScrollButton = () => {
 	const handleScroll = () => {
 		const target = document.getElementById("guide");
 		if (target) {
@@ -20,6 +20,6 @@ function ScrollButton() {
 			↓
 		</button>
 	);
-}
+};
 
 export default ScrollButton;

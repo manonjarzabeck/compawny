@@ -26,10 +26,7 @@ class RoleController {
 		});
 	};
 
-	public selectOne = async (req: Request, res: Response) => {
-		// récupérer la variable de route
-		console.log(req.params);
-
+	public selectOne = async (_req: Request, res: Response) => {
 		// récupération des résultats de la requête
 		const results = await new RoleRepository().SelectOne({ id: 1 });
 

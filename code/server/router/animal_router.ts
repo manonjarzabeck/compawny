@@ -7,7 +7,7 @@ class AnimalRouter {
 	private router = express.Router();
 
 	// multer permet de gérer le transfert de fichiers
-	private multer = multer({ dest: "public" });
+	private multer = multer({ dest: `${process.env.PUBLIC_DIR}/img/adoption` });
 
 	// liste des routes
 	public getRoutes = () => {
@@ -21,6 +21,13 @@ class AnimalRouter {
 		// insérer un enregistrement
 		// utilisation du middleware multer
 		this.router.post("/", this.multer.any(), new AnimalController().insert);
+
+		// mettre à jour un enregistrement
+		// utilisation du middleware multer
+		this.router.put("/", this.multer.any(), new AnimalController().update);
+
+		// supprimer un enregistrement
+		this.router.delete("/", new AnimalController().delete);
 
 		// retourner le routeur
 		return this.router;

@@ -1,16 +1,18 @@
-import type { Asso } from "./asso";
+import type { Association } from "./association";
 import type { Species } from "./species";
 
 type Animal = {
 	id: number;
 	name: string;
-	picture: string;
-	arrival: number;
+	image: string;
+	arrival: Date;
 	description: string;
-	asso_id: number;
-	species_id: number;
+	is_adoptable: boolean;
 
-	asso: Asso;
+	association_id: number;
+	association: Association;
+
+	species_id: number;
 	species: Species;
 };
 

@@ -1,19 +1,15 @@
-import type { Asso } from "./asso";
-import type { User } from "./user";
+import type { Association } from "./association";
 
 type Action = {
 	id: number;
 	name: string;
 	image: string;
 	description: string;
+	published: Date;
 	is_active: boolean;
 
-	asso_id: number;
-	asso: Asso;
-
-	// liste concaténée des indentifiants des user
-	user_ids: string;
-	users: User[];
+	association_id: number;
+	association: Association;
 };
 
 export type { Action };

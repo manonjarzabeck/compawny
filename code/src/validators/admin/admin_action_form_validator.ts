@@ -21,14 +21,23 @@ class AdminActionFormValidator {
 			name: z
 				.string("Le nom est obligatoire")
 				.min(2, "Un nom doit comporter, au minimum, 2 caractères")
-				.max(100, "Un nom doit comporter, au maximum, 50 caractères"),
+				.max(50, "Un nom doit comporter, au maximum, 50 caractères"),
 			image: z.union([
 				z.string().nullable(),
 				// contrainte obligatoire
 				z.file("L'image est obligatoire"),
 			]),
-
-			asso_id: z.coerce
+			description: z
+				.string("La description est obligatoire")
+				.min(20, "La description doit comporter, au minimum, 20 caractères")
+				.max(300, "La description doit comporter, au maximum, 300 caractères"),
+			published: z.coerce
+				.date({ message: "La date de publication est obligatoire" })
+				.max(
+					new Date(),
+					"La date de publication ne peut pas être dans le futur",
+				),
+			association_id: z.coerce
 				.number()
 				.min(1, "Veuillez sélectionner une association"),
 		});

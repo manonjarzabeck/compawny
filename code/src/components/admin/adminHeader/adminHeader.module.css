@@ -1,0 +1,53 @@
+.adminHeader {
+	width: 100%;
+	background-color: var(--sable-rose);
+	padding: 1rem;
+}
+
+.headerInner {
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.leftBlock {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+}
+
+.rightBlock {
+	display: flex;
+	align-items: flex-end;
+}
+
+.adminLogo {
+	height: 8rem;
+	width: auto;
+	object-fit: contain;
+}
+
+.titleBlock {
+	display: flex;
+	flex-direction: column;
+}
+
+.adminTitle {
+	font-size: 3rem;
+	font-weight: 700;
+	font-family: var(--font-title);
+	color: var(--marron-gris);
+	margin: 0;
+	line-height: 1.1;
+}
+
+.adminSubtitle {
+	font-size: 1.5rem;
+	font-weight: 500;
+	font-family: var(--font-title);
+	color: var(--marron-gris);
+	margin: 0.2rem 0 0 0;
+	letter-spacing: 0.05em;
+}

@@ -1,9 +1,9 @@
 import type { QueryResult } from "mysql2";
 import type { Animal } from "../../models/animal";
-import type { Asso } from "../../models/asso";
+import type { Association } from "../../models/association";
 import type { Species } from "../../models/species";
 import MySQLService from "../service/mysql_service";
-import AssoRepository from "./asso_repository";
+import AssociationRepository from "./association_repository";
 import SpeciesRepository from "./species_repository";
 
 class AnimalRepository {
@@ -31,9 +31,9 @@ class AnimalRepository {
 				const result = (query as Animal[])[i] as Animal;
 
 				// clés étrangères
-				result.asso = (await new AssoRepository().SelectOne({
-					id: result.asso_id,
-				})) as Asso;
+				result.association = (await new AssociationRepository().SelectOne({
+					id: result.association_id,
+				})) as Association;
 
 				result.species = (await new SpeciesRepository().SelectOne({
 					id: result.species_id,
@@ -70,9 +70,9 @@ class AnimalRepository {
 			// shift: récupérer le premier indice d'un array
 			const result = (query as Animal[]).shift() as Animal;
 
-			result.asso = (await new AssoRepository().SelectOne({
-				id: result.asso_id,
-			})) as Asso;
+			result.association = (await new AssociationRepository().SelectOne({
+				id: result.association_id,
+			})) as Association;
 
 			result.species = (await new SpeciesRepository().SelectOne({
 				id: result.species_id,
@@ -85,7 +85,7 @@ class AnimalRepository {
 		}
 	};
 
-	// insérer un enregistrement
+	// méthode d'insertion d'un enregistrement
 	public insert = async (
 		data: Partial<Animal>,
 	): Promise<QueryResult | unknown> => {
@@ -101,9 +101,11 @@ class AnimalRepository {
 	(
 	NULL,
 	:name,
-	:picture,
+	:image,
 	:arrival,
-	:asso_id,
+	:description,
+	:is_adoptable,
+	:association_id,
 	:species_id
 	)
 	  ;
@@ -121,30 +123,99 @@ class AnimalRepository {
 			// const [query] = await connection.execute(sql, data);
 
 			// deuxième requête SQL
-			// sql = `SET @id = LAST_INSERT_ID();`;
 			const [query] = await connection.execute(sql, data);
-			// troisième requête
-			/* 
-				INSERT INTO coeurdecompagnon_dev.user_action
-				VALUES 
-				(1, @actionuser_id),
-				(2, @actionuser_id)
-
-				split : extraire les données d'une chaîne de caractères en array 
-					1,2,3 >> [1,2,3]
-					[1,2,3] >> (1, @id), (2, @id), (3, @id)
-			*/
-			// const joinIds = data.user_ids?.split(",");
-			// console.log(joinIds);
-
-			// // valider la transaction SQL
-			// connection.commit();
 
 			return query;
 			// retourner les résultats
 		} catch (error) {
 			// annuler une transaction SQL
 			// connection.rollback();
+
+			return error;
+		}
+	};
+
+	// méthode de mise à jour d'un enregistrement
+	public update = async (
+		data: Partial<Animal>,
+	): Promise<QueryResult | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requête SQL
+		const sql = `
+
+	UPDATE 
+		${process.env.MYSQL_DATABASE}.${this.table}
+	SET
+
+		name = :name,
+		image = :image,
+		arrival = :arrival,
+		description = :description,
+		is_adoptable = :is_adoptable,
+		association_id = :association_id,
+		species_id = :species_id
+
+	WHERE
+	${this.table}.id = :id
+	  ;
+		`;
+
+		try {
+			// démarrer une transaction SQL
+			connection.beginTransaction();
+
+			// éxecution de la première requête
+			const [query] = await connection.execute(sql, data);
+
+			// valider la transaction SQL
+			connection.commit();
+
+			return query;
+			// retourner les résultats
+		} catch (error) {
+			// annuler une transaction SQL
+			connection.rollback();
+
+			return error;
+		}
+	};
+
+	// méthode de supression d'un enregistrement
+	public delete = async (
+		data: Partial<Animal>,
+	): Promise<QueryResult | unknown> => {
+		// connexion au serveur MYSQL
+		const connection = await new MySQLService().connect();
+
+		// requête SQL
+		const sql = `
+
+		
+			DELETE FROM
+			 ${process.env.MYSQL_DATABASE}.${this.table}
+			WHERE
+			 ${this.table}.id = :id
+			;
+		
+		`;
+
+		try {
+			// démarrer une transaction SQL
+			connection.beginTransaction();
+
+			// éxecution de la première requête
+			const [query] = await connection.execute(sql, data);
+
+			// valider la transaction SQL
+			connection.commit();
+
+			return query;
+			// retourner les résultats
+		} catch (error) {
+			// annuler une transaction SQL
+			connection.rollback();
 
 			return error;
 		}

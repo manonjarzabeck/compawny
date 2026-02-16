@@ -1,9 +1,9 @@
 import type { ZodError } from "zod";
 import type { Action } from "../../../../models/action";
-import type { Asso } from "../../../../models/asso";
+import type { Association } from "../../../../models/association";
 
 type AdminActionsFormContentProps = {
-	asso: Asso[];
+	association: Association[];
 	validator: (data: Partial<Action>) => Promise<Partial<Action> | ZodError>;
 	dataToUpdate: Action | undefined;
 };

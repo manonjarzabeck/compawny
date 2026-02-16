@@ -4,6 +4,7 @@ type User = {
 	id: number;
 	email: string;
 	password: string;
+
 	role_id: number;
 	role: Role;
 };

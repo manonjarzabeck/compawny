@@ -5,16 +5,9 @@ import type { ActionDetailsContentProps } from "../../../models/props/action_det
 const ActionDetailsContent = ({ data }: ActionDetailsContentProps) => {
 	return (
 		<section>
-			<h2> {data.name}</h2>
 			<img src={`/img/action/${data.image}`} alt={data.name} />
+			<h2> {data.name}</h2>
 			<p> {data.description}</p>
-			<div>
-				{" "}
-				{data.asso.name} <br />
-				{data.asso.description} <br />
-				{data.asso.address} <br />
-				{data.asso.siteweb} <br />
-			</div>
 		</section>
 	);
 };

@@ -55,9 +55,6 @@ class ActionController {
 	};
 
 	public insert = async (req: Request, res: Response) => {
-		// console.log(req.body);
-		// console.log(req.files);
-
 		//req.files permet de récupérer les fichiers transférés
 		const file = (
 			req.files as Express.Multer.File[]
@@ -118,7 +115,10 @@ class ActionController {
 
 		// récupération des résultats de la requête
 		// req.body récupère
-		const results = await new ActionRepository().update({...req.body, image: fullname});
+		const results = await new ActionRepository().update({
+			...req.body,
+			image: fullname,
+		});
 
 		// si la requête renvoie une erreur
 		if (results instanceof Error) {

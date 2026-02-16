@@ -9,7 +9,7 @@ import type { AdminActionsFormContentProps } from "../../../models/props/admin/a
 import ActionApiService from "../../../services/action_api_service";
 
 const AdminActionsFormContent = ({
-	asso,
+	association,
 	validator,
 	dataToUpdate,
 }: AdminActionsFormContentProps) => {
@@ -18,8 +18,9 @@ const AdminActionsFormContent = ({
 	const descriptionId = useId();
 	const isactiveId = useId();
 	const idId = useId();
-	const assoId = useId();
+	const associationId = useId();
 	const imageId = useId();
+	const publishedId = useId();
 
 	// stocker les messages d'erreur de validation côté serveur
 	const [serverErrors, setServerErrors] = useState<Partial<Action>>();
@@ -85,8 +86,12 @@ const AdminActionsFormContent = ({
 			"description",
 			normalizedData.description as unknown as string,
 		);
+		formData.set("published", normalizedData.published as unknown as string);
 		formData.set("is_active", normalizedData.is_active ? "1" : "0");
-		formData.set("asso_id", normalizedData.asso_id as unknown as string);
+		formData.set(
+			"association_id",
+			normalizedData.association_id as unknown as string,
+		);
 
 		// requête HTTP vers l'API
 		const process = dataToUpdate
@@ -108,7 +113,6 @@ const AdminActionsFormContent = ({
 
 	return (
 		<>
-			<h2>Gérer les actions</h2>
 			{/* 
 	- si le formulaire contient un champ de fichier : ajouter l'attribut enctype="multipart/form-data"
 	
@@ -187,13 +191,25 @@ const AdminActionsFormContent = ({
 					</small>
 				</p>
 				<p>
-					<label htmlFor={isactiveId}>En ligne :</label>
-					<input type="checkbox" id={isactiveId} {...register("is_active")} />
+					<label htmlFor={publishedId}>Date de publication :</label>
+					<input
+						type="date"
+						id={publishedId}
+						{...register("published", {
+							required: "La date de publication est obligatoire",
+						})}
+					/>
+					{/* Afficher les messages d'erreur : utiliser le name du champ, définit dans register */}
+					<small role="alert">
+						{" "}
+						{errors.published?.message ?? serverErrors?.published?.toString()}
+					</small>
 				</p>
+
 				<div>
-					<label htmlFor={assoId}>Association :</label>
+					<label htmlFor={associationId}>Association :</label>
 					<select
-						{...register("asso_id", {
+						{...register("association_id", {
 							required: "L'association est obligatoire",
 							valueAsNumber: true,
 							min: {
@@ -203,7 +219,7 @@ const AdminActionsFormContent = ({
 						})}
 					>
 						<option value="">Sélectionner une association</option>
-						{asso.map((item) => {
+						{association.map((item) => {
 							return (
 								<option key={item.id} value={item.id}>
 									{item.name}
@@ -211,9 +227,12 @@ const AdminActionsFormContent = ({
 							);
 						})}
 					</select>
-					<small role="alert"> {errors.asso_id?.message}</small>
+					<small role="alert"> {errors.association_id?.message}</small>
 				</div>
-
+				<p>
+					<label htmlFor={isactiveId}>En ligne :</label>
+					<input type="checkbox" id={isactiveId} {...register("is_active")} />
+				</p>
 				<p>
 					<input type="hidden" id={idId} {...register("id")} />
 					<button type="submit">Soumettre</button>
