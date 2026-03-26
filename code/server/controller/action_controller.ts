@@ -55,25 +55,27 @@ class ActionController {
 	};
 
 	public insert = async (req: Request, res: Response) => {
-		//req.files permet de récupérer les fichiers transférés
-		const file = (
-			req.files as Express.Multer.File[]
-		).shift() as Express.Multer.File;
+		const files = req.files as Express.Multer.File[] | undefined;
+		const file = files?.shift();
 
-		// instancier le service de fichiers
-		const fileService = new FileService();
+		let fullname: string | null = null;
 
-		// renommer le fichier transféré et récupérer le nom complet
-		const fullname = await fileService.rename(file);
+		if (file) {
+			const fileService = new FileService();
+			fullname = await fileService.rename(file);
+		}
 
-		// récupération des résultats de la requête
-		// req.body récupère
 		const results = await new ActionRepository().insert({
 			...req.body,
 			image: fullname,
+			published: req.body.published ? req.body.published : null,
+			association_id: req.body.association_id ? req.body.association_id : null,
+			association_proposal: req.body.association_proposal
+				? req.body.association_proposal
+				: null,
+			source: req.body.source ? req.body.source : "admin",
 		});
 
-		// si la requête renvoie une erreur
 		if (results instanceof Error) {
 			res.status(400).json({
 				status: 400,
@@ -84,7 +86,6 @@ class ActionController {
 			return;
 		}
 
-		// renvoyer une réponse avec un code de statut HTTP et au format JSON
 		res.status(201).json({
 			status: 201,
 			message: "Created",
@@ -93,12 +94,9 @@ class ActionController {
 	};
 
 	public update = async (req: Request, res: Response) => {
-		// console.log(req.body);
-
-		//req.files permet de récupérer les fichiers transférés
-		const file = (
-			req.files as Express.Multer.File[]
-		).shift() as Express.Multer.File;
+		// req.files permet de récupérer les fichiers transférés
+		const files = req.files as Express.Multer.File[] | undefined;
+		const file = files?.shift();
 
 		// instancier le service de fichiers
 		const fileService = new FileService();
@@ -114,10 +112,14 @@ class ActionController {
 		}
 
 		// récupération des résultats de la requête
-		// req.body récupère
 		const results = await new ActionRepository().update({
 			...req.body,
 			image: fullname,
+			published: req.body.published ? req.body.published : null,
+			association_id: req.body.association_id ? req.body.association_id : null,
+			association_proposal: req.body.association_proposal
+				? req.body.association_proposal
+				: null,
 		});
 
 		// si la requête renvoie une erreur

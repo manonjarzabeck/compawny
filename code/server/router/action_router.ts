@@ -1,6 +1,7 @@
 import express from "express";
 import multer from "multer";
 import ActionController from "../controller/action_controller";
+import AuthorizationMiddleware from "../middleware/authorization_middleware";
 
 class ActionRouter {
 	// routeur express
@@ -20,14 +21,28 @@ class ActionRouter {
 
 		// ajouter un enregistrement
 		// utilisation du middleware multer
-		this.router.post("/", this.multer.any(), new ActionController().insert);
+		this.router.post(
+			"/",
+			this.multer.any(),
+			new AuthorizationMiddleware().authorize(["admin"]),
+			new ActionController().insert,
+		);
 
 		// mettre à jour un enregistrement
 		// utilisation du middleware multer
-		this.router.put("/", this.multer.any(), new ActionController().update);
+		this.router.put(
+			"/",
+			this.multer.any(),
+			new AuthorizationMiddleware().authorize(["admin"]),
+			new ActionController().update,
+		);
 
 		// supprimer un enregistrement
-		this.router.delete("/", new ActionController().delete);
+		this.router.delete(
+			"/",
+			new AuthorizationMiddleware().authorize(["admin"]),
+			new ActionController().delete,
+		);
 
 		// retourner le routeur
 		return this.router;

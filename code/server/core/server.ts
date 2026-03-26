@@ -7,7 +7,9 @@ import CountryRouter from "../router/country_router";
 import DepartmentRouter from "../router/department_router";
 import HomepageRouter from "../router/homepage_router";
 import RoleRouter from "../router/role_router";
+import SecurityRouter from "../router/security_router";
 import SpeciesRouter from "../router/species_router";
+import UserActionRouter from "../router/user_action_router";
 import UserRouter from "../router/user_router";
 
 class Server {
@@ -45,6 +47,8 @@ class Server {
 		this.router.use("/api/user", new UserRouter().getRoutes());
 		this.router.use("/api/country", new CountryRouter().getRoutes());
 		this.router.use("/api/department", new DepartmentRouter().getRoutes());
+		this.router.use("/api", new SecurityRouter().getRoutes());
+		this.router.use("/user-action", new UserActionRouter().getRoutes());
 	};
 
 	// démarrer le serveur

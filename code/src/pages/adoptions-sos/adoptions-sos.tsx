@@ -1,13 +1,57 @@
-import AdoptionList from "../../components/adoption-sos/adoption_list";
+import { use } from "react";
+import type { Animal } from "../../../models/animal";
+import type { Species } from "../../../models/species";
+import AdoptionsClient from "../../components/adoption-sos/adoption-client/adoption-client";
+import IntroPage from "../../components/intro-pages/intro-pages";
 import Seo from "../../components/seo/seo";
+import type { ApiResponse } from "../../models/api_response";
+import AdoptionApiService from "../../services/adoption_api_service";
+import SpeciesApiService from "../../services/species_api_service";
 
-const AdoptionSOSPage = () => {
+const ListeAdoptionsPage = () => {
+	const results = use<ApiResponse<Animal[]>>(
+		new AdoptionApiService().selectAll(),
+	);
+
+	const speciesResults = use<ApiResponse<Species[]>>(
+		new SpeciesApiService().selectAll(),
+	);
+
+	const animals = results.data ?? [];
+	const speciesList = speciesResults.data ?? [];
+
 	return (
 		<>
-			<Seo title="Adoption SOS" description="Animaux SOS à l'adoption" url="" />
-			<AdoptionList />
+			<Seo
+				title="Adoptions d'animaux SOS"
+				description="Tous les animaux SOS à l'adoption"
+				url=""
+			/>
+			<IntroPage
+				image="/img/pages/Adoption.png"
+				alt="Dessin bénévoles animaliers de la section Adoption SOS"
+				title="Parce qu’ils méritent aussi leur bonheur 🫶🏼"
+				description="Derrière chaque regard se cache une histoire singulière. Seniors,
+					malades ou considérés comme plus difficiles à adopter, ces animaux
+					n’attendent qu’une famille prête à leur offrir stabilité et douceur.
+					Découvre ces profils attachants et laisse parler ton cœur."
+			/>
+
+			<AdoptionsClient adoptions={animals} speciesList={speciesList} />
 		</>
 	);
 };
 
-export default AdoptionSOSPage;
+export default ListeAdoptionsPage;
+
+// const AdoptionSOSPage = () => {
+// 	return (
+// 		<>
+// 			<Seo title="Adoption SOS" description="Animaux SOS à l'adoption" url="" />
+// 			<IntroAdoption />
+// 			<AdoptionList />
+// 		</>
+// 	);
+// };
+
+// export default AdoptionSOSPage;

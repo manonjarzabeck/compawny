@@ -1,0 +1,79 @@
+.navbar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1.2rem;
+	padding: 0.5rem;
+
+	width: 100%;
+	max-width: 1200px; /* tu ajustes selon ton design */
+	margin: 0 auto;
+
+	overflow: hidden;
+
+	transform: translateX(-3.5rem);
+	transition: transform 0.5s ease;
+}
+
+.navOpen {
+	transform: translateX(0);
+}
+
+/* Liens principaux */
+.navLink {
+	font-family: var(--font-body);
+	font-size: 1rem;
+	font-weight: 400;
+	color: var(--text-color);
+	text-decoration: none;
+	cursor: pointer;
+	transition: transform 0.7s ease;
+	background: none;
+	border: none;
+}
+
+.navLink:hover {
+	transform: scale(1.05);
+}
+
+/* Dropdown horizontal */
+.dropdownInline {
+	display: flex;
+	gap: 1.3rem;
+	overflow: hidden;
+	white-space: nowrap;
+	transition:
+		max-width 0.5s ease,
+		opacity 0.4s ease;
+	max-width: 0;
+	opacity: 0;
+}
+
+/* Ouvert */
+.open {
+	max-width: 1000px; /* assez grand pour contenir les liens */
+	opacity: 1;
+}
+
+/* Fermé */
+.closed {
+	max-width: 0;
+	opacity: 0;
+}
+
+/* Liens dans le dropdown */
+.dropdownLink {
+	font-family: var(--font-body);
+	color: #968474;
+	font-size: 0.7rem;
+	text-decoration: none;
+	font-weight: 500;
+	white-space: nowrap;
+	transition:
+		transform 0.2s ease,
+		color 0.2s ease;
+}
+
+.dropdownLink:hover {
+	color: var(--text-color);
+}

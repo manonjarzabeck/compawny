@@ -1,0 +1,179 @@
+.wrapper {
+	padding: 2rem;
+}
+
+.container {
+	margin: auto;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 0.95fr 1.25fr;
+	gap: 2rem;
+	margin-top: 3rem;
+}
+
+/* COLONNE GAUCHE */
+
+.formSection {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.introText {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	text-align: center;
+	max-width: 900px;
+	margin: auto;
+}
+
+.pageTitle {
+	margin: 0;
+	font-size: 1.5rem;
+	line-height: 1.3;
+	font-family: var(--font-body);
+	color: var(--text-color);
+}
+
+.pageDescription {
+	margin: 0;
+	line-height: 1.3;
+	font-size: 1rem;
+	font-family: var(--font-title);
+	color: rgb(34, 24, 24);
+}
+
+.formCard {
+	background-color: var(--card-color);
+	border-radius: 1.25rem;
+	padding: 1.5rem;
+	box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+	display: flex;
+	flex-direction: column;
+	/* gap: 1rem; */
+	width: 100%;
+	max-width: 500px;
+	margin: auto;
+}
+
+/* COLONNE DROITE */
+
+.reviewsSection {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	margin-top: -15px;
+}
+
+.sectionTitle {
+	margin: 0;
+	font-size: 1.2rem;
+	line-height: 1.3;
+	text-align: center;
+	color: rgb(99, 83, 83);
+	font-style: italic;
+}
+
+.sectionTitleRight {
+	margin: 0;
+	font-size: 1.2rem;
+	line-height: 1.3;
+	text-align: left;
+	color: rgb(99, 83, 83);
+	font-style: italic;
+}
+
+.reviewList {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	width: 100%;
+}
+
+/* BULLES */
+
+.reviewBubble {
+	background-color: var(--card-color);
+	color: var(--text-color);
+	font-family: var(--font-body);
+	border-radius: 2.5rem;
+	padding: 1.5rem;
+	display: flex;
+	align-items: center;
+	max-width: 80%; /* 👈 LA CLÉ */
+	width: fit-content; /* 👈 important */
+	transition: transform 0.2s ease;
+}
+
+.reviewBubble:hover {
+	transform: translateY(-2px);
+}
+
+/* effet décalé */
+.reviewBubble:nth-child(1) {
+	width: 80%;
+	align-self: flex-start;
+}
+
+.reviewBubble:nth-child(2) {
+	width: 80%;
+	align-self: center;
+}
+
+.reviewBubble:nth-child(3) {
+	width: 80%;
+	align-self: flex-end;
+}
+
+.reviewContent {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.quote {
+	margin: 0;
+	font-size: 0.9rem;
+	line-height: 1.4;
+	font-weight: 700;
+}
+
+.author {
+	font-size: 0.8rem;
+	font-weight: 500;
+	opacity: 0.9;
+	text-align: end;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+	.grid {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+
+	.formCard {
+		max-width: 100%;
+	}
+
+	.introText {
+		max-width: 100%;
+	}
+
+	.reviewBubble,
+	.reviewBubble:nth-child(1),
+	.reviewBubble:nth-child(2),
+	.reviewBubble:nth-child(3) {
+		width: 100%;
+		align-self: stretch;
+	}
+}

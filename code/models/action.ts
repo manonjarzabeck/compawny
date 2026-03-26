@@ -5,8 +5,10 @@ type Action = {
 	name: string;
 	image: string;
 	description: string;
-	published: Date;
+	published: string;
 	is_active: boolean;
+	association_proposal: string;
+	source?: "admin" | "visitor";
 
 	association_id: number;
 	association: Association;

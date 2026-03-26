@@ -1,0 +1,164 @@
+/* --- CONTAINER PRINCIPAL --- */
+.container {
+	max-width: 90%;
+	margin-inline: auto;
+	padding-block: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	text-align: center;
+}
+
+/* --- TITRE --- */
+.title {
+	font-size: clamp(1.4rem, 2vw, 2rem);
+	font-weight: 600;
+	margin: 0;
+	font-family: var(--font-title);
+}
+
+.emptyMessage {
+	margin-top: 2rem;
+	font-size: 1.1rem;
+	opacity: 0.8;
+	text-align: center;
+}
+
+.successMessage {
+	margin: 1rem 0;
+	padding: 0.75rem 1rem;
+	border-radius: 8px;
+	background-color: #e8f7e8;
+	color: #1f6b1f;
+	font-weight: 600;
+}
+
+/* --- LISTE DES ACTIONS (GRID) --- */
+.actionsList {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.5rem;
+
+	width: 100%;
+	margin-top: 1.5rem;
+}
+
+/* --- CARD --- */
+.actionCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	gap: 0.75rem;
+	padding: 1rem;
+
+	border: 1px solid #ddd;
+	border-radius: 0.6rem;
+	background: white;
+}
+
+/* --- IMAGE --- */
+.actionCard img {
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	border-radius: 0.4rem;
+}
+
+/* --- NOM ACTION --- */
+.actionCardName {
+	font-size: 1rem;
+	font-weight: 500;
+	margin: 0;
+	font-family: var(--font-body);
+}
+
+/* --- NOM ASSO & DESCRIPTION --- */
+.actionCardDescription {
+	font-size: 0.9rem;
+	font-weight: 300;
+	margin: 0;
+}
+
+.itemRow {
+	margin: 0.2rem;
+}
+
+.label {
+	font-weight: 600;
+	color: rgb(165, 110, 119);
+	font-size: 0.8rem;
+	opacity: 0.7;
+	letter-spacing: 0.5px;
+	font-family: var(--font-title);
+}
+
+.value {
+	font-weight: 700;
+	color: var(--text-color);
+	font-size: 1rem;
+	display: block;
+	margin-top: 0.3rem;
+	font-family: var(--font-body);
+}
+
+/* --- BOUTONS --- */
+.buttons {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+/* --- BOUTONS GÉNÉRAUX --- */
+.btnAdd,
+.btnEdit,
+.btnDelete {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0.5rem 1rem;
+	font-size: clamp(0.9rem, 1.2vw, 1rem);
+
+	border-radius: 0.4rem;
+	font-weight: 500;
+	text-decoration: none;
+	cursor: pointer;
+	transition: 0.2s ease-in-out;
+
+	font-family: var(--font-body);
+}
+
+.btnAdd {
+	align-self: center;
+	width: fit-content;
+}
+
+/* --- COULEURS --- */
+.btnAdd {
+	background: var(--text-color);
+	color: var(--card-color);
+}
+
+.btnAdd:hover {
+	background: #423633;
+}
+
+.btnEdit {
+	background: var(--card-color);
+	color: var(--text-color);
+}
+
+.btnEdit:hover {
+	background: #e6d6c7;
+}
+
+.btnDelete {
+	background: var(--btn-color);
+	color: var(--text-color);
+}
+
+.btnDelete:hover {
+	background: #d4aba8;
+}

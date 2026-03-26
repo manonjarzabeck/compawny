@@ -1,6 +1,7 @@
 import express from "express";
 import multer from "multer";
 import AnimalController from "../controller/animal_controller";
+import AuthorizationMiddleware from "../middleware/authorization_middleware";
 
 class AnimalRouter {
 	// routeur express
@@ -20,14 +21,28 @@ class AnimalRouter {
 
 		// insérer un enregistrement
 		// utilisation du middleware multer
-		this.router.post("/", this.multer.any(), new AnimalController().insert);
+		this.router.post(
+			"/",
+			this.multer.any(),
+			new AuthorizationMiddleware().authorize(["admin"]),
+			new AnimalController().insert,
+		);
 
 		// mettre à jour un enregistrement
 		// utilisation du middleware multer
-		this.router.put("/", this.multer.any(), new AnimalController().update);
+		this.router.put(
+			"/",
+			this.multer.any(),
+			new AuthorizationMiddleware().authorize(["admin"]),
+			new AnimalController().update,
+		);
 
 		// supprimer un enregistrement
-		this.router.delete("/", new AnimalController().delete);
+		this.router.delete(
+			"/",
+			new AuthorizationMiddleware().authorize(["admin"]),
+			new AnimalController().delete,
+		);
 
 		// retourner le routeur
 		return this.router;

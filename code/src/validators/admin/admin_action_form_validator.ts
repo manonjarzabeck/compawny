@@ -31,12 +31,15 @@ class AdminActionFormValidator {
 				.string("La description est obligatoire")
 				.min(20, "La description doit comporter, au minimum, 20 caractères")
 				.max(300, "La description doit comporter, au maximum, 300 caractères"),
-			published: z.coerce
-				.date({ message: "La date de publication est obligatoire" })
-				.max(
-					new Date(),
-					"La date de publication ne peut pas être dans le futur",
-				),
+			published: z.union([
+				z.string().length(0),
+				z.coerce
+					.date()
+					.max(
+						new Date(),
+						"La date de publication ne peut pas être dans le futur",
+					),
+			]),
 			association_id: z.coerce
 				.number()
 				.min(1, "Veuillez sélectionner une association"),
@@ -51,7 +54,7 @@ class AdminActionFormValidator {
 		}
 
 		// si la validation réussi
-		return validation.data as Partial<Action>;
+		return validation.data as unknown as Partial<Action>;
 	};
 }
 

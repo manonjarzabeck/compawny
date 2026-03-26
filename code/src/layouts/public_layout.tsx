@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
-import Footer from "../components/footer/footer";
-import Header from "../components/header/header";
+import Footer from "../components/layout/footer/footer";
+import Header from "../components/layout/header/header";
 import ScrollToTop from "../components/scrollToTop/scrollToTop";
 import styles from "./public_layout.module.css";
 
@@ -16,8 +16,8 @@ const PublicLayout = () => {
 				{/* contenu de la page enfant */}
 				<Outlet />
 			</main>
-			<Footer />
 			{/* footer */}
+			<Footer />
 		</div>
 	);
 };

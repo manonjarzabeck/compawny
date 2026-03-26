@@ -2,25 +2,12 @@
 	--font-title: "Nunito", sans-serif;
 	--font-body: "Inter", sans-serif;
 
-	--marron-gris: #544541;
-	--sable-rose: #feedde;
-	--orange-gris: #efcab3;
-	--rose-clair: #f6c9c6;
+	--text-color: #544541;
+	--homepage-bg: #feedde;
+	--btn-color: #f6c9c6;
 	--nav-bar: #ffdfd2;
-
-	/* Police responsive universelle */
-	--font-xs: clamp(0.75rem, 1vw + 0.2rem, 0.875rem);
-	--font-sm: clamp(0.875rem, 1.2vw + 0.25rem, 1rem);
-	--font-md: clamp(1rem, 1.5vw + 0.3rem, 1.25rem);
-	--font-lg: clamp(1.25rem, 2vw + 0.4rem, 1.75rem);
-	--font-xl: clamp(1.75rem, 2.5vw + 0.5rem, 2.5rem);
-	--font-xxl: clamp(2.5rem, 4vw + 0.5rem, 4rem);
-
-	/* Exemple pour les espacements universels */
-	--spacing-xs: clamp(0.25rem, 0.5vw + 0.1rem, 0.5rem);
-	--spacing-sm: clamp(0.5rem, 1vw + 0.2rem, 1rem);
-	--spacing-md: clamp(1rem, 2vw + 0.3rem, 2rem);
-	--spacing-lg: clamp(2rem, 3vw + 0.5rem, 3rem);
+	--footer: #ffe6db;
+	--card-color: #ffede5;
 }
 
 * {

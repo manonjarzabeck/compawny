@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import type { AdminAssociationsParams } from "../../../models/params/admin_associations_params";
+import type { AdminAssociationsParams } from "../../../models/params/admin/admin_associations_params";
 import AssociationApiService from "../../../services/association_api_service";
 
 const AdminAssociationDelete = ({ params }: AdminAssociationsParams) => {

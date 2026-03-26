@@ -5,13 +5,13 @@
 
 .Btn {
 	padding: clamp(0.4rem, 1vw, 0.65rem) clamp(0.7rem, 2vw, 1rem);
-	background-color: var(--rose-clair);
-	color: var(--marron-gris);
-	border: 1px solid var(--marron-gris);
+	background-color: var(--btn-color);
+	color: var(--text-color);
+	border: 0.8px solid var(--text-color);
 	border-radius: 999px;
 
 	font-family: var(--font-body);
-	font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+	font-size: 0.8rem;
 	font-weight: 400;
 	font-style: italic;
 
@@ -23,5 +23,9 @@
 }
 
 .Btn:hover {
-	background: #e9a5a1;
+	background: #f2b8b5;
+}
+
+.Btn.homepage {
+	font-style: normal;
 }

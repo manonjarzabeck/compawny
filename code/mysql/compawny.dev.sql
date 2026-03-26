@@ -38,12 +38,15 @@ CREATE TABLE compawny_dev.species(
 CREATE TABLE compawny_dev.association(
     id TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
+    introduction VARCHAR(200) NULL,
     image VARCHAR(50) NOT NULL,
     description TEXT NOT NULL,
     website VARCHAR(100) NOT NULL,
     address VARCHAR(150) NOT NULL,
     email VARCHAR(150) NOT NULL,
     is_international BOOLEAN NOT NULL,
+    latitude DECIMAL(9,6) NOT NULL,
+    longitude DECIMAL(9,6) NOT NULL,
     country_id TINYINT UNSIGNED NOT NULL,
     department_id TINYINT UNSIGNED NULL,
     FOREIGN KEY (country_id) REFERENCES compawny_dev.country(id),
@@ -54,14 +57,26 @@ CREATE TABLE compawny_dev.association(
 CREATE TABLE compawny_dev.action(
     id TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    image VARCHAR(50) NOT NULL,
+    image VARCHAR(50) NULL,
     description TEXT NOT NULL,
-    published DATE NOT NULL,
+    published DATE NULL,
     is_active BOOLEAN NOT NULL,
-    association_id TINYINT UNSIGNED NOT NULL,
+    association_proposal VARCHAR(100) NULL,
+    source ENUM('admin','visitor') NOT NULL DEFAULT 'admin',
+    association_id TINYINT UNSIGNED NULL,
     FOREIGN KEY (association_id) REFERENCES compawny_dev.association(id),
     INDEX(name)
     );
+
+
+CREATE TABLE compawny_dev.user_action (
+    user_id TINYINT UNSIGNED NOT NULL,
+    action_id TINYINT UNSIGNED NOT NULL,
+    PRIMARY KEY (user_id, action_id),
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (action_id) REFERENCES action(id)
+);
+
 
 CREATE TABLE compawny_dev.animal(
     id TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

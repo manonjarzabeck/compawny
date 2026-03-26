@@ -1,0 +1,66 @@
+.publicHeader {
+	background-color: var(--nav-bar);
+	width: 100%;
+}
+
+.headerInner {
+	width: 100%;
+	padding: 0.45rem 1.25rem;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	gap: 1.25rem;
+}
+
+.publicBrand {
+	display: flex;
+	align-items: center;
+	min-width: 0;
+}
+
+.logoLink {
+	display: flex;
+	align-items: center;
+	gap: 0.8rem;
+	text-decoration: none;
+	color: inherit;
+}
+
+.logoLink:hover {
+	opacity: 0.85;
+	cursor: pointer;
+}
+
+.publicLogo {
+	width: 4.2rem;
+	height: auto;
+	object-fit: contain;
+	flex-shrink: 0;
+}
+
+.publicTitle {
+	margin: 0;
+	font-family: var(--font-title);
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: var(--text-color);
+}
+
+.navWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 0;
+	margin-top: 2rem;
+}
+
+.ctaWrapper {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.ctaWrapper,
+.publicTitle {
+	margin-top: 1rem; /* ajuste entre 0.4 et 1rem selon ton ressenti */
+}

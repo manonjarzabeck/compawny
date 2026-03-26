@@ -1,0 +1,84 @@
+.guideSection {
+	padding: 1rem 0 2.5rem 0;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.guideDescription {
+	position: relative;
+	max-width: 1200px;
+	text-align: center;
+	margin: 0 auto;
+	font-size: 1rem;
+	font-weight: 500;
+	font-family: var(--font-body);
+	line-height: 1.5;
+	color: var(--text-color);
+	padding: 1.7rem;
+}
+
+.guideDescription::before,
+.guideDescription::after {
+	position: absolute;
+	font-size: 4rem;
+	color: var(--btn-color);
+	font-family: var(--font-title);
+	line-height: 1;
+}
+
+.guideDescription::before {
+	content: "“";
+	top: 0.1rem;
+	left: -0.2rem;
+}
+
+.guideDescription::after {
+	content: "”";
+	bottom: -1.5rem;
+	right: 0.1rem;
+}
+
+.guideGrid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 4rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.guideCard {
+	background-color: var(--card-color);
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.6rem;
+	border-radius: 10px;
+}
+
+.imgCard {
+	width: 100%;
+	max-width: 320px;
+	border-radius: 10px;
+	aspect-ratio: 4 / 3;
+	object-fit: contain;
+	border: 0.8px solid var(--text-color);
+	background-color: #ffdfd2;
+}
+
+.descriptionCard {
+	font-size: 0.9rem;
+	font-family: var(--font-body);
+	line-height: 1.4;
+	text-align: center;
+	color: var(--text-color);
+	max-width: 320px;
+}
+
+@media (max-width: 1024px) {
+	.guideGrid {
+		grid-template-columns: 1fr;
+	}
+}

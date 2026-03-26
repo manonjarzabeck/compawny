@@ -96,6 +96,8 @@ class ActionRepository {
 		:description,
 		:published,
 		:is_active,
+		:association_proposal,
+		:source,
 		:association_id
 	)
 	  ;
@@ -176,6 +178,7 @@ class ActionRepository {
 		description = :description,
 		published = :published,
 		is_active = :is_active,
+		association_proposal = :association_proposal,
 		association_id = :association_id
 
 	WHERE

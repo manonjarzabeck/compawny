@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import type { AdminAdoptionsParams } from "../../../models/params/admin_adoptions_params";
+import type { AdminAdoptionsParams } from "../../../models/params/admin/admin_adoptions_params";
 import AdoptionApiService from "../../../services/adoption_api_service";
 
 const AdminAdoptionDelete = ({ params }: AdminAdoptionsParams) => {

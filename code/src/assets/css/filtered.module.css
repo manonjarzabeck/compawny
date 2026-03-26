@@ -1,0 +1,21 @@
+.filter {
+	margin: 2rem;
+	display: flex;
+	justify-content: center;
+}
+
+.select {
+	padding: 1rem;
+	font-size: 1rem;
+	border-radius: 8px;
+	border: 1px solid var(--text-color);
+	cursor: pointer;
+	background-color: white;
+}
+
+.nothingToSee {
+	text-align: center;
+	font-style: italic;
+	color: var(--text-color);
+	margin: 2rem;
+}

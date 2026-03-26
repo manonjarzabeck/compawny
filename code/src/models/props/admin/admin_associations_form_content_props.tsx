@@ -3,7 +3,7 @@ import type { Association } from "../../../../models/association";
 import type { Country } from "../../../../models/country";
 import type { Department } from "../../../../models/department";
 
-type AdminAssociationsFormContentProps = {
+export type AdminAssociationsFormContentProps = {
 	country: Country[];
 	department: Department[];
 	validator: (
@@ -11,5 +11,3 @@ type AdminAssociationsFormContentProps = {
 	) => Promise<Partial<Association> | ZodError>;
 	dataToUpdate: Association | undefined;
 };
-
-export type { AdminAssociationsFormContentProps };

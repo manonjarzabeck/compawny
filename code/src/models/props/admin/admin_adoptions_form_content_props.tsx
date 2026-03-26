@@ -3,11 +3,9 @@ import type { Animal } from "../../../../models/animal";
 import type { Association } from "../../../../models/association";
 import type { Species } from "../../../../models/species";
 
-type AdminAdoptionsFormContentProps = {
+export type AdminAdoptionsFormContentProps = {
 	association: Association[];
 	species: Species[];
 	validator: (data: Partial<Animal>) => Promise<Partial<Animal> | ZodError>;
 	dataToUpdate: Animal | undefined;
 };
-
-export type { AdminAdoptionsFormContentProps };

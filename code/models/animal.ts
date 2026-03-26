@@ -5,7 +5,7 @@ type Animal = {
 	id: number;
 	name: string;
 	image: string;
-	arrival: Date;
+	arrival: string;
 	description: string;
 	is_adoptable: boolean;
 

@@ -110,6 +110,8 @@ class AssociationRepository {
 		:address,
 		:email,
 		:is_international,
+		:latitude,
+		:longitude,
 		:country_id,
 		:department_id
 	)
@@ -157,6 +159,8 @@ class AssociationRepository {
 		address = :address,
 		email = :email,
 		is_international = :is_international,
+		latitude = :latitude,
+		longitude = :longitude,
 		country_id = :country_id,
 		department_id = :department_id
 

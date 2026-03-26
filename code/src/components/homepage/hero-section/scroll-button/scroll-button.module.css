@@ -1,0 +1,14 @@
+.scrollBtn {
+	background: var(--btn-color);
+	color: var(--texte);
+	border-radius: 9999px;
+	border: 1px solid var(--text-color);
+	padding: 0.55rem 1.3rem;
+	font-size: 0.9rem;
+	cursor: pointer;
+	transition: 0.25s ease;
+}
+
+.scrollBtn:hover {
+	background: #f2b8b5;
+}

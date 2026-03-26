@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
-type BtnProps = {
-	link: string;
+export type BtnProps = {
+	link?: string;
 	children: ReactNode;
+	onClick?: () => void;
+	variant?: "default" | "homepage";
 };
-
-export type { BtnProps };

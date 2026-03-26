@@ -28,7 +28,8 @@ class RouterService {
 							{
 								id: "contact",
 								path: "contact",
-								lazy: () => import("../pages/contact/contact"),
+								lazy: () =>
+									import("../pages/experience-contact/experience-contact"),
 							},
 							{
 								id: "authentification",
@@ -36,11 +37,17 @@ class RouterService {
 								lazy: () =>
 									import("../pages/authentification/authentification"),
 							},
-							// {
-							// 	id: "proposition",
-							// 	path: "proposition",
-							// 	lazy: () => import("../pages/proposition/proposition"),
-							// },
+							{
+								id: "déconnexion",
+								path: "logout",
+								lazy: () => import("../pages/authentification/logout"),
+							},
+							{
+								id: "espace-utilisateur",
+								path: "espace-utilisateur",
+								lazy: () =>
+									import("../pages/espace-utilisateur/espace-utilisateur"),
+							},
 							{
 								id: "actions",
 								path: "actions",
@@ -84,7 +91,8 @@ class RouterService {
 							{
 								id: "mentions",
 								path: "mentions",
-								lazy: () => import("../pages/mentions/mentions"),
+								lazy: () =>
+									import("../pages/mentions-legales/mentions-legales"),
 							},
 						],
 					},
@@ -97,21 +105,27 @@ class RouterService {
 							{
 								id: "admin-homepage",
 								index: true,
-								lazy: () => import("../pages/admin/adminHomepage"),
+								lazy: () => import("../pages/admin/admin-homepage"),
 							},
 							{
 								id: "admin-action-homepage",
 								path: "action-homepage",
 								lazy: () =>
+									import("../pages/admin/admin_crud_homepages/action_homepage"),
+							},
+							{
+								id: "admin-pending-action-homepage",
+								path: "pending-action-homepage",
+								lazy: () =>
 									import(
-										"../pages/admin/admin_action/action_homepage/action_homepage"
+										"../pages/admin/pending_action_homepage/pending_action_homepage"
 									),
 							},
 							{
 								id: "admin-action-form",
 								path: "action-form/:id?",
 								lazy: () =>
-									import("../pages/admin/admin_action/actionsCrudForm"),
+									import("../pages/admin/admin_action/actions-crud-form"),
 							},
 							{
 								id: "admin-action-form-delete",
@@ -123,7 +137,7 @@ class RouterService {
 								path: "association-homepage",
 								lazy: () =>
 									import(
-										"../pages/admin/admin_association/association_homepage/association_homepage"
+										"../pages/admin/admin_crud_homepages/association_homepage"
 									),
 							},
 							{
@@ -131,7 +145,7 @@ class RouterService {
 								path: "association-form/:id?",
 								lazy: () =>
 									import(
-										"../pages/admin/admin_association/associationCrudForm"
+										"../pages/admin/admin_association/associations-crud-form"
 									),
 							},
 							{
@@ -144,14 +158,14 @@ class RouterService {
 								path: "adoption-homepage",
 								lazy: () =>
 									import(
-										"../pages/admin/admin_adoption/adoption_homepage/adoption_homepage"
+										"../pages/admin/admin_crud_homepages/adoption_homepage"
 									),
 							},
 							{
 								id: "admin-adoption-form",
 								path: "adoption-form/:id?",
 								lazy: () =>
-									import("../pages/admin/admin_adoption/adoptionCrudForm"),
+									import("../pages/admin/admin_adoption/adoptions-crud-form"),
 							},
 							{
 								id: "admin-adoption-form-delete",

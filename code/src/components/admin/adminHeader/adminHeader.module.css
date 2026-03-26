@@ -1,6 +1,6 @@
 .adminHeader {
 	width: 100%;
-	background-color: var(--sable-rose);
+	background-color: var(--homepage-bg);
 	padding: 1rem;
 }
 
@@ -10,6 +10,17 @@
 	justify-content: space-between;
 	max-width: 1400px;
 	margin: 0 auto;
+}
+
+.logoLink {
+	text-decoration: none;
+	color: inherit;
+	display: inline-block;
+}
+
+.logoLink:hover {
+	opacity: 0.85;
+	cursor: pointer;
 }
 
 .leftBlock {
@@ -38,7 +49,7 @@
 	font-size: 3rem;
 	font-weight: 700;
 	font-family: var(--font-title);
-	color: var(--marron-gris);
+	color: var(--text-color);
 	margin: 0;
 	line-height: 1.1;
 }
@@ -47,7 +58,7 @@
 	font-size: 1.5rem;
 	font-weight: 500;
 	font-family: var(--font-title);
-	color: var(--marron-gris);
+	color: var(--text-color);
 	margin: 0.2rem 0 0 0;
 	letter-spacing: 0.05em;
 }

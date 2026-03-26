@@ -37,7 +37,10 @@ class ActionApiService {
 	};
 
 	// insertion d'un enregistrement
-	public insert = async (data: FormData): Promise<ApiResponse<Action>> => {
+	public insert = async (
+		data: FormData,
+		token: string,
+	): Promise<ApiResponse<Action>> => {
 		const request = new Request(
 			`${import.meta.env.VITE_API_URL}${this.prefix}`,
 			{
@@ -50,6 +53,9 @@ class ActionApiService {
 				ajouter l'en tête Content-Type: application/json
 				*/
 				body: data,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			},
 		);
 
@@ -59,7 +65,10 @@ class ActionApiService {
 		return results;
 	};
 
-	public update = async (data: FormData): Promise<ApiResponse<Action>> => {
+	public update = async (
+		data: FormData,
+		token: string,
+	): Promise<ApiResponse<Action>> => {
 		// configurer la requête HTTP
 		const request = new Request(
 			`${import.meta.env.VITE_API_URL}${this.prefix}`,
@@ -68,6 +77,9 @@ class ActionApiService {
 				/* si le formulaire contient un champ de fichier, la propriété body renvoie un objet formData. 
 				Si le formulaire ne contient pas de champ de fichier, la propriété renvoie du JSON (JSON stringify)... ajouter l'en-tête Content-Type:  */
 				body: data,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			},
 		);
 
@@ -85,6 +97,7 @@ class ActionApiService {
 
 	public delete = async (
 		data: Partial<Action>,
+		token: string,
 	): Promise<ApiResponse<Action>> => {
 		// configurer la requête HTTP
 		const request = new Request(
@@ -93,6 +106,7 @@ class ActionApiService {
 				method: "delete",
 				headers: {
 					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
 				},
 				body: JSON.stringify(data),
 			},

@@ -49,7 +49,7 @@ class AdminAdoptionFormValidator {
 		}
 
 		// si la validation réussi
-		return validation.data as Partial<Animal>;
+		return validation.data as unknown as Partial<Animal>;
 	};
 }
 
