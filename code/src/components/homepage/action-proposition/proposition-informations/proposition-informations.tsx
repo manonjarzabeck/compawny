@@ -7,18 +7,14 @@ const ActionPropositionInformations = ({
 }: UserActionsFormContentProps) => {
 	return (
 		<section className={styles.container}>
-			<div className={styles.topContent}>
-				<div className={styles.textContent}>
-					<p className={styles.sectionTag}>Et pour aller plus loin…</p>
+			<p className={styles.sectionTag}>Et pour aller plus loin…</p>
 
+			<div className={styles.contentGrid}>
+				<div className={styles.textContent}>
 					<h2 className={styles.title}>
 						Vous connaissez une belle initiative locale, une action solidaire ou
 						un événement en faveur des animaux ?
 					</h2>
-
-					<p className={styles.introText}>
-						Vous pouvez la partager ici en quelques clics 🐾
-					</p>
 
 					<img
 						className={styles.image}
@@ -38,10 +34,16 @@ const ActionPropositionInformations = ({
 						nouvelles façons d'agir près de chez eux 🤎
 					</p>
 				</div>
-			</div>
 
-			<div className={styles.formWrapper}>
-				<UserActionForm validator={validator} />
+				<div className={styles.formColumn}>
+					<p className={styles.introText}>
+						Vous pouvez la partager ici en quelques clics 🐾
+					</p>
+
+					<div className={styles.formWrapper}>
+						<UserActionForm validator={validator} />
+					</div>
+				</div>
 			</div>
 		</section>
 	);

@@ -1,63 +1,81 @@
+.wrapper {
+	width: 100%;
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 1rem;
+}
+
 .card {
-	background: #fffaf7;
-	border: 1px solid #e8d8cf;
-	border-radius: 1.5rem;
-	padding: clamp(1.25rem, 2vw, 2rem);
-	box-shadow: 0 0.75rem 2rem rgba(74, 44, 42, 0.08);
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 }
 
 .cardHeader {
-	margin-bottom: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 0.75rem;
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.welcome {
+	margin: 0;
+	font-size: 1.4rem;
+	font-weight: 700;
+	color: var(--text-color);
+	font-family: var(--font-title);
 }
 
 .cardTitle {
-	margin: 0 0 0.5rem;
-	font-family: "Nunito", sans-serif;
-	font-size: clamp(1.5rem, 2vw, 2rem);
+	margin: 0;
+	font-size: 1.3rem;
 	font-weight: 800;
-	color: #5c3b2e;
+	color: #8a6d62;
+	font-family: var(--font-body);
 }
 
 .cardSubtitle {
 	margin: 0;
+	font-size: 0.8rem;
+	line-height: 1.6;
+	color: #6f5b52;
+	font-family: var(--font-body);
+}
+
+.favoriteTitleRow {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.favoritesSection {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.emptyState {
+	margin: 0;
+	padding: 1.5rem;
+	text-align: center;
 	font-size: 1rem;
 	line-height: 1.6;
 	color: #6f5b52;
-}
-
-/* USER INFOS */
-
-.infoList {
-	display: grid;
-	gap: 1rem;
-	margin-bottom: 1.5rem;
-}
-
-.infoItem {
-	display: flex;
-	flex-direction: column;
-	gap: 0.35rem;
-	padding: 1rem 1.1rem;
 	background: #ffffff;
 	border: 1px solid #eadfd8;
 	border-radius: 1rem;
 }
 
-.infoLabel {
-	font-size: 0.95rem;
-	font-weight: 700;
-	color: #8a6d62;
-}
-
-.infoValue {
+.loading {
+	text-align: center;
 	font-size: 1rem;
-	color: #3f2b25;
-	word-break: break-word;
-}
-
-.actions {
-	display: flex;
-	justify-content: flex-start;
+	color: #6f5b52;
+	padding: 2rem 1rem;
 }
 
 /* FAVORITES */
@@ -69,69 +87,74 @@
 }
 
 .favoriteCard {
+	background-color: var(--card-color);
+	border-radius: 10px;
+	border: 0.8px solid var(--text-color);
+	overflow: hidden;
 	display: flex;
 	flex-direction: column;
-	overflow: hidden;
-	background: #ffffff;
-	border: 1px solid #eadfd8;
-	border-radius: 1.25rem;
-	box-shadow: 0 0.5rem 1.5rem rgba(74, 44, 42, 0.06);
+	align-items: center;
+}
+
+.favoriteCardInner {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: transform 0.3s ease;
+}
+
+.favoriteCard:hover .favoriteCardInner {
+	transform: scale(1.03);
 }
 
 .favoriteImageWrapper {
-	position: relative;
-	aspect-ratio: 16 / 10;
+	width: 100%;
+	height: 250px;
+	aspect-ratio: 4 / 3;
 	overflow: hidden;
-	background: #f4ece7;
+	padding: 1rem;
 }
 
 .favoriteImage {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	border-radius: 10px;
 	display: block;
+	transition: filter 0.3s ease;
 }
 
-.badge {
-	position: absolute;
-	top: 0.85rem;
-	left: 0.85rem;
-	padding: 0.45rem 0.8rem;
-	background: rgba(92, 59, 46, 0.9);
-	border-radius: 999px;
-	font-size: 0.8rem;
-	font-weight: 700;
-	color: #ffffff;
-}
-
-.favoriteContent {
-	display: flex;
-	flex-direction: column;
-	gap: 0.75rem;
-	padding: 1.1rem 1.1rem 0.75rem;
-	flex-grow: 1;
+.favoriteCard:hover .favoriteImage {
+	filter: brightness(0.85);
 }
 
 .favoriteTitle {
+	font-size: 1.1rem;
+	font-family: var(--font-title);
+	line-height: 1.4;
+	text-align: center;
+	color: var(--text-color);
+	padding: 0.5rem;
 	margin: 0;
-	font-family: "Nunito", sans-serif;
-	font-size: 1.2rem;
-	font-weight: 800;
-	color: #5c3b2e;
 }
 
 .favoriteDescription {
+	font-size: 0.8rem;
+	font-family: var(--font-body);
+	line-height: 1.5;
+	text-align: center;
+	color: var(--text-color);
+	padding: 0.2rem 0.8rem 0.8rem;
 	margin: 0;
-	font-size: 0.98rem;
-	line-height: 1.6;
-	color: #6f5b52;
 }
 
 .favoriteActions {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 	gap: 0.75rem;
-	padding: 0 1.1rem 1.1rem;
+	padding: 0 1rem 1.2rem;
 }
 
 /* BOUTONS */
@@ -141,7 +164,7 @@
 .iconBtn {
 	border: none;
 	border-radius: 999px;
-	font-family: "Inter", sans-serif;
+	font-family: var(--font-body);
 	font-size: 0.95rem;
 	font-weight: 700;
 	cursor: pointer;
@@ -162,6 +185,9 @@
 	padding: 0.8rem 1.15rem;
 	background: #f2e4dc;
 	color: #5c3b2e;
+	text-decoration: none; /* IMPORTANT */
+	display: inline-block; /* IMPORTANT */
+	text-align: center;
 }
 
 .iconBtn {
@@ -188,6 +214,12 @@
 	background: #fde7df;
 }
 
+.logoutWrapper {
+	display: flex;
+	justify-content: center;
+	padding-top: 0.5rem;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 1024px) {
@@ -197,9 +229,14 @@
 }
 
 @media (max-width: 768px) {
+	.wrapper {
+		padding: 1.25rem 1rem;
+	}
+
 	.card {
 		padding: 1.2rem;
 		border-radius: 1.2rem;
+		gap: 1.5rem;
 	}
 
 	.favoritesGrid {
@@ -208,6 +245,7 @@
 
 	.favoriteActions {
 		flex-direction: column;
+		width: 100%;
 	}
 
 	.primaryBtn,

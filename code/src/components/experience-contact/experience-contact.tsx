@@ -1,28 +1,24 @@
+"use client";
+
 import Btn from "../btn/Btn";
 import ContactForm from "./contactForm/contactForm";
 import styles from "./experience-contact.module.css";
 
-type Review = {
-	id: number;
-	name: string;
-	message: string;
-};
-
-const reviews: Review[] = [
+const Reviews = [
 	{
-		id: 1,
+		_id: "1",
 		name: "Svetlana",
 		message:
 			"Grâce à Compawny, j’ai rencontré Nino, un chien senior qui attendait depuis longtemps au refuge. Aujourd’hui, il fait partie de ma famille et je ne remercierai jamais assez ce site de m’avoir permis de le trouver.",
 	},
 	{
-		id: 2,
+		_id: "2",
 		name: "Camille",
 		message:
 			"Je cherchais une façon concrète de me rendre utile près de chez moi. J’ai découvert une action locale grâce au site, j’y suis allée une première fois… et depuis, j’y retourne presque chaque week-end avec énormément de plaisir.",
 	},
 	{
-		id: 3,
+		_id: "3",
 		name: "Sofiane",
 		message:
 			"J’ai trouvé une association internationale via Compawny et je suis parti vivre une aventure humaine incroyable. Cette expérience m’a profondément marqué, et j’ai déjà hâte de préparer ma prochaine mission.",
@@ -33,6 +29,7 @@ const ExperienceContact = () => {
 	return (
 		<>
 			<Btn link="/">Retour</Btn>
+
 			<section
 				className={styles.wrapper}
 				aria-labelledby="experience-contact-title"
@@ -49,12 +46,14 @@ const ExperienceContact = () => {
 							peuvent inspirer d’autres personnes à se lancer à leur tour.
 						</p>
 					</div>
+
 					<div className={styles.grid}>
 						<article className={styles.formSection}>
 							<div className={styles.formCard}>
 								<h2 className={styles.sectionTitle}>
 									Racontez-nous votre histoire...
 								</h2>
+
 								<ContactForm />
 							</div>
 						</article>
@@ -68,8 +67,8 @@ const ExperienceContact = () => {
 							</h2>
 
 							<ul className={styles.reviewList}>
-								{reviews.map((review) => (
-									<li key={review.id} className={styles.reviewBubble}>
+								{Reviews.map((review) => (
+									<li key={review._id} className={styles.reviewBubble}>
 										<blockquote className={styles.reviewContent}>
 											<p className={styles.quote}>“ {review.message} ”</p>
 											<footer className={styles.author}>— {review.name}</footer>

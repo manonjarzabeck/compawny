@@ -1,0 +1,22 @@
+.favoriteBtn {
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	font-size: 1.7rem;
+	line-height: 1;
+	padding: 0.2rem;
+	transition:
+		transform 0.2s ease,
+		opacity 0.2s ease;
+}
+
+.favoriteBtn:hover {
+	transform: scale(1.12);
+	opacity: 0.85;
+}
+
+.favoriteBtn:focus-visible {
+	outline: 2px solid var(--text-color);
+	outline-offset: 4px;
+	border-radius: 50%;
+}

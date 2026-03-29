@@ -6,6 +6,7 @@ import type { ZodIssue } from "zod/v3";
 import type { Action } from "../../../../models/action";
 import type { UserActionsFormContentProps } from "../../../models/props/user_action_form_content_props";
 import ActionApiService from "../../../services/action_api_service";
+import SecurityService from "../../../services/security_service";
 import styles from "./action-proposition-form.module.css";
 
 const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
@@ -60,7 +61,10 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 		formData.set("published", "");
 		formData.set("association_id", "");
 
-		const process = await new ActionApiService().insert(formData);
+		const process = await new ActionApiService().insert(
+			formData,
+			new SecurityService().getToken() as string,
+		);
 
 		if ([200, 201].includes(process.status)) {
 			setMessage("Notre équipe de modération va s'occuper du reste 🐾");

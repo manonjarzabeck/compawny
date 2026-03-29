@@ -1,5 +1,4 @@
 import React, { use } from "react";
-import { NavLink } from "react-router";
 import ActionApiService from "../../../services/action_api_service";
 import AdoptionApiService from "../../../services/adoption_api_service";
 import AssociationApiService from "../../../services/association_api_service";
@@ -52,6 +51,15 @@ const DashboardAdmin = () => {
 
 					<Btn link="/admin/pending-action-homepage">
 						Voir les actions proposées 👉🏼
+					</Btn>
+				</div>
+
+				<div className={`${styles.card} ${styles.testimonialCard}`}>
+					<h4 className={styles.testimonialTitle}>Retours d’expérience</h4>
+					<p className={`${styles.number} ${styles.testimonialNumber}`}>💌</p>
+
+					<Btn link="/admin/testimonial-homepage">
+						Voir les témoignages 👉🏼
 					</Btn>
 				</div>
 			</div>

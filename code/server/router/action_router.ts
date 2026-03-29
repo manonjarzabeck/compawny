@@ -24,7 +24,7 @@ class ActionRouter {
 		this.router.post(
 			"/",
 			this.multer.any(),
-			new AuthorizationMiddleware().authorize(["admin"]),
+			new AuthorizationMiddleware().authorize(["admin", "user", "visitor"]),
 			new ActionController().insert,
 		);
 

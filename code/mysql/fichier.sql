@@ -819,7 +819,10 @@ INSERT INTO compawny_dev.animal
 (20, 'Charlie', 'charlie.jpg', '2025-12-03', 'Charlie est un chien senior très doux et fidèle. Il adore les moments calmes et la compagnie humaine. Il attend un foyer aimant et patient pour partager toute sa tendresse.', 1, 7, 1)
 ;
 
-
+INSERT INTO compawny_dev.user_action 
+(user_id, action_id)
+VALUES 
+(2, 5);
 
 -- -- Transaction SQL 
 -- START TRANSACTION;

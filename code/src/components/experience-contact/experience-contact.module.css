@@ -100,8 +100,8 @@
 /* BULLES */
 
 .reviewBubble {
-	background-color: var(--card-color);
-	color: var(--text-color);
+	background-color: var(--text-color);
+	color: var(--card-color);
 	font-family: var(--font-body);
 	border-radius: 2.5rem;
 	padding: 1.5rem;

@@ -122,6 +122,14 @@ class RouterService {
 									),
 							},
 							{
+								id: "admin-testimonial-homepage",
+								path: "testimonial-homepage",
+								lazy: () =>
+									import(
+										"../pages/admin/testimonial_homepage/testimonial_homepage"
+									),
+							},
+							{
 								id: "admin-action-form",
 								path: "action-form/:id?",
 								lazy: () =>

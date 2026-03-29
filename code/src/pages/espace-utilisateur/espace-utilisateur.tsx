@@ -1,11 +1,15 @@
-import UserFavorites from "../../components/espace-utilisateur/user-favorites";
-import UserInfos from "../../components/espace-utilisateur/user-infos";
+import UserEspace from "../../components/espace-utilisateur/user-espace";
+import Seo from "../../components/seo/seo";
 
 const UserSpacePage = () => {
 	return (
 		<>
-			<UserInfos />
-			<UserFavorites />
+			<Seo
+				title="Espace utilisateur"
+				description="Espace utilisateur - Dashboard favoris"
+				url=""
+			/>
+			<UserEspace />
 		</>
 	);
 };

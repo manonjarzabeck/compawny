@@ -1,54 +1,46 @@
 .container {
-	max-width: min(100%, 1200px);
+	max-width: min(100%, 1400px);
 	margin: 0 auto;
-	padding: 0.5rem 1rem 3rem;
+	padding: 0.5rem 0.75rem 3rem;
 	display: flex;
 	flex-direction: column;
-	gap: 2.5rem;
-	align-items: center;
-}
-
-.topContent {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
-.textContent {
-	width: 100%;
-	max-width: 1000px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 1.5rem;
-	text-align: center;
+	gap: 2rem;
 }
 
 .sectionTag {
 	margin: 0;
-	font-size: 2.5rem;
+	font-size: 2rem;
 	font-weight: 800;
 	letter-spacing: 0.03em;
 	font-family: var(--font-body);
 	color: var(--text-color);
+	text-align: center;
+}
+
+.contentGrid {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1.4fr 0.8fr;
+	gap: 2.4rem;
+	align-items: start;
+}
+
+.textContent {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.2rem;
+	text-align: center;
 }
 
 .title {
 	margin: 0;
 	font-family: var(--font-title);
-	font-size: 1.2rem;
-	line-height: 1.2;
+	font-size: 1.4rem;
+	line-height: 1.3;
 	color: var(--text-color);
-}
-
-.introText {
-	margin: 0;
-	font-size: 0.9rem;
-	/* font-style: italic; */
-	line-height: 1.6;
-	font-weight: 500;
-	color: rgb(135, 116, 114);
-	font-family: var(--font-body);
+	max-width: 80%;
 }
 
 .image {
@@ -57,34 +49,52 @@
 	max-height: 350px;
 	object-fit: cover;
 	display: block;
-	margin: 0.5rem 0;
-	border-radius: 1rem;
 }
 
 .bodyText {
 	margin: 0;
-	max-width: 850px;
-	font-size: 1rem;
+	font-size: 0.9rem;
 	line-height: 1.6;
 	font-weight: 500;
 	font-family: var(--font-body);
 	color: var(--text-color);
+	max-width: 90%;
 }
 
 .highlightText {
 	margin: 0;
-	max-width: 1200px;
 	font-size: 1.2rem;
 	line-height: 1.6;
 	font-weight: 700;
 	font-family: var(--font-body);
 	color: var(--text-color);
+	max-width: 95%;
+}
+
+.formColumn {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.introText {
+	margin: 0;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	font-weight: 500;
+	color: rgb(135, 116, 114);
+	font-family: var(--font-body);
+	max-width: 90%;
 }
 
 .formWrapper {
 	width: 100%;
 	display: flex;
 	justify-content: center;
+	align-items: flex-start;
 }
 
 @media screen and (max-width: 900px) {
@@ -93,8 +103,25 @@
 		gap: 2rem;
 	}
 
+	.contentGrid {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+
+	.textContent {
+		align-items: center;
+		text-align: center;
+	}
+
 	.title {
 		font-size: 1.5rem;
+		max-width: 100%;
+	}
+
+	.bodyText,
+	.highlightText,
+	.introText {
+		max-width: 100%;
 	}
 
 	.image {
