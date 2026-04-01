@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 0.9rem;
+	width: 100%;
 }
 
 .form label {
@@ -19,6 +20,8 @@
 	font-size: 0.95rem;
 	font-family: inherit;
 	background-color: white;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .form input:focus,
@@ -34,7 +37,7 @@
 }
 
 .form button {
-	margin-top: 0.5rem;
+	margin-top: 0.7rem;
 	padding: 0.9rem 1rem;
 	border-radius: 0.75rem;
 	border: none;
@@ -50,4 +53,48 @@
 .form button:hover {
 	background-color: #5c4a3f;
 	transform: translateY(-0.0625rem);
+}
+
+.error {
+	margin: -0.3rem 0 0 0;
+	font-size: 0.8rem;
+	font-family: var(--font-body);
+	color: #a33b3b;
+}
+
+.feedback {
+	margin: 0.3rem 0 0 0;
+	font-size: 0.9rem;
+	font-family: var(--font-body);
+	color: var(--text-color);
+	text-align: center;
+}
+
+@media screen and (max-width: 1399px) {
+	.form {
+		gap: 0.8rem;
+	}
+
+	.form label {
+		font-size: 0.9rem;
+	}
+
+	.form input,
+	.form textarea {
+		font-size: 0.9rem;
+		padding: 0.8rem 0.9rem;
+	}
+
+	.form button {
+		font-size: 0.9rem;
+		padding: 0.85rem 1rem;
+	}
+
+	.error {
+		font-size: 0.75rem;
+	}
+
+	.feedback {
+		font-size: 0.85rem;
+	}
 }

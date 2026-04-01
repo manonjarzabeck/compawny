@@ -9,11 +9,13 @@ const HeroSection = () => {
 					Pour relier les humains qui ont du cœur aux animaux qui attendent une
 					main 🤎
 				</h2>
+
 				<img
 					src="/img/homepage/ImgPrincipale.png"
 					alt="Humains et animaux solidaires"
 					className={styles.heroImage}
 				/>
+
 				<p className={styles.heroDescription}>
 					Prêt-e à faire la différence ? Trois manières de contribuer
 					t’attendent : participer à des initiatives qui protègent la cause
@@ -21,7 +23,10 @@ const HeroSection = () => {
 					un foyer à un compagnon qui attend une seconde chance.
 				</p>
 			</div>
-			<ScrollButton />
+
+			<div className={styles.scrollWrapper}>
+				<ScrollButton />
+			</div>
 		</section>
 	);
 };

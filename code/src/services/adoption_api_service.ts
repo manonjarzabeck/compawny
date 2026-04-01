@@ -36,7 +36,10 @@ class AdoptionApiService {
 	};
 
 	// insertion d'un enregistrement
-	public insert = async (data: FormData): Promise<ApiResponse<Animal>> => {
+	public insert = async (
+		data: FormData,
+		token: string,
+	): Promise<ApiResponse<Animal>> => {
 		const request = new Request(
 			`${import.meta.env.VITE_API_URL}${this.prefix}`,
 			{
@@ -49,6 +52,9 @@ class AdoptionApiService {
 				ajouter l'en tête Content-Type: application/json
 				*/
 				body: data,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			},
 		);
 
@@ -58,7 +64,10 @@ class AdoptionApiService {
 		return results;
 	};
 
-	public update = async (data: FormData): Promise<ApiResponse<Animal>> => {
+	public update = async (
+		data: FormData,
+		token: string,
+	): Promise<ApiResponse<Animal>> => {
 		// configurer la requête HTTP
 		const request = new Request(
 			`${import.meta.env.VITE_API_URL}${this.prefix}`,
@@ -67,6 +76,9 @@ class AdoptionApiService {
 				/* si le formulaire contient un champ de fichier, la propriété body renvoie un objet formData. 
 				Si le formulaire ne contient pas de champ de fichier, la propriété renvoie du JSON (JSON stringify)... ajouter l'en-tête Content-Type:  */
 				body: data,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			},
 		);
 
@@ -84,6 +96,7 @@ class AdoptionApiService {
 
 	public delete = async (
 		data: Partial<Animal>,
+		token: string,
 	): Promise<ApiResponse<Animal>> => {
 		// configurer la requête HTTP
 		const request = new Request(
@@ -92,6 +105,7 @@ class AdoptionApiService {
 				method: "delete",
 				headers: {
 					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
 				},
 				body: JSON.stringify(data),
 			},

@@ -1,0 +1,1 @@
+import{u as i,r as o,j as n}from"./index-DcYd9-4l.js";import{A as r}from"./association_api_service-DaEaul2U.js";const a=({params:s})=>{const{id:e}=s,t=i();return o.useEffect(()=>{new r().delete({id:e}).then(()=>{t("/admin")})},[e,t]),n.jsx("title",{children:"Gestion des associations - Supression "})},u={default:a};export{u as export_ef0b8f4e032e};

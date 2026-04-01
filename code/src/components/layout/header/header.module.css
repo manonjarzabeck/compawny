@@ -1,6 +1,8 @@
 .publicHeader {
 	background-color: var(--nav-bar);
 	width: 100%;
+	position: relative;
+	z-index: 20;
 }
 
 .headerInner {
@@ -52,15 +54,43 @@
 	align-items: center;
 	min-width: 0;
 	margin-top: 2rem;
+	position: relative;
 }
 
-.ctaWrapper {
+.desktopCta {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+	margin-top: 1rem;
 }
 
-.ctaWrapper,
-.publicTitle {
-	margin-top: 1rem; /* ajuste entre 0.4 et 1rem selon ton ressenti */
+/* TABLETTE + MOBILE */
+@media screen and (max-width: 1399px) {
+	.headerInner {
+		grid-template-columns: 1fr auto;
+		gap: 0.75rem;
+		padding: 0.7rem 1rem;
+	}
+
+	.publicLogo {
+		width: 3.2rem;
+	}
+
+	.publicTitle {
+		margin-top: 0.5rem;
+		font-size: 1.9rem;
+	}
+
+	.navWrapper {
+		margin-top: 0.5rem;
+		justify-content: flex-end;
+	}
+
+	.desktopCta {
+		display: none;
+	}
+
+	.logoLink {
+		gap: 0.55rem;
+	}
 }

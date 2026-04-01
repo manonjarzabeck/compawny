@@ -1,0 +1,1 @@
+import{u as o,j as e}from"./index-DcYd9-4l.js";import{B as i}from"./Btn-DX_fYrZa.js";const l=({fallbackLink:r="/",children:s="Retour",variant:n="default"})=>{const t=o(),a=()=>{window.history.length>1?t(-1):t(r)};return e.jsx("div",{style:{margin:"0.8rem 0 0.4rem 0.8rem"},children:e.jsx(i,{onClick:a,variant:n,children:s})})};export{l as B};

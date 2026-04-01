@@ -21,12 +21,7 @@ class ActionRouter {
 
 		// ajouter un enregistrement
 		// utilisation du middleware multer
-		this.router.post(
-			"/",
-			this.multer.any(),
-			new AuthorizationMiddleware().authorize(["admin", "user", "visitor"]),
-			new ActionController().insert,
-		);
+		this.router.post("/", this.multer.any(), new ActionController().insert);
 
 		// mettre à jour un enregistrement
 		// utilisation du middleware multer

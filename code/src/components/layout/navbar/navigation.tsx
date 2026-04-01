@@ -4,74 +4,142 @@ import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router";
 import styles from "./navigation.module.css";
 
-const NavBar = () => {
-	const [isOpen, setIsOpen] = useState(false);
+type NavBarProps = {
+	personalLink: string;
+};
+
+const NavBar = ({ personalLink }: NavBarProps) => {
+	const [isGuideOpen, setIsGuideOpen] = useState(false);
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const location = useLocation();
 
-	const toggleDropdown = () => {
-		setIsOpen((prev) => !prev);
+	const toggleGuideDropdown = () => {
+		setIsGuideOpen((prev) => !prev);
 	};
 
-	const closeDropdown = () => {
-		setIsOpen(false);
+	const toggleMobileMenu = () => {
+		setIsMobileMenuOpen((prev) => !prev);
+	};
+
+	const closeMenus = () => {
+		setIsGuideOpen(false);
+		setIsMobileMenuOpen(false);
 	};
 
 	useEffect(() => {
-		setIsOpen(false);
+		closeMenus();
 	}, [location]);
 
 	return (
-		<nav className={`${styles.navbar} ${isOpen ? styles.navOpen : ""}`}>
-			<button type="button" className={styles.navLink} onClick={toggleDropdown}>
-				Le guide du bénévole {isOpen ? "👈🏼" : "👉🏼"}
-			</button>
-
-			<div
-				className={`${styles.dropdownInline} ${
-					isOpen ? styles.open : styles.closed
-				}`}
-			>
-				<NavLink
-					to="/actions"
-					className={styles.dropdownLink}
-					onClick={closeDropdown}
+		<nav className={styles.navbar} aria-label="Navigation principale">
+			<div className={styles.desktopNav}>
+				<button
+					type="button"
+					className={styles.navLink}
+					onClick={toggleGuideDropdown}
+					aria-expanded={isGuideOpen}
 				>
-					Découvrir les actions locales ❣️
-				</NavLink>
+					Le guide du bénévole {isGuideOpen ? "👈🏼" : "👉🏼"}
+				</button>
 
-				<NavLink
-					to="/associations"
-					className={styles.dropdownLink}
-					onClick={closeDropdown}
+				<div
+					className={`${styles.dropdownInline} ${
+						isGuideOpen ? styles.open : styles.closed
+					}`}
 				>
-					Explorer les associations 🌎
-				</NavLink>
+					<NavLink
+						to="/actions"
+						className={styles.dropdownLink}
+						onClick={closeMenus}
+					>
+						Découvrir les actions locales ❣️
+					</NavLink>
 
-				<NavLink
-					to="/adoptions"
-					className={styles.dropdownLink}
-					onClick={closeDropdown}
-				>
-					Voir les animaux à l’adoption 🐾
+					<NavLink
+						to="/associations"
+						className={styles.dropdownLink}
+						onClick={closeMenus}
+					>
+						Explorer les associations 🌎
+					</NavLink>
+
+					<NavLink
+						to="/adoptions"
+						className={styles.dropdownLink}
+						onClick={closeMenus}
+					>
+						Voir les animaux à l’adoption 🐾
+					</NavLink>
+				</div>
+
+				<NavLink to="/contact" className={styles.navLink} onClick={closeMenus}>
+					Ils en parlent 💭
 				</NavLink>
 			</div>
 
-			<NavLink to="/contact" className={styles.navLink} onClick={closeDropdown}>
-				Ils en parlent 💭
-			</NavLink>
+			<div className={styles.mobileNav}>
+				<button
+					type="button"
+					className={styles.mobileMenuButton}
+					onClick={toggleMobileMenu}
+					aria-expanded={isMobileMenuOpen}
+					aria-label="Ouvrir ou fermer le menu"
+				>
+					{isMobileMenuOpen ? "✕" : "☰"}
+				</button>
+
+				{isMobileMenuOpen && (
+					<div className={styles.mobilePanel}>
+						<div className={styles.mobileGuideBlock}>
+							<p className={styles.mobileGuideTitle}>Le guide du bénévole</p>
+
+							<div className={styles.mobileGuideLinks}>
+								<NavLink
+									to="/actions"
+									className={styles.mobileSubLink}
+									onClick={closeMenus}
+								>
+									Découvrir les actions locales ❣️
+								</NavLink>
+
+								<NavLink
+									to="/associations"
+									className={styles.mobileSubLink}
+									onClick={closeMenus}
+								>
+									Explorer les associations 🌎
+								</NavLink>
+
+								<NavLink
+									to="/adoptions"
+									className={styles.mobileSubLink}
+									onClick={closeMenus}
+								>
+									Voir les animaux à l’adoption 🐾
+								</NavLink>
+							</div>
+						</div>
+
+						<NavLink
+							to="/contact"
+							className={styles.mobileMainLink}
+							onClick={closeMenus}
+						>
+							Ils en parlent 💭
+						</NavLink>
+
+						<NavLink
+							to={personalLink}
+							className={styles.mobileMainLink}
+							onClick={closeMenus}
+						>
+							Mon espace personnel 👤
+						</NavLink>
+					</div>
+				)}
+			</div>
 		</nav>
 	);
 };
 
 export default NavBar;
-
-// créer un état hook useState
-// const navMobileIsVisible:boolean = false;
-// const [NavMobileIsVisible, setNavMobileIsVisible] = useState<boolean>(false);
-
-// gestionnaire d'évènement
-// const handleClick = () => {
-// 	// modifier la valeur de l'état : utiliser obligatoirement le setter de l'état
-// 	setNavMobileIsVisible(!NavMobileIsVisible);
-// 	// console.log(NavMobileIsVisible);
-// };

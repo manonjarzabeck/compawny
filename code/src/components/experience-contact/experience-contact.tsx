@@ -27,60 +27,60 @@ const Reviews = [
 
 const ExperienceContact = () => {
 	return (
-		<>
-			<Btn link="/">Retour</Btn>
+		<section
+			className={styles.wrapper}
+			aria-labelledby="experience-contact-title"
+		>
+			<div className={styles.backBtnWrapper}>
+				<Btn link="/">Retour à l'accueil</Btn>
+			</div>
 
-			<section
-				className={styles.wrapper}
-				aria-labelledby="experience-contact-title"
-			>
-				<div className={styles.container}>
-					<div className={styles.introText}>
-						<h1 id="experience-contact-title" className={styles.pageTitle}>
-							Partagez votre expérience 💌
-						</h1>
-						<p className={styles.pageDescription}>
-							Vous avez adopté, participé à une action locale ou vécu une belle
-							aventure au sein d’une association grâce à Compawny ? <br />
-							Racontez-nous ce que cette expérience vous a apporté. Vos mots
-							peuvent inspirer d’autres personnes à se lancer à leur tour.
-						</p>
-					</div>
+			<div className={styles.container}>
+				<div className={styles.introText}>
+					<h1 id="experience-contact-title" className={styles.pageTitle}>
+						Partagez votre expérience 💌
+					</h1>
+					<p className={styles.pageDescription}>
+						Vous avez adopté, participé à une action locale ou vécu une belle
+						aventure au sein d’une association grâce à Compawny ? <br />
+						Racontez-nous ce que cette expérience vous a apporté. Vos mots
+						peuvent inspirer d’autres personnes à se lancer à leur tour.
+					</p>
+				</div>
 
-					<div className={styles.grid}>
-						<article className={styles.formSection}>
-							<div className={styles.formCard}>
-								<h2 className={styles.sectionTitle}>
-									Racontez-nous votre histoire...
-								</h2>
-
-								<ContactForm />
-							</div>
-						</article>
-
-						<article
-							className={styles.reviewsSection}
-							aria-labelledby="reviews-title"
-						>
-							<h2 id="reviews-title" className={styles.sectionTitleRight}>
-								Leurs plus beaux souvenirs 💭
+				<div className={styles.grid}>
+					<article className={styles.formSection}>
+						<div className={styles.formCard}>
+							<h2 className={styles.sectionTitle}>
+								Racontez-nous votre histoire...
 							</h2>
 
-							<ul className={styles.reviewList}>
-								{Reviews.map((review) => (
-									<li key={review._id} className={styles.reviewBubble}>
-										<blockquote className={styles.reviewContent}>
-											<p className={styles.quote}>“ {review.message} ”</p>
-											<footer className={styles.author}>— {review.name}</footer>
-										</blockquote>
-									</li>
-								))}
-							</ul>
-						</article>
-					</div>
+							<ContactForm />
+						</div>
+					</article>
+
+					<article
+						className={styles.reviewsSection}
+						aria-labelledby="reviews-title"
+					>
+						<h2 id="reviews-title" className={styles.sectionTitleRight}>
+							Leurs plus beaux souvenirs 💭
+						</h2>
+
+						<ul className={styles.reviewList}>
+							{Reviews.map((review) => (
+								<li key={review._id} className={styles.reviewBubble}>
+									<blockquote className={styles.reviewContent}>
+										<p className={styles.quote}>“ {review.message} ”</p>
+										<footer className={styles.author}>— {review.name}</footer>
+									</blockquote>
+								</li>
+							))}
+						</ul>
+					</article>
 				</div>
-			</section>
-		</>
+			</div>
+		</section>
 	);
 };
 

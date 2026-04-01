@@ -1,0 +1,1 @@
+class o{prefix="/api/contact";selectAll=async()=>{const e=new Request(`undefined${this.prefix}`);return await(await fetch(e)).json()};insert=async e=>{const s=new Request(`undefined${this.prefix}`,{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(e)});return await(await fetch(s)).json()}}export{o as C};

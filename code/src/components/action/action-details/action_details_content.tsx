@@ -1,19 +1,16 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import { formatDateFR } from "../../../models/outils/date";
 import type { ActionDetailsContentProps } from "../../../models/props/details_content/action_details_content_props";
 import SecurityService from "../../../services/security_service";
 import UserActionApiService from "../../../services/user_action_api_service";
 import AssociationDetailsContent from "../../association/association-details/association_details_content";
-import Btn from "../../btn/Btn";
+import BackBtn from "../../btn/backBtn";
 import FavoritesBtn from "../../btn/favorites-btn/favorites-btn";
 import style from "./action_details_content.module.css";
 
 const ActionDetailsContent = ({ data }: ActionDetailsContentProps) => {
-	const navigate = useNavigate();
-
 	const user = new SecurityService().getUser();
 	const token = new SecurityService().getToken();
 
@@ -71,20 +68,7 @@ const ActionDetailsContent = ({ data }: ActionDetailsContentProps) => {
 
 	return (
 		<>
-			<div>
-				<Btn
-					onClick={() => {
-						if (window.history.length > 1) {
-							navigate(-1);
-						} else {
-							navigate("/actions");
-						}
-					}}
-				>
-					Retour
-				</Btn>
-			</div>
-
+			<BackBtn fallbackLink="/actions" />
 			<section className={style.container}>
 				<div className={style.grid}>
 					<div className={`${style.card} ${style.cardPrimary}`}>

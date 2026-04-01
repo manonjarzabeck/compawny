@@ -71,7 +71,7 @@ const ActionListItem = ({
 					📍 {data.association.department.name}
 				</p>
 
-				<Btn link={`/actions/${data.id}`}>En savoir plus 🤎</Btn>
+				<Btn link={`/actions/${data.id}`}>En savoir plus 🐾</Btn>
 			</div>
 		</article>
 	);

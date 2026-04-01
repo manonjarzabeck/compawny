@@ -17,7 +17,7 @@
 .heroTitle {
 	padding: 1.2rem;
 	font-family: var(--font-title);
-	font-size: 1.5rem;
+	font-size: 1.4rem;
 	font-weight: 700;
 	line-height: 1.4;
 	color: var(--text-color);
@@ -31,11 +31,65 @@
 }
 
 .heroDescription {
-	max-width: 950px;
+	max-width: 1000px;
 	padding: 0.7rem;
 	font-family: var(--font-body);
 	font-size: 0.9rem;
 	font-weight: 700;
 	line-height: 1.4;
 	color: var(--text-color);
+}
+
+.scrollWrapper {
+	margin: 0;
+}
+
+/* tablette + mobile */
+@media screen and (max-width: 1399px) {
+	.heroSection {
+		padding: 1rem 0.9rem 1.5rem;
+	}
+
+	.heroTitle {
+		max-width: 900px;
+		font-size: clamp(1.4rem, 3vw, 2rem);
+	}
+
+	.heroImage {
+		width: min(100%, 72vw);
+		max-width: 620px;
+	}
+
+	.heroDescription {
+		max-width: 850px;
+		font-size: 1rem;
+	}
+
+	.scrollWrapper {
+		display: none;
+	}
+}
+
+/* mobile */
+@media screen and (max-width: 768px) {
+	/* .heroSection {
+		padding: 1.2rem;
+	} */
+
+	.heroTitle {
+		font-size: 1.4rem;
+		line-height: 1.2;
+		padding: 1rem;
+	}
+
+	.heroImage {
+		width: 100%;
+		max-width: 350px;
+	}
+
+	.heroDescription {
+		font-size: 0.9rem;
+		line-height: 1.45;
+		padding: 1rem;
+	}
 }

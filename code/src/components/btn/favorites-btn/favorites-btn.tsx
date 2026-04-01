@@ -1,11 +1,7 @@
 "use client";
 
+import type { FavoritesBtnProps } from "../../../models/props/favorites-btn_props";
 import styles from "./favorites-btn.module.css";
-
-type FavoritesBtnProps = {
-	isFavorite: boolean;
-	onToggle: () => void;
-};
 
 const FavoritesBtn = ({ isFavorite, onToggle }: FavoritesBtnProps) => {
 	return (
@@ -16,7 +12,7 @@ const FavoritesBtn = ({ isFavorite, onToggle }: FavoritesBtnProps) => {
 			aria-label={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
 			title={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
 		>
-			{isFavorite ? "❤️" : "♡"}
+			{isFavorite ? "🤎" : "♡"}
 		</button>
 	);
 };

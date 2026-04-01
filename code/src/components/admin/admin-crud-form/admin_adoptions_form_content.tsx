@@ -5,9 +5,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import type { ZodIssue } from "zod/v3";
 import type { Animal } from "../../../../models/animal";
-import styles from "../../../assets/css/admin_form_content.module.css";
 import type { AdminAdoptionsFormContentProps } from "../../../models/props/admin/admin_adoptions_form_content_props";
 import AdoptionApiService from "../../../services/adoption_api_service";
+import SecurityService from "../../../services/security_service";
+import BackBtn from "../../btn/backBtn";
+import styles from "./admin_form_content.module.css";
 
 const AdminAdoptionsFormContent = ({
 	association,
@@ -99,8 +101,14 @@ const AdminAdoptionsFormContent = ({
 
 		// requête HTTP vers l'API
 		const process = dataToUpdate
-			? await new AdoptionApiService().update(formData)
-			: await new AdoptionApiService().insert(formData);
+			? await new AdoptionApiService().update(
+					formData,
+					new SecurityService().getToken() as string,
+				)
+			: await new AdoptionApiService().insert(
+					formData,
+					new SecurityService().getToken() as string,
+				);
 
 		// si la requête HTTP a réussie
 		if ([200, 201].includes(process.status)) {
@@ -127,6 +135,7 @@ const AdminAdoptionsFormContent = ({
 		table de jointure : cases à cocher 
 			> sélection de plusieurs choix 
 		*/}
+			<BackBtn fallbackLink="/admin-adoption-homepage" />
 			<section className={styles.wrapper}>
 				<div className={styles.card}>
 					<h1 className={styles.title}>

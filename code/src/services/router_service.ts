@@ -116,18 +116,12 @@ class RouterService {
 							{
 								id: "admin-pending-action-homepage",
 								path: "pending-action-homepage",
-								lazy: () =>
-									import(
-										"../pages/admin/pending_action_homepage/pending_action_homepage"
-									),
+								lazy: () => import("../pages/admin/pending-action-homepage"),
 							},
 							{
 								id: "admin-testimonial-homepage",
 								path: "testimonial-homepage",
-								lazy: () =>
-									import(
-										"../pages/admin/testimonial_homepage/testimonial_homepage"
-									),
+								lazy: () => import("../pages/admin/testimonial-homepage"),
 							},
 							{
 								id: "admin-action-form",

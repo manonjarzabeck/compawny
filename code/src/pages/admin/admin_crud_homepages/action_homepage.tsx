@@ -1,49 +1,52 @@
 import React, { use } from "react";
-import { NavLink, useLocation } from "react-router";
-
-import styles from "../../../assets/css/admin_homepage.module.css";
+import { NavLink } from "react-router";
 import AdminFlashMessage from "../../../components/admin/admin-flash-msg/admin-flash-msg";
+import BackBtn from "../../../components/btn/backBtn";
 import ActionApiService from "../../../services/action_api_service";
+import styles from "./admin_homepage.module.css";
 
 const AdminActionHomepage = () => {
 	const actions = use(new ActionApiService().selectAll()).data;
 
 	return (
-		<section className={styles.container}>
-			<h2 className={styles.title}>Gérer les actions</h2>
-			<AdminFlashMessage />
-			<NavLink
-				className={`${styles.btn} ${styles.btnAdd}`}
-				to={"/admin/action-form"}
-			>
-				Ajouter
-			</NavLink>
+		<>
+			<BackBtn fallbackLink="/admin">Revenir au tableau de bord</BackBtn>
+			<section className={styles.container}>
+				<h2 className={styles.title}>Gérer les actions</h2>
+				<AdminFlashMessage />
+				<NavLink
+					className={`${styles.btn} ${styles.btnAdd}`}
+					to={"/admin/action-form"}
+				>
+					Ajouter
+				</NavLink>
 
-			<div className={styles.actionsList}>
-				{actions?.map((item) => {
-					return (
-						<div className={styles.actionCard} key={item.id}>
-							<p className={styles.actionCardName}>{item.name}</p>
-							<img src={`/img/action/${item.image}`} alt={item.name} />
-							<div className={styles.buttons}>
-								<NavLink
-									className={`${styles.btn} ${styles.btnEdit}`}
-									to={`/admin/action-form/${item.id}`}
-								>
-									Modifier
-								</NavLink>
-								<NavLink
-									className={`${styles.btn} ${styles.btnDelete}`}
-									to={`/admin/action-form-delete/${item.id}`}
-								>
-									Supprimer
-								</NavLink>
+				<div className={styles.List}>
+					{actions?.map((item) => {
+						return (
+							<div className={styles.Card} key={item.id}>
+								<p className={styles.CardName}>{item.name}</p>
+								<img src={`/img/action/${item.image}`} alt={item.name} />
+								<div className={styles.buttons}>
+									<NavLink
+										className={`${styles.btn} ${styles.btnEdit}`}
+										to={`/admin/action-form/${item.id}`}
+									>
+										Modifier
+									</NavLink>
+									<NavLink
+										className={`${styles.btn} ${styles.btnDelete}`}
+										to={`/admin/action-form-delete/${item.id}`}
+									>
+										Supprimer
+									</NavLink>
+								</div>
 							</div>
-						</div>
-					);
-				})}
-			</div>
-		</section>
+						);
+					})}
+				</div>
+			</section>
+		</>
 	);
 };
 

@@ -43,6 +43,10 @@ class AdminAssociationFormValidator {
 				.string("L'email est obligatoire")
 				.min(20, "L'email doit comporter, au minimum, 20 caractères")
 				.max(150, "L'email doit comporter, au maximum, 150 caractères"),
+			latitude: z.coerce
+				.number("La latitude est obligatoire"),
+			longitude: z.coerce
+				.number("La longitude est obligatoire"),
 			country_id: z.coerce.number().min(1, "Veuillez sélectionner un pays"),
 		});
 

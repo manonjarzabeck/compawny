@@ -7,9 +7,11 @@ import NavBar from "../navbar/navigation";
 import styles from "./header.module.css";
 
 const Header = () => {
+	const user = new SecurityService().getUser();
+	const personalLink = user ? "/espace-utilisateur" : "/authentification";
+
 	return (
 		<header className={styles.publicHeader}>
-			{/* {JSON.stringify(new SecurityService().getUser())} */}
 			<div className={styles.headerInner}>
 				<div className={styles.publicBrand}>
 					<NavLink to="/" className={styles.logoLink}>
@@ -23,20 +25,12 @@ const Header = () => {
 				</div>
 
 				<div className={styles.navWrapper}>
-					<NavBar />
+					<NavBar personalLink={personalLink} />
 				</div>
 
-				{
-					// si l'utilisateur est connecté
-
-					new SecurityService().getUser() ? (
-						<Btn link="/espace-utilisateur">Mon espace personnel 👤</Btn>
-					) : (
-						<div className={styles.ctaWrapper}>
-							<Btn link="/authentification">Mon espace personnel 👤</Btn>
-						</div>
-					)
-				}
+				<div className={styles.desktopCta}>
+					<Btn link={personalLink}>Mon espace personnel 👤</Btn>
+				</div>
 			</div>
 		</header>
 	);

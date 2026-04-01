@@ -69,7 +69,6 @@ class AssociationController {
 			...req.body,
 			image: fullname,
 		});
-
 		// si la requête renvoie une erreur
 		if (results instanceof Error) {
 			res.status(400).json({

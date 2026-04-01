@@ -16,11 +16,11 @@ const Btn = ({ link, onClick, children, variant = "default" }: BtnProps) => {
 				>
 					{children}
 				</button>
-			) : (
-				<NavLink to={link!} className={`${styles.Btn} ${styles[variant]}`}>
+			) : link ? (
+				<NavLink to={link} className={`${styles.Btn} ${styles[variant]}`}>
 					{children}
 				</NavLink>
-			)}
+			) : null}
 		</section>
 	);
 };

@@ -7,6 +7,7 @@ import type { ApiResponse } from "../../models/api_response";
 import SecurityService from "../../services/security_service";
 import UserActionApiService from "../../services/user_action_api_service";
 import Btn from "../btn/Btn";
+import BackBtn from "../btn/backBtn";
 import FavoritesBtn from "../btn/favorites-btn/favorites-btn";
 import styles from "./user-espace.module.css";
 
@@ -65,64 +66,70 @@ const UserEspace = () => {
 
 	return (
 		<section className={styles.wrapper}>
+			<div className={styles.backBtnWrapper}>
+				<Btn link="/">Revenir à l'accueil</Btn>
+			</div>
 			<div className={styles.card}>
 				<div className={styles.cardHeader}>
 					<p className={styles.welcome}>Bonjour {user.email} 👋</p>
+
 					<h1 className={styles.cardTitle}>Mes favoris 🤎</h1>
+
 					<p className={styles.cardSubtitle}>
 						Retrouve ici les actions que tu as sauvegardées pour les consulter
 						plus facilement.
 					</p>
 				</div>
+			</div>
 
-				<div className={styles.favoritesSection}>
-					{favorites.length > 0 ? (
-						<div className={styles.favoritesGrid}>
-							{favorites.map((item) => (
-								<article key={item.id} className={styles.favoriteCard}>
-									<div className={styles.favoriteCardInner}>
-										<div className={styles.favoriteImageWrapper}>
-											<img
-												src={`/img/action/${item.image}`}
-												alt={item.name}
-												className={styles.favoriteImage}
-											/>
-										</div>
-
-										<div className={styles.favoriteTitleRow}>
-											<h3 className={styles.favoriteTitle}>{item.name}</h3>
-											<FavoritesBtn
-												isFavorite={true}
-												onToggle={() => handleRemoveFavorite(item.id)}
-											/>
-										</div>
-
-										<p className={styles.favoriteDescription}>
-											{item.description}
-										</p>
-
-										<div className={styles.favoriteActions}>
-											<NavLink
-												to={`/actions/${item.id}`}
-												className={styles.secondaryBtn}
-											>
-												Voir la fiche 🐾
-											</NavLink>
-										</div>
+			<div className={styles.favoritesSection}>
+				{favorites.length > 0 ? (
+					<div className={styles.favoritesGrid}>
+						{favorites.map((item) => (
+							<article key={item.id} className={styles.favoriteCard}>
+								<div className={styles.favoriteCardInner}>
+									<div className={styles.favoriteImageWrapper}>
+										<img
+											src={`/img/action/${item.image}`}
+											alt={item.name}
+											className={styles.favoriteImage}
+										/>
 									</div>
-								</article>
-							))}
-						</div>
-					) : (
-						<p className={styles.emptyState}>
-							Tu n’as pas encore ajouté d’action en favoris pour le moment.
-						</p>
-					)}
-				</div>
 
-				<div className={styles.logoutWrapper}>
-					<Btn link="/logout">Déconnexion</Btn>
-				</div>
+									<div className={styles.favoriteTitleRow}>
+										<h3 className={styles.favoriteTitle}>{item.name}</h3>
+										<FavoritesBtn
+											isFavorite={true}
+											onToggle={() => handleRemoveFavorite(item.id)}
+										/>
+									</div>
+
+									<p className={styles.favoriteDescription}>
+										{item.description}
+									</p>
+
+									<div className={styles.favoriteActions}>
+										<NavLink
+											to={`/actions/${item.id}`}
+											className={styles.secondaryBtn}
+										>
+											Voir la fiche 🐾
+										</NavLink>
+									</div>
+								</div>
+							</article>
+						))}
+					</div>
+				) : (
+					<p className={styles.emptyState}>
+						Tu n’as pas encore ajouté d’action en favoris pour le moment.
+					</p>
+				)}
+			</div>
+			<div className={styles.logoutWrapper}>
+				<NavLink to="/logout" className={styles.logoutBtn}>
+					Déconnexion
+				</NavLink>
 			</div>
 		</section>
 	);

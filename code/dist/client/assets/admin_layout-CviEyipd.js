@@ -1,0 +1,1 @@
+import{u as n,r as o,j as r}from"./index-DcYd9-4l.js";import{S as i}from"./security_service-5H0mR0nF.js";const u=({roles:e,children:s})=>{const t=n();return o.useEffect(()=>{const a=new i().getUser();e.indexOf(a?.role?.name)===-1&&t("/")},[e.indexOf,t]),r.jsx(r.Fragment,{children:s})},x={default:u};export{x as export_219e511e0ea7};

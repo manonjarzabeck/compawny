@@ -3,8 +3,8 @@
 import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import type { User } from "../../../models/user";
-import styles from "../../assets/css/auth-form.module.css";
 import SecurityApiService from "../../services/security_api_service";
+import styles from "./auth-form.module.css";
 
 const RegisterForm = () => {
 	const emailId = useId();

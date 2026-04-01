@@ -5,10 +5,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import type { ZodIssue } from "zod/v3";
 import type { Action } from "../../../../models/action";
-import styles from "../../../assets/css/admin_form_content.module.css";
 import type { AdminActionsFormContentProps } from "../../../models/props/admin/admin_actions_form_content_props";
 import ActionApiService from "../../../services/action_api_service";
 import SecurityService from "../../../services/security_service";
+import BackBtn from "../../btn/backBtn";
+import styles from "./admin_form_content.module.css";
 
 const AdminActionsFormContent = ({
 	association,
@@ -106,141 +107,149 @@ const AdminActionsFormContent = ({
 	};
 
 	return (
-		<section className={styles.wrapper}>
-			<div className={styles.card}>
-				<h1 className={styles.title}>
-					{dataToUpdate ? "Modifier une action" : "Ajouter une action"}
-				</h1>
+		<>
+			<BackBtn fallbackLink="/admin-action-homepage" />
+			<section className={styles.wrapper}>
+				<div className={styles.card}>
+					<h1 className={styles.title}>
+						{dataToUpdate ? "Modifier une action" : "Ajouter une action"}
+					</h1>
 
-				<form
-					className={styles.form}
-					encType="multipart/form-data"
-					onSubmit={handleSubmit(submitForm)}
-				>
-					<div className={styles.field}>
-						<label htmlFor={nameId}>Nom</label>
-						<input
-							type="text"
-							id={nameId}
-							{...register("name", {
-								required: "Le nom est obligatoire",
-								minLength: {
-									value: 2,
-									message: "Un nom doit comporter, au minimum, 2 caractères",
-								},
-								maxLength: {
-									value: 50,
-									message: "Un nom doit comporter, au maximum, 50 caractères",
-								},
-							})}
-						/>
-						<small role="alert">
-							{errors.name?.message ?? serverErrors?.name}
-						</small>
-					</div>
+					<form
+						className={styles.form}
+						encType="multipart/form-data"
+						onSubmit={handleSubmit(submitForm)}
+					>
+						<div className={styles.field}>
+							<label htmlFor={nameId}>Nom</label>
+							<input
+								type="text"
+								id={nameId}
+								{...register("name", {
+									required: "Le nom est obligatoire",
+									minLength: {
+										value: 2,
+										message: "Un nom doit comporter, au minimum, 2 caractères",
+									},
+									maxLength: {
+										value: 50,
+										message: "Un nom doit comporter, au maximum, 50 caractères",
+									},
+								})}
+							/>
+							<small role="alert">
+								{errors.name?.message ?? serverErrors?.name}
+							</small>
+						</div>
 
-					<div className={styles.field}>
-						<label htmlFor={imageId}>Image</label>
-						<input
-							type="file"
-							id={imageId}
-							{...register(
-								"image",
-								dataToUpdate
-									? {}
-									: {
-											required: "L'image est obligatoire",
-										},
-							)}
-						/>
-						<small role="alert">
-							{errors.image?.message ?? serverErrors?.image}
-						</small>
-					</div>
+						<div className={styles.field}>
+							<label htmlFor={imageId}>Image</label>
+							<input
+								type="file"
+								id={imageId}
+								{...register(
+									"image",
+									dataToUpdate
+										? {}
+										: {
+												required: "L'image est obligatoire",
+											},
+								)}
+							/>
+							<small role="alert">
+								{errors.image?.message ?? serverErrors?.image}
+							</small>
+						</div>
 
-					<div className={styles.field}>
-						<label htmlFor={descriptionId}>Description</label>
-						<textarea
-							id={descriptionId}
-							rows={6}
-							{...register("description", {
-								required: "La description est obligatoire",
-								minLength: {
-									value: 20,
-									message:
-										"La description doit comporter, au minimum, 20 caractères",
-								},
-								maxLength: {
-									value: 300,
-									message:
-										"La description doit comporter, au maximum, 300 caractères",
-								},
-							})}
-						/>
-						<small role="alert">
-							{errors.description?.message ?? serverErrors?.description}
-						</small>
-					</div>
+						<div className={styles.field}>
+							<label htmlFor={descriptionId}>Description</label>
+							<textarea
+								id={descriptionId}
+								rows={6}
+								{...register("description", {
+									required: "La description est obligatoire",
+									minLength: {
+										value: 20,
+										message:
+											"La description doit comporter, au minimum, 20 caractères",
+									},
+									maxLength: {
+										value: 300,
+										message:
+											"La description doit comporter, au maximum, 300 caractères",
+									},
+								})}
+							/>
+							<small role="alert">
+								{errors.description?.message ?? serverErrors?.description}
+							</small>
+						</div>
 
-					<div className={styles.field}>
-						<label htmlFor={publishedId}>Date de publication</label>
-						<input
-							type="date"
-							id={publishedId}
-							{...register(
-								"published",
-								dataToUpdate
-									? {}
-									: {
-											required: "La date de publication est obligatoire",
-										},
-							)}
-						/>
-						<small role="alert">
-							{errors.published?.message ?? serverErrors?.published?.toString()}
-						</small>
-					</div>
+						<div className={styles.field}>
+							<label htmlFor={publishedId}>Date de publication</label>
+							<input
+								type="date"
+								id={publishedId}
+								{...register(
+									"published",
+									dataToUpdate
+										? {}
+										: {
+												required: "La date de publication est obligatoire",
+											},
+								)}
+							/>
+							<small role="alert">
+								{errors.published?.message ??
+									serverErrors?.published?.toString()}
+							</small>
+						</div>
 
-					<div className={styles.field}>
-						<label htmlFor={associationId}>Association</label>
-						<select
-							id={associationId}
-							{...register("association_id", {
-								required: "L'association est obligatoire",
-								valueAsNumber: true,
-								min: {
-									value: 1,
-									message: "Veuillez sélectionner une association",
-								},
-							})}
-						>
-							<option value="">Sélectionner une association</option>
-							{association.map((item) => {
-								return (
-									<option key={item.id} value={item.id}>
-										{item.name}
-									</option>
-								);
-							})}
-						</select>
-						<small role="alert">{errors.association_id?.message}</small>
-					</div>
+						<div className={styles.field}>
+							<label htmlFor={associationId}>Association</label>
+							<select
+								id={associationId}
+								{...register("association_id", {
+									required: "L'association est obligatoire",
+									valueAsNumber: true,
+									min: {
+										value: 1,
+										message: "Veuillez sélectionner une association",
+									},
+								})}
+							>
+								<option value="">Sélectionner une association</option>
+								{association.map((item) => {
+									return (
+										<option key={item.id} value={item.id}>
+											{item.name}
+										</option>
+									);
+								})}
+							</select>
+							<small role="alert">{errors.association_id?.message}</small>
+						</div>
 
-					<div className={styles.checkboxRow}>
-						<label htmlFor={isactiveId}>En ligne</label>
-						<input type="checkbox" id={isactiveId} {...register("is_active")} />
-					</div>
+						<div className={styles.checkboxRow}>
+							<label htmlFor={isactiveId}>En ligne</label>
+							<input
+								type="checkbox"
+								id={isactiveId}
+								{...register("is_active")}
+							/>
+						</div>
 
-					<input type="hidden" id={idId} {...register("id")} />
+						<input type="hidden" id={idId} {...register("id")} />
 
-					<button className={styles.submitButton} type="submit">
-						Soumettre
-					</button>
+						<button className={styles.submitButton} type="submit">
+							Soumettre
+						</button>
 
-					{message && <p className={styles.message}>{message}</p>}
-				</form>
-			</div>
-		</section>
+						{message && <p className={styles.message}>{message}</p>}
+					</form>
+				</div>
+			</section>
+		</>
 	);
 };
 

@@ -1,0 +1,31 @@
+# nom du workflow
+name: Compawny CI workflow
+
+# déclencheur du workflow 
+on: 
+  push: 
+    branches: [ main ]
+
+# tâches
+jobs: 
+  # nom de la tâche 
+  CI: 
+    # choix de l'OS
+    runs-on: ubuntu-latest
+
+    # étapes de la tâche
+    steps: 
+      - 
+        name: Cloner le repository
+        uses: actions/checkout@v6
+
+      - 
+        name: Installer les dépendances
+        working-directory: code
+        run: npm ci
+
+      - 
+        name: Compiler le projet React
+        working-directory: code
+        run: npm run build
+

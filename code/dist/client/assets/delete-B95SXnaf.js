@@ -1,0 +1,1 @@
+import{u as s,r as n,j as i}from"./index-DcYd9-4l.js";import{A as r}from"./adoption_api_service-BjcrL4xK.js";const a=({params:o})=>{const{id:e}=o,t=s();return n.useEffect(()=>{new r().delete({id:e}).then(()=>{t("/admin")})},[e,t]),i.jsx("title",{children:"Gestion des adoptions - Supression "})},d={default:a};export{d as export_1f41c3927cbf};

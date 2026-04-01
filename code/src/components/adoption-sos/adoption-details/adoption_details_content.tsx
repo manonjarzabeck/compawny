@@ -1,30 +1,17 @@
 "use client";
 
-import { useNavigate } from "react-router";
 import { formatDateFR } from "../../../models/outils/date";
 import type { AdoptionDetailsContentProps } from "../../../models/props/details_content/adoption_details_content_props";
 import AssociationDetailsContent from "../../association/association-details/association_details_content";
-import Btn from "../../btn/Btn";
+
+import BackBtn from "../../btn/backBtn";
 import style from "./adoption_details_content.module.css";
 
 // récupération de la props data envoyée par le parent
 const AdoptionDetailsContent = ({ data }: AdoptionDetailsContentProps) => {
-	const navigate = useNavigate();
 	return (
 		<>
-			<div>
-				<Btn
-					onClick={() => {
-						if (window.history.length > 1) {
-							navigate(-1);
-						} else {
-							navigate("/actions");
-						}
-					}}
-				>
-					Retour
-				</Btn>
-			</div>
+			<BackBtn fallbackLink="/adoptions" />
 			<section className={style.container}>
 				<div className={style.grid}>
 					<div className={`${style.card} ${style.cardPrimary}`}>

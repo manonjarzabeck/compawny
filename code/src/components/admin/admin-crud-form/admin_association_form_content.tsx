@@ -5,9 +5,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import type { ZodIssue } from "zod/v3";
 import type { Association } from "../../../../models/association";
-import styles from "../../../assets/css/admin_form_content.module.css";
 import type { AdminAssociationsFormContentProps } from "../../../models/props/admin/admin_associations_form_content_props";
 import AssociationApiService from "../../../services/association_api_service";
+import SecurityService from "../../../services/security_service";
+import BackBtn from "../../btn/backBtn";
+import styles from "./admin_form_content.module.css";
 
 const AdminAssociationsFormContent = ({
 	country,
@@ -26,6 +28,8 @@ const AdminAssociationsFormContent = ({
 	const addressId = useId();
 	const emailId = useId();
 	const isInternationalId = useId();
+	const latitudeId = useId();
+	const longitudeId = useId();
 
 	// react hook form
 	// register :
@@ -102,20 +106,28 @@ const AdminAssociationsFormContent = ({
 		formData.set("website", normalizedData.website as unknown as string);
 		formData.set("address", normalizedData.address as unknown as string);
 		formData.set("email", normalizedData.email as unknown as string);
+		formData.set("latitude", normalizedData.latitude as unknown as string);
+		formData.set("longitude", normalizedData.longitude as unknown as string);
+		formData.set(
+			"is_international",
+			normalizedData.is_international ? "1" : "0",
+		);
 		formData.set("country_id", normalizedData.country_id as unknown as string);
 		formData.set(
 			"department_id",
 			normalizedData.department_id as unknown as string,
 		);
-		formData.set(
-			"is_international",
-			normalizedData.is_international ? "1" : "0",
-		);
 
 		// requête HTTP vers l'API
 		const process = dataToUpdate
-			? await new AssociationApiService().update(formData)
-			: await new AssociationApiService().insert(formData);
+			? await new AssociationApiService().update(
+					formData,
+					new SecurityService().getToken() as string,
+				)
+			: await new AssociationApiService().insert(
+					formData,
+					new SecurityService().getToken() as string,
+				);
 
 		// si la requête HTTP a réussie
 		if ([200, 201].includes(process.status)) {
@@ -142,6 +154,7 @@ const AdminAssociationsFormContent = ({
 		table de jointure : cases à cocher 
 			> sélection de plusieurs choix 
 		*/}
+			<BackBtn fallbackLink="/admin-association-homepage" />
 			<section className={styles.wrapper}>
 				<div className={styles.card}>
 					<h1 className={styles.title}>
@@ -303,6 +316,58 @@ const AdminAssociationsFormContent = ({
 						</div>
 
 						<div className={styles.field}>
+							<label htmlFor={websiteId}>Latitude :</label>
+							<input
+								type="text"
+								id={latitudeId}
+								{...register("latitude", {
+									required: "La latitude est obligatoire",
+									minLength: {
+										value: 5,
+										message:
+											"La latitude doit comporter, au minimum, 5 caractères",
+									},
+									maxLength: {
+										value: 50,
+										message:
+											"La longitude doit comporter, au maximum, 50 caractères",
+									},
+								})}
+							/>
+							{/* Afficher les messages d'erreur : utiliser le name du champ, définit dans register */}
+							<small role="alert">
+								{" "}
+								{errors.latitude?.message ?? serverErrors?.latitude}
+							</small>
+						</div>
+
+						<div className={styles.field}>
+							<label htmlFor={longitudeId}>Longitude :</label>
+							<input
+								type="text"
+								id={longitudeId}
+								{...register("longitude", {
+									required: "La longitude est obligatoire",
+									minLength: {
+										value: 5,
+										message:
+											"La longitude doit comporter, au minimum, 5 caractères",
+									},
+									maxLength: {
+										value: 50,
+										message:
+											"La longitude doit comporter, au maximum, 50 caractères",
+									},
+								})}
+							/>
+							{/* Afficher les messages d'erreur : utiliser le name du champ, définit dans register */}
+							<small role="alert">
+								{" "}
+								{errors.longitude?.message ?? serverErrors?.longitude}
+							</small>
+						</div>
+
+						<div className={styles.field}>
 							<label htmlFor={countryId}>Pays :</label>
 							<select
 								{...register("country_id", {
@@ -339,9 +404,7 @@ const AdminAssociationsFormContent = ({
 							</select>
 						</div>
 						<div className={styles.checkboxRow}>
-							<label htmlFor={isInternationalId}>
-								Association Internationale :
-							</label>
+							<label htmlFor={isInternationalId}>En ligne</label>
 							<input
 								type="checkbox"
 								id={isInternationalId}
@@ -353,6 +416,7 @@ const AdminAssociationsFormContent = ({
 						<button className={styles.submitButton} type="submit">
 							Soumettre
 						</button>
+						{message && <p className={styles.message}>{message}</p>}
 					</form>
 				</div>
 			</section>

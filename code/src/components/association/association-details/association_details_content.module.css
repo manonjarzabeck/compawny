@@ -2,12 +2,14 @@
 	background: var(--color-card, #fff);
 	border-radius: 16px;
 	padding: 1rem;
-	/* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); */
 	display: flex;
 	flex-direction: column;
 	gap: 1.2rem;
+	width: 100%;
 	max-width: 1000px;
 	margin: 1.5rem auto;
+	box-sizing: border-box;
+	overflow-x: hidden;
 }
 
 /* titre */
@@ -17,6 +19,8 @@
 	text-align: center;
 	color: var(--text-color);
 	font-family: var(--font-body);
+	overflow-wrap: break-word;
+	word-break: break-word;
 }
 
 /* image + infos */
@@ -25,14 +29,16 @@
 	grid-template-columns: 1.4fr 1fr;
 	gap: 1.5rem;
 	align-items: center;
+	width: 100%;
+	min-width: 0;
 }
 
 /* image */
-
 .imageWrapper {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+	min-width: 0;
 }
 
 .image {
@@ -40,6 +46,8 @@
 	height: 100%;
 	object-fit: contain;
 	border-radius: 12px;
+	display: block;
+	max-width: 100%;
 }
 
 /* infos */
@@ -51,14 +59,21 @@
 	color: var(--text-color);
 	font-family: var(--font-body);
 	font-size: 0.9rem;
+	min-width: 0;
 }
 
 .introduction {
 	font-weight: 500;
+	margin: 0;
+	overflow-wrap: break-word;
+	word-break: break-word;
 }
 
 .description {
 	line-height: 1.3;
+	margin: 0;
+	overflow-wrap: break-word;
+	word-break: break-word;
 }
 
 .contact {
@@ -67,26 +82,74 @@
 	flex-direction: row;
 	justify-content: center;
 	gap: 1rem;
+	flex-wrap: wrap;
+	min-width: 0;
+}
+
+.contact p {
+	margin: 0;
+	overflow-wrap: break-word;
+	word-break: break-word;
 }
 
 .contact a {
 	text-decoration: none;
 	font-weight: 500;
+	overflow-wrap: break-word;
+	word-break: break-word;
 }
 
 /* map */
 .mapContainer {
 	width: 100%;
 	margin-top: 0.5rem;
+	min-width: 0;
+	max-width: 100%;
+	overflow: hidden;
+	border-radius: 12px;
 }
 
 /* responsive */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1399px) {
+	.card {
+		width: 100%;
+		max-width: 100%;
+		margin: 1rem auto;
+		padding: 0.9rem;
+		gap: 1rem;
+	}
+
 	.topSection {
 		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+
+	.name {
+		font-size: 1.2rem;
+	}
+
+	.infos {
+		font-size: 0.85rem;
+		gap: 0.8rem;
+	}
+
+	.introduction,
+	.description {
+		line-height: 1.5;
+	}
+
+	.contact {
+		font-size: 0.75rem;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
 	}
 
 	.imageWrapper {
 		height: 220px;
+	}
+
+	.mapContainer {
+		margin-top: 0.2rem;
 	}
 }

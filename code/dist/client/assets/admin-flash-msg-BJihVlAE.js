@@ -1,0 +1,1 @@
+import{c as e,j as a}from"./index-DcYd9-4l.js";const t="_message_17iza_1",o={message:t},n=()=>{const s=e().state?.message;return s?a.jsx("p",{className:o.message,children:s}):null},r={default:n};export{r as export_f46a2dbec5ad};

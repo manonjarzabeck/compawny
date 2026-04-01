@@ -1,0 +1,1 @@
+import{u as o,r,j as e}from"./index-DcYd9-4l.js";import{S as a}from"./security_service-5H0mR0nF.js";const s=()=>{const t=o();return r.useEffect(()=>{new a().logout(),t("/authentification")},[t]),e.jsx(e.Fragment,{})},n={default:s};export{n as export_9f58dc29c4c4};

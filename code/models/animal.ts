@@ -7,7 +7,7 @@ type Animal = {
 	image: string;
 	arrival: string;
 	description: string;
-	is_adoptable: boolean;
+	is_adoptable: boolean | number;
 
 	association_id: number;
 	association: Association;
