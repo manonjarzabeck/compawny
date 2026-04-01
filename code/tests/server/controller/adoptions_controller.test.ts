@@ -74,7 +74,7 @@ describe("adoptions controller tests suite", async () => {
 
 		const actual = response.status;
 
-		console.log(response);
+		// console.log(response);
 
 		// assert
 		expect(actual).toBe(expected);

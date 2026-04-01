@@ -37,3 +37,8 @@ jobs:
           mysql -uroot -proot -e "source compawny.test.sql;"
           mysql -uroot -proot -e "source fichier.test.sql;"
           mysql -uroot -proot -e "show databases;"
+
+      -
+        name: Exécuter les tests
+        working-directory: code
+        run: npm run test
