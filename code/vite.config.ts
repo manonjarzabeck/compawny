@@ -3,6 +3,15 @@ import rsc from "@vitejs/plugin-rsc";
 import { defineConfig, loadEnv } from "vite";
 
 export default defineConfig(({ mode }) => {
+	// modifier la configuration lorsque les tests sont exécutés avec GitHub
+	// Actions
+	if (process.env.GITHUB_ACTIONS) {
+		// modifier l'hôte MySQL
+		process.env.MYSQL_HOST = "127.0.0.1";
+		// si le mot de passe MySQL en local n'est pas root
+		// process.env.MYSQL_PASSWORD = "127.0.0.1";
+	}
+
 	return {
 		server: {
 			port: 5173,
