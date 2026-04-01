@@ -4,7 +4,7 @@ name: Compawny CI workflow
 # déclencheur du workflow
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 # tâches
 jobs:
@@ -39,6 +39,6 @@ jobs:
           mysql -uroot -proot -e "show databases;"
 
       -
-        name: Exécuter les tests du projet
+        name: Exécuter les tests
         working-directory: code
         run: npm run test
