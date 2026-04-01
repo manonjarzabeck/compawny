@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
 		// modifier l'hôte MySQL
 		process.env.MYSQL_HOST = "127.0.0.1";
 		// si le mot de passe MySQL en local n'est pas root
-		process.env.MYSQL_PASSWORD = "127.0.0.1";
+		// process.env.MYSQL_PASSWORD = "127.0.0.1";
 	}
 
 	return {
