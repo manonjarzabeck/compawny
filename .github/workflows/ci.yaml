@@ -36,4 +36,4 @@ jobs:
           sudo service mysql start
           mysql -uroot -proot -e "source compawny.test.sql;"
           mysql -uroot -proot -e "source fichier.test.sql;"
-          mysql -root -proot -e "show databases;"
+          mysql -uroot -proot -e "show databases;"
