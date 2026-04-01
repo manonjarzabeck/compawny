@@ -39,6 +39,6 @@ jobs:
           mysql -uroot -proot -e "show databases;"
 
       -
-        name: Exécuter les tests
+        name: Exécuter les tests du projet
         working-directory: code
         run: npm run test
