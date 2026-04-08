@@ -16,13 +16,17 @@ const ActionListItem = ({
 	const user = new SecurityService().getUser();
 	const token = new SecurityService().getToken();
 
+	// Vérifie si l’action affichée est déjà dans les favoris
 	const isFavorite = favoriteIds.includes(data.id);
 
 	const handleToggleFavorite = async () => {
+		// Empêche l’action si l’utilisateur n’est pas connecté
 		if (!user || !token) return;
 
 		try {
 			if (isFavorite) {
+				// Si l’action est déjà en favori,
+				// on la supprime via l’API
 				await new UserActionApiService().delete(
 					{
 						user_id: user.id,
@@ -31,8 +35,10 @@ const ActionListItem = ({
 					token,
 				);
 
+				// Mise à jour immédiate de l’interface
 				setFavoriteIds((prev) => prev.filter((id) => id !== data.id));
 			} else {
+				// Sinon, on ajoute l’action aux favoris
 				await new UserActionApiService().insert(
 					{
 						user_id: user.id,
@@ -41,6 +47,7 @@ const ActionListItem = ({
 					token,
 				);
 
+				// Mise à jour locale de l’état sans rechargement
 				setFavoriteIds((prev) => [...prev, data.id]);
 			}
 		} catch (error) {
@@ -58,6 +65,7 @@ const ActionListItem = ({
 				<div className={style.titleRow}>
 					<h2 className={style.title}>{data.name}</h2>
 
+					{/* Le bouton favori n’est affiché que si l’utilisateur est connecté */}
 					{user && token && (
 						<FavoritesBtn
 							isFavorite={isFavorite}

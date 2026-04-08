@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import type { Contact } from "../../../../../models/contact";
 import type { ApiResponse } from "../../../../models/api_response";
 import ContactApiService from "../../../../services/contact_api_service";
-import BackBtn from "../../../btn/backBtn";
+import Btn from "../../../btn/Btn";
 import styles from "./testimonial_homepage.module.css";
 
 const TestimonialHomepage = () => {
@@ -35,7 +35,7 @@ const TestimonialHomepage = () => {
 
 	return (
 		<section className={styles.wrapper}>
-			<BackBtn fallbackLink="/admin">Revenir au tableau de bord</BackBtn>
+			<Btn link="/admin">Revenir au tableau de bord</Btn>
 			<div className={styles.header}>
 				<div className={styles.intro}>
 					<h1 className={styles.title}>Retours d’expérience</h1>

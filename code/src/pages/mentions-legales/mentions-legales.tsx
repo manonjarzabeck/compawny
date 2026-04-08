@@ -6,7 +6,7 @@ const MentionsLegales = () => {
 	return (
 		<>
 			<Btn link="/">Retour</Btn>
-			<Seo title="Mentions légales" description="Mentions légales" url="" />
+			<Seo title="Mentions légales" description="Mentions légales" url="/" />
 			<section className={styles.wrapper}>
 				<div className={styles.container}>
 					<h1 className={styles.title}>Mentions légales</h1>
@@ -32,9 +32,10 @@ const MentionsLegales = () => {
 						<section className={styles.block}>
 							<h2>Hébergement</h2>
 							<p>
-								Le site n’est actuellement pas hébergé publiquement. Les
-								informations relatives à l’hébergement seront précisées lors de
-								sa mise en ligne.
+								Le site est hébergé par la société Vercel Inc., dans le cadre de
+								la mise en ligne de l’application. L’hébergeur assure
+								l’infrastructure technique permettant l’accessibilité du site en
+								ligne.
 							</p>
 						</section>
 

@@ -1,7 +1,7 @@
 import { use, useState } from "react";
 import type { Action } from "../../../models/action";
 import type { Department } from "../../../models/department";
-import ActionsClient from "../../components/action/action-clients/page-action";
+import PageActions from "../../components/action/action-clients/page-action";
 import IntroPage from "../../components/intro-pages/intro-pages";
 import Seo from "../../components/seo/seo";
 import type { ApiResponse } from "../../models/api_response";
@@ -38,7 +38,7 @@ const ListeActionsPage = () => {
 					avec tes valeurs."
 			/>
 
-			<ActionsClient actions={actions} departments={departments} />
+			<PageActions actions={actions} departments={departments} />
 		</>
 	);
 };

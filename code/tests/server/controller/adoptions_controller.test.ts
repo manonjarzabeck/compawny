@@ -50,15 +50,6 @@ describe("adoptions controller tests suite", async () => {
 		// sut : system under test
 		const sut = supertest(new Server().start());
 
-		// act
-
-		/*
-		envoyer des données dans body :
-		si une image est présente : 
-		utiliser la méthode field pour chaque champ
-		utiliser la méthode attach pour transférer une image
-		*/
-
 		const response = await sut
 			.post(`${apiRoute}${route}`)
 			// token JWT
@@ -71,10 +62,8 @@ describe("adoptions controller tests suite", async () => {
 			.field("is_adoptable", data.is_adoptable as boolean)
 			.field("association_id", data.association_id as number)
 			.field("species_id", data.species_id as number);
-
+		// act
 		const actual = response.status;
-
-		// console.log(response);
 
 		// assert
 		expect(actual).toBe(expected);

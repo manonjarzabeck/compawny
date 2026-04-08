@@ -13,17 +13,21 @@ const ActionList = ({ actions }: FilterActionsProps) => {
 	const user = new SecurityService().getUser();
 	const token = new SecurityService().getToken();
 
+	// Stocke uniquement les identifiants des actions favorites
 	const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
 
 	useEffect(() => {
 		const fetchFavorites = async () => {
+			// Si l’utilisateur n’est pas connecté, on ne charge pas les favoris
 			if (!user || !token) return;
 
 			try {
+				// Récupère les favoris de l’utilisateur
 				const results: ApiResponse<Action[]> =
 					await new UserActionApiService().selectByUser(user.id, token);
 
 				if (results.data) {
+					// Transforme la liste des actions favorites en tableau d’identifiants
 					setFavoriteIds(results.data.map((item) => item.id));
 				}
 			} catch (error) {
@@ -37,6 +41,7 @@ const ActionList = ({ actions }: FilterActionsProps) => {
 	return (
 		<section className={style.grid}>
 			{actions
+				// N’affiche que les actions validées / actives
 				.filter((item) => item.is_active)
 				.map((item) => (
 					<ActionListItem

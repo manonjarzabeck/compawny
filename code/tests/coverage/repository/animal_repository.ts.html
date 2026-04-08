@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">15.68% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/51</span>
+                <span class='fraction'>8/51</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>1/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">16% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/50</span>
+                <span class='fraction'>8/50</span>
             </div>
         
             
@@ -298,7 +298,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -376,18 +376,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -401,21 +397,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -523,7 +523,7 @@ import SpeciesRepository from "./species_repository";
 &nbsp;
 class AnimalRepository {
 	// nom de la table SQL
-	private table = <span class="cstat-no" title="statement not covered" >"animal";</span>
+	private table = "animal";
 &nbsp;
 	// méthode de sélection de tous les enregistrements
 	public SelectAll = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (): Promise&lt;Animal[] | unknown&gt; =&gt; {</span></span>
@@ -601,14 +601,14 @@ class AnimalRepository {
 	};
 &nbsp;
 	// méthode d'insertion d'un enregistrement
-	public insert = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (</span></span>
+	public insert = async (
 		data: Partial&lt;Animal&gt;,
 	): Promise&lt;QueryResult | unknown&gt; =&gt; {
 		// connexion au serveur MYSQL
-		const connection = <span class="cstat-no" title="statement not covered" >await new MySQLService().connect();</span>
+		const connection = await new MySQLService().connect();
 &nbsp;
 		// requête SQL
-		const sql = <span class="cstat-no" title="statement not covered" >`</span>
+		const sql = `
 &nbsp;
 	INSERT INTO 
 		${process.env.MYSQL_DATABASE}.${this.table}
@@ -626,21 +626,21 @@ class AnimalRepository {
 	  ;
 		`;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		try {</span>
+		try {
 			// démarrer une transaction SQL
 			// connection.beginTransaction();
 &nbsp;
 			// éxecution de la première requête
-<span class="cstat-no" title="statement not covered" >			await connection.execute(sql, data);</span>
+			await connection.execute(sql, data);
 &nbsp;
 			// exécuter la requête SQL
 			// si la requête possède des variables, utiliser le paramètre de la méthode
 			// const [query] = await connection.execute(sql, data);
 &nbsp;
 			// deuxième requête SQL
-			const [query] = <span class="cstat-no" title="statement not covered" >await connection.execute(sql, data);</span>
+			const [query] = await connection.execute(sql, data);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			return query;</span>
+			return query;
 			// retourner les résultats
 		} catch (error) {
 			// annuler une transaction SQL
@@ -745,7 +745,7 @@ export default AnimalRepository;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-30T10:41:28.944Z
+                at 2026-04-03T23:36:49.639Z
             </div>
         <script src="../prettify.js"></script>
         <script>

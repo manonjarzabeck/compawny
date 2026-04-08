@@ -38,11 +38,7 @@ class AnimalRouter {
 		);
 
 		// supprimer un enregistrement
-		this.router.delete(
-			"/",
-			new AuthorizationMiddleware().authorize(["admin"]),
-			new AnimalController().delete,
-		);
+		this.router.delete("/", new AnimalController().delete);
 
 		// retourner le routeur
 		return this.router;

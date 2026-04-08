@@ -11,10 +11,15 @@ const FilterActions = ({
 			<select
 				className={styles.select}
 				value={selectedDepartment}
+				// Lorsqu’un département est sélectionné,
+				// on transmet la nouvelle valeur au composant parent
 				onChange={(e) => onChange(e.target.value)}
 			>
+				{/* Option par défaut : aucune sélection */}
 				<option value="">Tous les départements</option>
 
+				{/* Génération dynamique des options à partir
+				    de la liste des départements reçue en props */}
 				{departments.map((dept) => (
 					<option key={dept.id} value={dept.id}>
 						{dept.name}

@@ -1,7 +1,7 @@
 import React, { use } from "react";
 import { NavLink } from "react-router";
 import AdminFlashMessage from "../../../components/admin/admin-flash-msg/admin-flash-msg";
-import BackBtn from "../../../components/btn/backBtn";
+import Btn from "../../../components/btn/Btn";
 import ActionApiService from "../../../services/action_api_service";
 import styles from "./admin_homepage.module.css";
 
@@ -10,7 +10,7 @@ const AdminActionHomepage = () => {
 
 	return (
 		<>
-			<BackBtn fallbackLink="/admin">Revenir au tableau de bord</BackBtn>
+			<Btn link="/admin">Revenir au tableau de bord</Btn>
 			<section className={styles.container}>
 				<h2 className={styles.title}>Gérer les actions</h2>
 				<AdminFlashMessage />

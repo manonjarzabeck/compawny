@@ -45,7 +45,8 @@ class ActionRepository {
 		data: Partial<Action>,
 	): Promise<Action | unknown> => {
 		// connexion au serveur MySQL
-		const connection = await new MySQLService().connect(); // requête SQL
+		const connection = await new MySQLService().connect();
+		// requête SQL
 		// variable de requête : précédée d'un :, suivi du nom de la variable
 		// requêtes préparées (utilisation des variables de requêtes) : la requête est exécutée si elle ne représente pas de risque de sécurité
 		const sql = `
@@ -82,10 +83,11 @@ class ActionRepository {
 	): Promise<QueryResult | unknown> => {
 		// connexion au serveur MYSQL
 		const connection = await new MySQLService().connect();
-
 		// requête SQL
-		const sql = `
+		// variable de requête : précédée d'un :, suivi du nom de la variable
+		// requêtes préparées (utilisation des variables de requêtes) : la requête est exécutée si elle ne représente pas de risque de sécurité
 
+		const sql = `
 	INSERT INTO 
 		${process.env.MYSQL_DATABASE}.${this.table}
 	VALUE 
@@ -110,42 +112,6 @@ class ActionRepository {
 			// éxecution de la première requête
 			const [query] = await connection.execute(sql, data);
 
-			// exécuter la requête SQL
-			// si la requête possède des variables, utiliser le paramètre de la méthode
-			// const [query] = await connection.execute(sql, data);
-
-			// deuxième requête SQL
-			// sql = `SET @id = LAST_INSERT_ID();`;
-			// const [query] = await connection.execute(sql, data);
-
-			// const [query] = await connection.execute(sql, data); // troisième requête
-			/* 
-				INSERT INTO coeurdecompagnon_dev.user_action
-				VALUES 
-				(1, @actionuser_id),
-				(2, @actionuser_id)
-
-				split : extraire les données d'une chaîne de caractères en array 
-					1,2,3 >> [1,2,3]
-					[1,2,3] >> (1, @id), (2, @id), (3, @id)
-			*/
-
-			// const joinIds = data.user_ids
-			// 	?.split(",")
-			// 	.map((value) => `(${value}, @id)`)
-			// 	.join();
-			// // console.log(joinIds);
-
-			// sql = `
-			// INSERT INTO
-			// ${process.env.MYSQL_DATABASE}.user_action
-			// VALUES
-			// ${joinIds}
-			// ;
-			// `;
-
-			// const [query] = await connection.execute(sql);
-
 			// valider la transaction SQL
 			connection.commit();
 
@@ -168,6 +134,7 @@ class ActionRepository {
 
 		// requête SQL
 		const sql = `
+
 
 	UPDATE 
 		${process.env.MYSQL_DATABASE}.${this.table}
@@ -192,47 +159,6 @@ class ActionRepository {
 
 			// éxecution de la première requête
 			const [query] = await connection.execute(sql, data);
-
-			// // exécuter la requête SQL
-			// // si la requête possède des variables, utiliser le paramètre de la méthode
-			// // const [query] = await connection.execute(sql, data);
-
-			// deuxième requête SQL
-			// sql = `
-			// DELETE FROM
-			//  ${process.env.MYSQL_DATABASE}.user_action
-			// WHERE
-			//  user_action.action_id = :id
-			// ;
-			// `;
-			// await connection.execute(sql, data);
-
-			// // const [query] = await connection.execute(sql, data); // troisième requête
-			// /*
-			// 	INSERT INTO coeurdecompagnon_dev.user_action
-			// 	VALUES
-			// 	(1, @actionuser_id),
-			// 	(2, @actionuser_id)
-
-			// 	split : extraire les données d'une chaîne de caractères en array
-			// 		1,2,3 >> [1,2,3]
-			// 		[1,2,3] >> (1, @id), (2, @id), (3, @id)
-			// */
-			// const joinIds = data.user_ids
-			// 	?.split(",")
-			// 	.map((value) => `(${value}, :id)`)
-			// 	.join();
-			// // console.log(joinIds);
-
-			// sql = `
-			//  INSERT INTO
-			//  ${process.env.MYSQL_DATABASE}.user_action
-			//  VALUES
-			//  ${joinIds}
-			//  ;
-			//  `;
-
-			// const [query] = await connection.execute(sql, data);
 
 			// valider la transaction SQL
 			connection.commit();
@@ -272,47 +198,6 @@ class ActionRepository {
 
 			// éxecution de la première requête
 			const [query] = await connection.execute(sql, data);
-
-			// // exécuter la requête SQL
-			// // si la requête possède des variables, utiliser le paramètre de la méthode
-			// // const [query] = await connection.execute(sql, data);
-
-			// deuxième requête SQL
-			// sql = `
-			// DELETE FROM
-			//  ${process.env.MYSQL_DATABASE}.${this.table}
-			// WHERE
-			//  ${this.table}.id = :id
-			// ;
-			// `;
-
-			// await connection.execute(sql, data);
-			// // const [query] = await connection.execute(sql, data); // troisième requête
-			// /*
-			// 	INSERT INTO coeurdecompagnon_dev.user_action
-			// 	VALUES
-			// 	(1, @actionuser_id),
-			// 	(2, @actionuser_id)
-
-			// 	split : extraire les données d'une chaîne de caractères en array
-			// 		1,2,3 >> [1,2,3]
-			// 		[1,2,3] >> (1, @id), (2, @id), (3, @id)
-			// */
-			// const joinIds = data.user_ids
-			// 	?.split(",")
-			// 	.map((value) => `(${value}, :id)`)
-			// 	.join();
-			// // console.log(joinIds);
-
-			// sql = `
-			//  INSERT INTO
-			//  ${process.env.MYSQL_DATABASE}.user_action
-			//  VALUES
-			//  ${joinIds}
-			//  ;
-			//  `;
-
-			// const [query] = await connection.execute(sql, data);
 
 			// valider la transaction SQL
 			connection.commit();

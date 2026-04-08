@@ -37,10 +37,7 @@ class ActionApiService {
 	};
 
 	// insertion d'un enregistrement
-	public insert = async (
-		data: FormData,
-		token: string,
-	): Promise<ApiResponse<Action>> => {
+	public insert = async (data: FormData): Promise<ApiResponse<Action>> => {
 		const request = new Request(
 			`${import.meta.env.VITE_API_URL}${this.prefix}`,
 			{
@@ -53,9 +50,6 @@ class ActionApiService {
 				ajouter l'en tête Content-Type: application/json
 				*/
 				body: data,
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
 			},
 		);
 

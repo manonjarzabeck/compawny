@@ -7,7 +7,6 @@ import type { ApiResponse } from "../../models/api_response";
 import SecurityService from "../../services/security_service";
 import UserActionApiService from "../../services/user_action_api_service";
 import Btn from "../btn/Btn";
-import BackBtn from "../btn/backBtn";
 import FavoritesBtn from "../btn/favorites-btn/favorites-btn";
 import styles from "./user-espace.module.css";
 
@@ -15,17 +14,20 @@ const UserEspace = () => {
 	const user = new SecurityService().getUser();
 	const token = new SecurityService().getToken();
 
+	// Stocke la liste des actions favorites de l’utilisateur
 	const [favorites, setFavorites] = useState<Action[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchFavorites = async () => {
+			// Si l’utilisateur n’est pas connecté, on arrête le chargement
 			if (!user || !token) {
 				setLoading(false);
 				return;
 			}
 
 			try {
+				// Récupère les favoris depuis l’API
 				const results: ApiResponse<Action[]> =
 					await new UserActionApiService().selectByUser(user.id, token);
 
@@ -46,6 +48,7 @@ const UserEspace = () => {
 		if (!user || !token) return;
 
 		try {
+			// Supprime le favori en base de données
 			await new UserActionApiService().delete(
 				{
 					user_id: user.id,
@@ -54,6 +57,7 @@ const UserEspace = () => {
 				token,
 			);
 
+			// Met à jour l’interface sans recharger la page
 			setFavorites((prev) => prev.filter((item) => item.id !== actionId));
 		} catch (error) {
 			console.error("Erreur lors de la suppression du favori :", error);
@@ -69,12 +73,11 @@ const UserEspace = () => {
 			<div className={styles.backBtnWrapper}>
 				<Btn link="/">Revenir à l'accueil</Btn>
 			</div>
+
 			<div className={styles.card}>
 				<div className={styles.cardHeader}>
 					<p className={styles.welcome}>Bonjour {user.email} 👋</p>
-
 					<h1 className={styles.cardTitle}>Mes favoris 🤎</h1>
-
 					<p className={styles.cardSubtitle}>
 						Retrouve ici les actions que tu as sauvegardées pour les consulter
 						plus facilement.
@@ -98,6 +101,7 @@ const UserEspace = () => {
 
 									<div className={styles.favoriteTitleRow}>
 										<h3 className={styles.favoriteTitle}>{item.name}</h3>
+
 										<FavoritesBtn
 											isFavorite={true}
 											onToggle={() => handleRemoveFavorite(item.id)}
@@ -126,6 +130,7 @@ const UserEspace = () => {
 					</p>
 				)}
 			</div>
+
 			<div className={styles.logoutWrapper}>
 				<NavLink to="/logout" className={styles.logoutBtn}>
 					Déconnexion

@@ -7,7 +7,11 @@ import UserActionFormValidator from "../../validators/user_action_form_validator
 const HomePage = () => {
 	return (
 		<>
-			<Seo title="Accueil" description="Page d'accueil" url="" />
+			<Seo
+				title="Accueil"
+				description="Engagez-vous pour la protection animale avec Compawny : trouvez des actions locales, découvrez des associations internationales et adoptez des animaux qui attendent une seconde chance."
+				url="/"
+			/>
 			<HeroSection />
 			<GuideSection />
 			<ActionPropositionInformations

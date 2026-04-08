@@ -6,16 +6,19 @@ import type { ZodIssue } from "zod/v3";
 import type { Action } from "../../../../models/action";
 import type { UserActionsFormContentProps } from "../../../models/props/user_action_form_content_props";
 import ActionApiService from "../../../services/action_api_service";
-import SecurityService from "../../../services/security_service";
 import styles from "./action-proposition-form.module.css";
 
 const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
+	// Génère des identifiants uniques pour l’accessibilité des champs
 	const nameId = useId();
 	const descriptionId = useId();
 	const associationProposalId = useId();
 
+	// Gère les messages d’état du formulaire
 	const [message, setMessage] = useState("");
 	const [submitted, setSubmitted] = useState(false);
+
+	// Stocke les erreurs de validation renvoyées côté serveur
 	const [serverErrors, setServerErrors] = useState<Partial<Action>>({});
 
 	const {
@@ -28,11 +31,14 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 	const submitForm = async (data: Partial<Action>) => {
 		const normalizedData = { ...data };
 
+		// Validation des données avant envoi
 		const validation = await validator(normalizedData);
 
 		if (validation instanceof Error) {
 			let formErrors = {};
 
+			// Transformation des erreurs de validation
+			// en objet exploitable dans le formulaire
 			(JSON.parse(validation.message) as ZodIssue[]).map((item) => {
 				formErrors = {
 					...formErrors,
@@ -47,6 +53,7 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 
 		setServerErrors({});
 
+		// Préparation des données à envoyer à l’API
 		const formData = new FormData();
 
 		formData.set("name", normalizedData.name as string);
@@ -56,15 +63,18 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 			normalizedData.association_proposal as string,
 		);
 
+		// L’action proposée n’est pas publiée automatiquement
 		formData.set("is_active", "0");
+
+		// Permet d’identifier l’origine de la proposition
 		formData.set("source", "visitor");
+
+		// Champs laissés vides car ils seront complétés ou validés plus tard
 		formData.set("published", "");
 		formData.set("association_id", "");
 
-		const process = await new ActionApiService().insert(
-			formData,
-			new SecurityService().getToken() as string,
-		);
+		// Envoi du formulaire à l’API
+		const process = await new ActionApiService().insert(formData);
 
 		if ([200, 201].includes(process.status)) {
 			setMessage("Notre équipe de modération va s'occuper du reste 🐾");
@@ -75,6 +85,7 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 		}
 	};
 
+	// Affichage d’un message de confirmation après envoi réussi
 	if (submitted) {
 		return (
 			<div className={styles.formCard}>

@@ -29,9 +29,6 @@ class ActionController {
 	};
 
 	public selectOne = async (req: Request, res: Response) => {
-		// récupérer la variable de route
-		// console.log(req.params);
-
 		// récupération des résultats de la requête
 		const results = await new ActionRepository().SelectOne(req.params);
 
@@ -55,27 +52,39 @@ class ActionController {
 	};
 
 	public insert = async (req: Request, res: Response) => {
+		// Récupération des fichiers envoyés (si un fichier est présent)
 		const files = req.files as Express.Multer.File[] | undefined;
 		const file = files?.shift();
 
 		let fullname: string | null = null;
 
+		// Si une image est fournie, on la renomme et on récupère son nom final
 		if (file) {
 			const fileService = new FileService();
 			fullname = await fileService.rename(file);
 		}
 
+		// Appel au repository pour insérer une nouvelle action en base
 		const results = await new ActionRepository().insert({
 			...req.body,
+
+			// Ajout du nom de l’image si elle existe
 			image: fullname,
+
+			// Certains champs sont facultatifs :
+			// s’ils ne sont pas fournis, ils sont enregistrés en null
 			published: req.body.published ? req.body.published : null,
 			association_id: req.body.association_id ? req.body.association_id : null,
 			association_proposal: req.body.association_proposal
 				? req.body.association_proposal
 				: null,
+
+			// Définition de la source :
+			// par défaut "admin", mais peut être "visitor" via le formulaire utilisateur
 			source: req.body.source ? req.body.source : "admin",
 		});
 
+		// Gestion des erreurs lors de l’insertion
 		if (results instanceof Error) {
 			res.status(400).json({
 				status: 400,
@@ -86,6 +95,7 @@ class ActionController {
 			return;
 		}
 
+		// Réponse en cas de succès
 		res.status(201).json({
 			status: 201,
 			message: "Created",
