@@ -1,3 +1,17 @@
+/* 
+  Conteneur global de la section CRUD
+*/
+.wrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	padding-bottom: 1.5rem;
+}
+
+/* 
+  Grille des cartes CRUD
+*/
 .grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -7,6 +21,9 @@
 	padding: 1rem;
 }
 
+/* 
+  Carte individuelle
+*/
 .container {
 	background-color: var(--card-color);
 	border-radius: 1rem;
@@ -24,6 +41,14 @@
 	cursor: pointer;
 }
 
+.container:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* 
+  Image dans la carte
+*/
 .image {
 	width: 100%;
 	max-width: 320px;
@@ -33,19 +58,134 @@
 	background-color: #ffdfd2;
 }
 
-.lien {
-	text-decoration: none;
-	font-family: var(--font-body);
-	color: var(--text-color);
-	font-size: 1.2rem;
-	font-weight: 600;
-	text-align: center;
-	transition: color 0.2s;
+/* Bouton retour site */
+.siteButtonWrapper {
+	display: flex;
+	justify-content: flex-end;
+	max-width: 1200px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 1rem;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
+.siteButton {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.65rem 1.2rem;
+	background: var(--text-color);
+	color: var(--card-color);
+	text-decoration: none;
+	border-radius: 0.5rem;
+	font-family: var(--font-body);
+	font-size: 1rem;
+	font-weight: 600;
+	transition:
+		background 0.2s ease,
+		transform 0.2s ease,
+		opacity 0.2s ease;
+}
+
+.siteButton:hover {
+	background: #423633;
+	transform: translateY(-1px);
+	opacity: 0.98;
+}
+
+/* ===================== GRAND ECRAN ===================== */
+@media screen and (min-width: 1500px) {
+	.wrapper {
+		gap: 1.8rem;
+		padding-bottom: 2rem;
+	}
+
+	.grid {
+		max-width: 1400px;
+		gap: 3rem;
+		padding: 1.5rem 1rem 2rem;
+	}
+
+	.container {
+		padding: 1.3rem;
+		gap: 1.8rem;
+	}
+
+	.image {
+		max-width: 360px;
+	}
+
+	.siteButtonWrapper {
+		max-width: 1400px;
+	}
+}
+
+/* ===================== TABLETTE ===================== */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.wrapper {
+		gap: 1.6rem;
+		padding-bottom: 2rem;
+	}
+
 	.grid {
 		grid-template-columns: 1fr;
+		max-width: 75%;
+		margin: 1rem auto 0;
+		gap: 2.5rem;
+	}
+
+	.container {
+		padding: 1.1rem;
+		gap: 1.4rem;
+	}
+
+	.image {
+		max-width: 100%;
+	}
+
+	.siteButtonWrapper {
+		justify-content: center;
+		max-width: 75%;
+		padding: 0;
+	}
+
+	.siteButton {
+		font-size: 1.5rem;
+		padding: 0.7rem 1.2rem;
+		margin-top: 0.5rem;
+	}
+}
+
+/* ===================== MOBILE ===================== */
+@media screen and (max-width: 768px) {
+	.wrapper {
+		gap: 1.25rem;
+		padding-bottom: 1.5rem;
+	}
+
+	.grid {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+		max-width: 90%;
+		padding: 1rem;
+	}
+
+	.container {
+		padding: 1rem;
+		gap: 1.3rem;
+	}
+
+	.image {
+		max-width: 100%;
+	}
+
+	.siteButtonWrapper {
+		justify-content: center;
+		max-width: 90%;
+		padding: 0;
+	}
+
+	.siteButton {
+		font-size: 0.95rem;
+		padding: 0.65rem 1rem;
 	}
 }

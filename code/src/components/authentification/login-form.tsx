@@ -24,22 +24,23 @@ const LoginForm = () => {
 		formState: { errors },
 	} = useForm<Partial<User>>();
 
+	// Envoi du formulaire de connexion
 	const submitForm = async (data: Partial<User>) => {
 		setServerErrors({});
 
 		const process = await new SecurityApiService().login(data);
 
 		if ([200, 201].includes(process.status)) {
-			// récupérer l'utilisateur
+			// récupération de l'utilisateur
 			const user = process.data as User;
 
-			// stocker l'utilisateur
+			// stockage de l'utilisateur
 			new SecurityService().setUser(user);
 
-			// stocker le token JWT
+			// stockage du token JWT
 			await new SecurityService().setToken(user);
 
-			// redirection vers une route react selon le rôle de l'utilisateur
+			// redirection selon le rôle
 			if (user.role.name === "admin") {
 				navigate("/admin");
 				return;

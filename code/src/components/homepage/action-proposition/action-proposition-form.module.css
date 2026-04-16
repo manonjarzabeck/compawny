@@ -1,3 +1,6 @@
+/* 
+  Carte visuelle du formulaire
+*/
 .formCard {
 	width: 100%;
 	max-width: 620px;
@@ -7,12 +10,18 @@
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
+/* 
+  Structure interne du formulaire
+*/
 .form {
 	display: flex;
 	flex-direction: column;
 	gap: 1.1rem;
 }
 
+/* 
+  Bloc d'un champ = label + input/textarea + message d'erreur
+*/
 .field {
 	display: flex;
 	flex-direction: column;
@@ -61,6 +70,9 @@
 	font-size: 0.8rem;
 }
 
+/* 
+  Bouton d'envoi
+*/
 .submitButton {
 	border: none;
 	border-radius: 999px;
@@ -95,4 +107,134 @@
 .successText {
 	margin: 0;
 	line-height: 1.7;
+}
+
+/* ===================== GRAND ÉCRAN ===================== */
+
+@media screen and (min-width: 1500px) {
+	.formCard {
+		max-width: 680px;
+		padding: 2.3rem;
+	}
+
+	.form {
+		gap: 1.2rem;
+	}
+
+	.field {
+		font-size: 0.98rem;
+	}
+
+	.field input,
+	.field textarea {
+		padding: 0.95rem 1.05rem;
+	}
+
+	.field textarea {
+		min-height: 160px;
+	}
+
+	.submitButton {
+		padding: 1rem 1.3rem;
+	}
+}
+
+/* ===================== TABLETTE ===================== */
+/* 
+  En tablette :
+  on agrandit légèrement les textes
+  pour éviter un rendu trop petit
+*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.formCard {
+		padding: 2.2rem;
+	}
+
+	.form {
+		gap: 1rem;
+	}
+
+	.field {
+		font-size: 1.5rem;
+	}
+
+	.field input,
+	.field textarea {
+		padding: 0.9rem 1rem;
+		font-size: 1.4rem;
+	}
+
+	.field textarea {
+		min-height: 150px;
+	}
+
+	.field small {
+		font-size: 1.2rem;
+	}
+
+	.submitButton {
+		padding: 0.95rem 1.2rem;
+		font-size: 1.6rem;
+	}
+
+	.feedbackMessage {
+		font-size: 1.2rem;
+	}
+
+	.successText {
+		font-size: 1.2rem;
+	}
+}
+
+/* ===================== MOBILE ===================== */
+/* 
+  En mobile :
+  on compacte un peu la carte et les champs en hauteur
+  pour garder un bloc plus léger visuellement
+*/
+@media screen and (max-width: 768px) {
+	.formCard {
+		padding: 1.3rem;
+		border-radius: 1.2rem;
+	}
+
+	.form {
+		gap: 0.9rem;
+	}
+
+	.field {
+		gap: 0.35rem;
+		font-size: 0.88rem;
+	}
+
+	.field input,
+	.field textarea {
+		padding: 0.75rem 0.9rem;
+	}
+
+	.field textarea {
+		min-height: 115px;
+	}
+
+	.field small {
+		font-size: 0.75rem;
+	}
+
+	.submitButton {
+		padding: 0.8rem 1rem;
+		font-size: 0.9rem;
+	}
+
+	.feedbackMessage {
+		font-size: 0.88rem;
+	}
+
+	.successBox {
+		gap: 0.8rem;
+	}
+
+	.successText {
+		font-size: 0.9rem;
+		line-height: 1.6;
+	}
 }

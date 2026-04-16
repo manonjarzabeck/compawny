@@ -11,7 +11,7 @@
 	border-radius: 999px;
 
 	font-family: var(--font-body);
-	font-size: 0.8rem;
+	font-size: 0.85rem;
 	font-weight: 400;
 	font-style: italic;
 
@@ -28,4 +28,16 @@
 
 .Btn.homepage {
 	font-style: normal;
+}
+
+@media (max-width: 1024px) {
+	.Btn {
+		font-size: 1.3rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.Btn {
+		font-size: 0.8rem;
+	}
 }

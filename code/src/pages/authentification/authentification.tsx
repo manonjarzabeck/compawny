@@ -13,10 +13,13 @@ const AuthentificationPage = () => {
 				url=""
 			/>
 
+			{/* Bouton de retour vers l'accueil */}
 			<div className={styles.backBtnWrapper}>
 				<Btn link="/">Retour à l'accueil</Btn>
 			</div>
+
 			<section className={styles.authSection}>
+				{/* Texte d'introduction de la page */}
 				<div className={styles.authIntro}>
 					<h1>Mon espace personnel 👤</h1>
 					<p>
@@ -25,6 +28,7 @@ const AuthentificationPage = () => {
 					</p>
 				</div>
 
+				{/* Bloc contenant les deux formulaires */}
 				<div className={styles.formsWrapper}>
 					<LoginForm />
 					<RegisterForm />

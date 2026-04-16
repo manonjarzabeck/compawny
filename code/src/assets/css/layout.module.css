@@ -1,9 +1,72 @@
+/* 
+  Layout global du site public
+
+  Objectif :
+  - Structurer la page avec Header / Main / Footer
+  - Garantir que le footer reste en bas de l’écran
+  - Permettre au contenu de s’adapter à toutes les hauteurs d’écran
+*/
+
 .page {
+	/* 
+    100vh = 100% de la hauteur de l'écran (viewport height)
+    → Permet de s'assurer que la page prend au minimum toute la hauteur visible
+    → Utile pour que le footer reste en bas même si peu de contenu
+  */
 	min-height: 100vh;
+
+	/* 
+    Active Flexbox pour organiser les enfants (Header / Main / Footer)
+  */
 	display: flex;
+
+	/* 
+    Empile les éléments verticalement (de haut en bas)
+  */
 	flex-direction: column;
+
+	/* 
+    Force la largeur à 100% de l'écran
+    → Évite les comportements bizarres sur certains navigateurs
+  */
+	width: 100%;
 }
 
+/* 
+  Zone principale du contenu (entre header et footer)
+*/
 .main {
+	/* 
+    flex: 1 = prend tout l’espace disponible restant
+    → pousse le footer vers le bas si peu de contenu
+    → très utile pour les layouts propres
+  */
 	flex: 1;
+
+	/* 
+    Prend toute la largeur disponible
+  */
+	width: 100%;
+}
+
+/* 
+Lien d’évitement (accessibilité)
+Permet aux utilisateurs naviguant au clavier d’accéder directement
+au contenu principal de la page (main), en évitant les éléments de navigation répétitifs.
+Recommandé par les bonnes pratiques d’accessibilité (WCAG).
+*/
+.skipLink {
+	position: absolute;
+	top: -40px;
+	left: 10px;
+	background-color: #000;
+	color: #fff;
+	padding: 8px 12px;
+	z-index: 1000;
+	text-decoration: none;
+	border-radius: 4px;
+}
+
+.skipLink:focus {
+	top: 10px;
 }

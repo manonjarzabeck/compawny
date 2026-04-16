@@ -1,46 +1,49 @@
+/* 
+  Section guide :
+  elle contient l'introduction du projet + les 3 cartes catégories
+*/
 .guideSection {
-	padding: 1.2rem 1rem 2.5rem;
+	padding: 1.2rem 1rem;
 	background-color: white;
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
 }
 
+/* 
+  Conteneur du texte d'introduction
+  → sert surtout à centrer le bloc
+*/
 .guideDescription {
-	position: relative;
 	width: 100%;
-	max-width: 1200px;
+	display: flex;
+	justify-content: center;
+	padding: 2rem;
+}
+
+/* 
+  Texte d'introduction du guide
+  → la bordure verticale est appliquée uniquement au texte
+  pour ne pas prendre plus de hauteur que nécessaire
+*/
+.guideText {
+	margin: 0;
+	width: 100%;
+	max-width: 1250px;
 	text-align: center;
-	margin: 0 auto;
 	font-size: 1rem;
 	font-weight: 500;
 	font-family: var(--font-body);
 	line-height: 1.6;
+	font-style: italic;
 	color: var(--text-color);
-	padding: 1.4rem 2rem;
+	padding: 0 1.5rem;
+	border-inline: 2px solid var(--btn-color);
 }
 
-.guideDescription::before,
-.guideDescription::after {
-	position: absolute;
-	font-size: 4rem;
-	color: var(--btn-color);
-	font-family: var(--font-title);
-	line-height: 1;
-}
-
-.guideDescription::before {
-	content: "“";
-	top: 0.1rem;
-	left: 0;
-}
-
-.guideDescription::after {
-	content: "”";
-	bottom: -1.5rem;
-	right: 0.2rem;
-}
-
+/* 
+  Grille des 3 cartes
+*/
 .guideGrid {
 	width: 100%;
 	max-width: 1200px;
@@ -56,6 +59,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-between;
 	gap: 1.4rem;
 	border-radius: 10px;
 	height: 100%;
@@ -82,22 +86,62 @@
 	max-width: 320px;
 }
 
-/* TABLETTE */
+/* ===================== GRAND ÉCRAN ===================== */
+
+@media screen and (min-width: 1500px) {
+	.guideSection {
+		min-height: 80vh;
+		padding: 2rem 1.5rem 0.8rem;
+		gap: 2.4rem;
+		justify-content: center;
+	}
+
+	.guideText {
+		max-width: 1360px;
+		font-size: 1.12rem;
+		line-height: 1.75;
+		padding: 1.2rem 2.7rem;
+	}
+
+	.guideGrid {
+		max-width: 1380px;
+		gap: 2.2rem;
+	}
+
+	.guideCard {
+		padding: 1.4rem 1.2rem 1.5rem;
+		gap: 1.6rem;
+	}
+
+	.imgCard {
+		max-width: 360px;
+	}
+
+	.descriptionCard {
+		max-width: 350px;
+		font-size: 1rem;
+		line-height: 1.6;
+	}
+}
+
+/* ===================== TABLETTE ===================== */
+
 @media (max-width: 1024px) {
 	.guideSection {
-		padding: 1.2rem 1rem 2.2rem;
+		padding: 1rem;
 		gap: 1.8rem;
 	}
 
-	.guideDescription {
+	.guideText {
 		max-width: 850px;
-		padding: 1.5rem 1.8rem;
+		padding: 0.5rem;
+		font-size: 1.4rem;
 	}
 
 	.guideGrid {
 		grid-template-columns: 1fr;
-		max-width: 700px;
-		gap: 1.5rem;
+		max-width: 650px;
+		gap: 3rem;
 	}
 
 	.guideCard {
@@ -107,36 +151,27 @@
 	.imgCard,
 	.descriptionCard {
 		max-width: 100%;
+		font-size: 1.5rem;
 	}
 }
 
-/* MOBILE */
+/* ===================== MOBILE ===================== */
+
 @media (max-width: 768px) {
 	.guideSection {
-		padding: 1rem 0.85rem 1rem;
+		padding: 1rem;
 		gap: 1.5rem;
 	}
 
 	.guideDescription {
+		padding: 0.5rem;
+	}
+
+	.guideText {
 		font-size: 0.8rem;
 		line-height: 1.55;
 		font-style: italic;
-		padding: 1.2rem 1.1rem;
-	}
-
-	.guideDescription::before,
-	.guideDescription::after {
-		font-size: 2.8rem;
-	}
-
-	.guideDescription::before {
-		top: 0;
-		left: -0.1rem;
-	}
-
-	.guideDescription::after {
-		bottom: -1rem;
-		right: 0;
+		border-inline: none;
 	}
 
 	.guideGrid {

@@ -1,17 +1,21 @@
+/* Conteneur global du header admin */
 .adminHeader {
 	width: 100%;
 	background-color: var(--homepage-bg);
 	padding: 1rem;
 }
 
+/* Bloc interne centré */
 .headerInner {
 	display: flex;
-	align-items: stretch;
-	justify-content: space-between;
+	align-items: center;
+	justify-content: flex-start;
 	max-width: 1400px;
 	margin: 0 auto;
+	gap: 1.5rem;
 }
 
+/* Lien englobant le logo et les titres */
 .logoLink {
 	text-decoration: none;
 	color: inherit;
@@ -23,28 +27,27 @@
 	cursor: pointer;
 }
 
+/* Partie gauche : logo + titres */
 .leftBlock {
 	display: flex;
 	align-items: center;
 	gap: 1.5rem;
 }
 
-.rightBlock {
-	display: flex;
-	align-items: flex-end;
-}
-
+/* Logo */
 .adminLogo {
 	height: 8rem;
 	width: auto;
 	object-fit: contain;
 }
 
+/* Bloc texte */
 .titleBlock {
 	display: flex;
 	flex-direction: column;
 }
 
+/* Titre principal */
 .adminTitle {
 	font-size: 3rem;
 	font-weight: 700;
@@ -54,6 +57,7 @@
 	line-height: 1.1;
 }
 
+/* Sous-titre */
 .adminSubtitle {
 	font-size: 1.5rem;
 	font-weight: 500;
@@ -63,26 +67,45 @@
 	letter-spacing: 0.05em;
 }
 
-@media screen and (max-width: 1399px) {
-	.adminHeader {
-		padding: 0.8rem;
-	}
-
+/* GRAND ECRAN */
+@media screen and (min-width: 1500px) {
 	.headerInner {
-		flex-direction: column;
-		align-items: center;
-		gap: 1rem;
+		max-width: 1500px;
+		justify-content: flex-start;
 	}
 
 	.leftBlock {
-		flex-direction: column;
-		align-items: center;
-		gap: 0.8rem;
-		text-align: center;
+		gap: 1.7rem;
 	}
 
-	.rightBlock {
+	.adminLogo {
+		height: 8.7rem;
+	}
+
+	.adminTitle {
+		font-size: 3.25rem;
+	}
+
+	.adminSubtitle {
+		font-size: 1.65rem;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.adminHeader {
+		padding: 1rem 1.1rem;
+	}
+
+	.headerInner {
+		justify-content: flex-start;
+		gap: 1.2rem;
+	}
+
+	.leftBlock {
+		flex-direction: row;
 		align-items: center;
+		gap: 1rem;
+		text-align: left;
 	}
 
 	.adminLogo {
@@ -90,10 +113,45 @@
 	}
 
 	.adminTitle {
-		font-size: 2rem;
+		font-size: 4rem;
+		margin-top: 1rem;
+		line-height: 1.1;
 	}
 
 	.adminSubtitle {
-		font-size: 1.1rem;
+		font-size: 2rem;
+		line-height: 1.2;
+	}
+}
+/* MOBILE */
+@media screen and (max-width: 768px) {
+	.adminHeader {
+		padding: 0.8rem;
+	}
+
+	.headerInner {
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.leftBlock {
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+		text-align: center;
+	}
+
+	.adminLogo {
+		height: 6rem;
+	}
+
+	.adminTitle {
+		font-size: 2.5rem;
+		margin-top: 0;
+	}
+
+	.adminSubtitle {
+		font-size: 1.2rem;
 	}
 }

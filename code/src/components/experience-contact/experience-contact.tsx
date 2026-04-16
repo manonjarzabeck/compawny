@@ -42,7 +42,8 @@ const ExperienceContact = () => {
 					</h1>
 					<p className={styles.pageDescription}>
 						Vous avez adopté, participé à une action locale ou vécu une belle
-						aventure au sein d’une association grâce à Compawny ? <br />
+						aventure au sein d’une association grâce à <strong>Compawny</strong>{" "}
+						? <br />
 						Racontez-nous ce que cette expérience vous a apporté. Vos mots
 						peuvent inspirer d’autres personnes à se lancer à leur tour.
 					</p>

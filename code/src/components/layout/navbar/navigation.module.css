@@ -1,25 +1,78 @@
+/* 
+  Conteneur global de la navigation
+*/
 .navbar {
+	/* Prend toute la largeur disponible dans son parent */
 	width: 100%;
+
+	/* 
+    Largeur maximale actuelle de la nav
+    → évite qu'elle soit trop étalée
+  */
 	max-width: 1400px;
+
+	/* Centre la navigation */
 	margin: 0 auto;
+
+	/* 
+    Position relative :
+    nécessaire pour que le panneau mobile en position absolute
+    se place correctement par rapport à la navbar
+  */
 	position: relative;
 }
 
-/* DESKTOP */
+/* ===================== DESKTOP ===================== */
+
+/* 
+  Navigation desktop visible sur les grands écrans
+*/
 .desktopNav {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	/* Espace entre les éléments principaux */
 	gap: 1.2rem;
 	padding: 0.5rem;
+
+	/* 
+    Cache ce qui dépasse pendant l'animation d'ouverture
+    du bloc déroulant
+  */
 	overflow: hidden;
-	transform: translateX(-2rem);
+
+	/* 
+    Animation fluide quand la nav change légèrement de position
+  */
 	transition: transform 0.5s ease;
 }
 
+/* 
+  Position par défaut quand le guide est fermé
+  → on décale légèrement vers la gauche pour équilibrer visuellement
+  par rapport au logo à gauche et au bouton à droite
+*/
+.desktopNavClosed {
+	transform: translateX(-2rem);
+}
+
+/* 
+  Position quand le guide est ouvert
+  → on recentre un peu plus vers la droite pour éviter
+  que le bouton "Le guide du bénévole" colle visuellement au titre
+*/
+.desktopNavOpen {
+	transform: translateX(-0.75rem);
+}
+
+/* 
+  Style commun des liens principaux desktop
+  et du bouton "guide du bénévole"
+*/
 .navLink {
 	font-family: var(--font-body);
-	font-size: 0.9rem;
+	font-size: 1rem;
 	font-weight: 400;
 	color: var(--text-color);
 	text-decoration: none;
@@ -28,38 +81,67 @@
 	background: none;
 	border: none;
 	padding: 0;
+
+	/* Empêche le texte principal de se couper sur plusieurs lignes */
+	white-space: nowrap;
 }
 
 .navLink:hover {
 	transform: scale(1.05);
 }
 
+/* 
+  Bloc contenant les liens du guide du bénévole en desktop
+  Il s'ouvre horizontalement au milieu de la nav
+*/
 .dropdownInline {
 	display: flex;
 	gap: 1.3rem;
+
+	/* Empêche le contenu de déborder pendant l'animation */
 	overflow: hidden;
+
+	/* Empêche les liens de passer à la ligne */
 	white-space: nowrap;
+
+	/* 
+    Animation sur :
+    - max-width : pour ouvrir / fermer en largeur
+    - opacity : pour faire apparaître / disparaître doucement
+  */
 	transition:
 		max-width 0.5s ease,
 		opacity 0.4s ease;
+
+	/* Fermé par défaut */
 	max-width: 0;
 	opacity: 0;
 }
 
+/* 
+  État ouvert du dropdown
+  → on donne suffisamment de largeur pour afficher les liens
+*/
 .open {
-	max-width: 1000px;
+	max-width: 1150px;
 	opacity: 1;
 }
 
+/* 
+  État fermé du dropdown
+*/
 .closed {
 	max-width: 0;
 	opacity: 0;
 }
 
+/* 
+  Liens internes du guide du bénévole
+*/
 .dropdownLink {
 	font-family: var(--font-body);
 	color: #968474;
-	font-size: 0.7rem;
+	font-size: 0.8rem;
 	text-decoration: none;
 	font-weight: 500;
 	white-space: nowrap;
@@ -73,12 +155,19 @@
 	transform: translateY(-1px);
 }
 
-/* MOBILE */
+/* ===================== MOBILE / TABLETTE ===================== */
+
+/* 
+  Navigation mobile masquée par défaut sur grand écran
+*/
 .mobileNav {
 	display: none;
 	position: relative;
 }
 
+/* 
+  Bouton burger
+*/
 .mobileMenuButton {
 	background: transparent;
 	border: none;
@@ -86,20 +175,47 @@
 	font-size: 1.8rem;
 	font-weight: 700;
 	cursor: pointer;
+
+	/* 
+    line-height: 1 évite d'avoir trop d'espace vertical
+    autour du symbole ☰ ou ✕
+  */
 	line-height: 1;
+
 	padding: 0.2rem;
+
+	/* Zone de clic minimale plus confortable */
 	min-width: 2.2rem;
 	min-height: 2.2rem;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
+/* 
+  Panneau déroulant du menu mobile
+*/
 .mobilePanel {
 	position: absolute;
+
+	/* 
+    Place le panneau juste en dessous du bouton burger
+    100% = hauteur complète du conteneur parent
+    + 0.75rem = petit espace supplémentaire
+  */
 	top: calc(100% + 0.75rem);
+
+	/* Aligne le panneau à droite */
 	right: 0;
+
+	/* 
+    Largeur adaptative :
+    - au maximum 90% de la largeur de l'écran
+    - sans dépasser 420px
+  */
 	width: min(90vw, 420px);
+
 	background: var(--card-color);
 	border: 1px solid rgba(150, 132, 116, 0.35);
 	padding: 1rem;
@@ -107,6 +223,8 @@
 	flex-direction: column;
 	gap: 1rem;
 	box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+
+	/* Passe devant les autres éléments */
 	z-index: 50;
 }
 
@@ -130,7 +248,6 @@
 	display: flex;
 	flex-direction: column;
 	gap: 0.65rem;
-	/* padding-left: 0.35rem; */
 }
 
 .mobileSubLink {
@@ -155,14 +272,132 @@
 	opacity: 0.8;
 }
 
-/* RESPONSIVE */
-@media screen and (max-width: 1399px) {
+/* ===================== GRAND ÉCRAN ===================== */
+
+/* 
+  Très grand écran :
+  on agrandit légèrement la navigation pour éviter
+  l'effet "tout petit" en présentation
+*/
+@media screen and (min-width: 1500px) {
+	.navbar {
+		max-width: 1500px;
+	}
+
+	.desktopNav {
+		gap: 1.5rem;
+		padding: 0.7rem;
+	}
+
+	.desktopNavClosed {
+		transform: translateX(-2.2rem);
+	}
+
+	.desktopNavOpen {
+		transform: translateX(-0.8rem);
+	}
+
+	.navLink {
+		font-size: 1.1rem;
+	}
+
+	.dropdownLink {
+		font-size: 0.9rem;
+	}
+
+	.dropdownInline {
+		gap: 1.7rem;
+	}
+
+	.open {
+		max-width: 1200px;
+	}
+}
+
+/* ===================== TABLETTE + PETIT DESKTOP ===================== */
+/* 
+  En dessous de 1300px :
+  on bascule sur le menu burger pour éviter que la navigation desktop
+  devienne trop serrée ou se bloque.
+*/
+@media screen and (max-width: 1300px) {
+	/* On masque la navigation desktop */
 	.desktopNav {
 		display: none;
 	}
 
+	/* On affiche la navigation burger */
 	.mobileNav {
 		display: flex;
 		justify-content: flex-end;
+	}
+
+	.mobileMenuButton {
+		font-size: 4rem;
+		padding: 0.25rem;
+		min-width: 2.5rem;
+		min-height: 2.5rem;
+	}
+
+	.mobilePanel {
+		top: calc(100% + 0.9rem);
+
+		/* Menu confortable pour tablette et petits desktops */
+		width: min(82vw, 520px);
+		padding: 1.3rem 1.4rem;
+		gap: 1.2rem;
+	}
+
+	.mobileGuideBlock {
+		gap: 0.9rem;
+		padding-bottom: 0.35rem;
+	}
+
+	.mobileGuideTitle {
+		font-size: 1.8rem;
+	}
+
+	.mobileGuideLinks {
+		gap: 1rem;
+	}
+
+	.mobileSubLink {
+		font-size: 1.6rem;
+		line-height: 1.45;
+	}
+
+	.mobileMainLink {
+		font-size: 1.6rem;
+	}
+}
+
+/* ===================== MOBILE ===================== */
+/* 
+  Sur mobile :
+  version plus compacte du menu burger
+*/
+@media screen and (max-width: 768px) {
+	.mobileMenuButton {
+		font-size: 2rem;
+		min-width: 2.2rem;
+		min-height: 2.2rem;
+	}
+
+	.mobilePanel {
+		width: min(90vw, 420px);
+		padding: 1rem;
+		gap: 1rem;
+	}
+
+	.mobileGuideTitle {
+		font-size: 1.05rem;
+	}
+
+	.mobileSubLink {
+		font-size: 0.9rem;
+	}
+
+	.mobileMainLink {
+		font-size: 1rem;
 	}
 }

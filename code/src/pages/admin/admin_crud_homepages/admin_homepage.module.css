@@ -1,20 +1,64 @@
+/* Conteneur principal de la page */
 .container {
-	max-width: 90%;
+	max-width: 95%;
 	margin-inline: auto;
 	padding-block: 2rem;
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
-	text-align: center;
 }
 
+/* Ligne dédiée au bouton retour */
+.backButtonRow {
+	display: flex;
+	justify-content: flex-start;
+}
+
+/* En-tête principal de la page CRUD */
+.headerContent {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	gap: 1rem;
+}
+
+/* Bloc central : titre + texte explicatif */
+.headerIntro {
+	grid-column: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 0.3rem;
+}
+
+/* Titre principal */
 .title {
-	font-size: clamp(1.4rem, 2vw, 2rem);
+	font-size: 2rem;
 	font-weight: 600;
 	margin: 0;
 	font-family: var(--font-title);
+	color: var(--text-color);
 }
 
+/* Petit texte d’introduction */
+.subtitle {
+	margin: 0;
+	max-width: 600px;
+	font-size: 1rem;
+	line-height: 1.6;
+	color: #6f5b52;
+	font-family: var(--font-body);
+}
+
+/* Bouton d’ajout aligné à droite sur desktop/tablette */
+.btnAdd {
+	grid-column: 3;
+	justify-self: end;
+	width: fit-content;
+}
+
+/* Grille des cartes */
 .List {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -23,40 +67,62 @@
 	margin-top: 1.5rem;
 }
 
+/* Carte individuelle */
 .Card {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	gap: 0.75rem;
-	padding: 1rem;
+	align-items: stretch;
+	gap: 0; /* ⚠️ important : pas d’espace entre titre et contenu */
+	padding: 0;
 	border: 1px solid #8f7979;
-	border-radius: 0.6rem;
-	background: rgb(255, 255, 255);
+	border-radius: 0.2rem;
+	background: #ffffff;
+	overflow: hidden;
 }
 
+/* Image de la carte */
 .Card img {
 	width: 100%;
 	aspect-ratio: 4 / 3;
 	object-fit: cover;
-	border-radius: 0.4rem;
+	border-radius: 0.2rem;
 	display: block;
 }
 
+/* Nom affiché au-dessus de l’image */
 .CardName {
-	font-size: 1rem;
-	font-weight: 500;
+	display: block; /* évite les bugs inline */
+	width: 100%;
 	margin: 0;
+	padding: 0.6rem 0.8rem;
+
+	background: #faf3f2;
+	color: var(--text-color);
+
+	font-size: 1rem;
+	font-weight: 600;
 	font-family: var(--font-body);
+
+	text-align: center;
 }
 
+.cardContent {
+	padding: 0.8rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+/* Zone des boutons modifier / supprimer */
 .buttons {
 	display: flex;
 	justify-content: center;
-	gap: 1rem;
+	gap: 0.5rem;
 	flex-wrap: wrap;
 	width: 100%;
 }
 
+/* Style commun des boutons */
 .btn,
 .btnAdd,
 .btnEdit,
@@ -65,8 +131,8 @@
 	align-items: center;
 	justify-content: center;
 	padding: 0.5rem 1rem;
-	font-size: clamp(0.9rem, 1.2vw, 1rem);
-	border-radius: 0.4rem;
+	font-size: 1.1rem;
+	border-radius: 0.2rem;
 	font-weight: 500;
 	text-decoration: none;
 	cursor: pointer;
@@ -75,20 +141,19 @@
 	border: none;
 }
 
-.btnAdd {
-	align-self: center;
-	width: fit-content;
-}
-
+/* Bouton d’ajout */
 .btnAdd {
 	background: var(--text-color);
 	color: var(--card-color);
+	font-size: 1.2rem;
+	padding: 1rem;
 }
 
 .btnAdd:hover {
 	background: #423633;
 }
 
+/* Bouton modifier */
 .btnEdit {
 	background: var(--card-color);
 	color: var(--text-color);
@@ -98,6 +163,7 @@
 	background: #e6d6c7;
 }
 
+/* Bouton supprimer */
 .btnDelete {
 	background: var(--btn-color);
 	color: var(--text-color);
@@ -107,30 +173,71 @@
 	background: #d4aba8;
 }
 
-@media screen and (max-width: 1399px) {
+/* TABLETTE */
+/* 
+  On garde :
+  - le bouton retour à gauche
+  - le bloc titre/texte au centre
+  - le bouton d’ajout en dessous
+  Les cartes restent en 2 colonnes.
+*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
 	.container {
 		max-width: 95%;
-		padding-block: 1.5rem;
+		padding: 1.5rem 0 2rem;
 		gap: 1.25rem;
 	}
 
+	.headerContent {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.headerIntro {
+		align-items: center;
+		text-align: center;
+		max-width: 800px;
+		margin: 1rem;
+	}
+
 	.title {
-		font-size: 1.6rem;
+		font-size: 2.4rem;
+	}
+
+	.subtitle {
+		font-size: 1.5rem;
+		line-height: 1.65;
+	}
+
+	.btnAdd {
+		align-self: center;
+		justify-self: center;
+		margin-bottom: 0.6rem;
 	}
 
 	.List {
 		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem;
+		gap: 1.5rem;
 		margin-top: 1rem;
 	}
 
 	.Card {
-		padding: 0.9rem;
-		gap: 1rem;
+		padding: 0;
+		gap: 0;
 	}
 
 	.CardName {
-		font-size: 0.95rem;
+		font-size: 1.2rem;
+		padding: 0.75rem 0.85rem;
+	}
+
+	.cardContent {
+		padding: 0.95rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.9rem;
 	}
 
 	.buttons {
@@ -138,33 +245,80 @@
 	}
 
 	.btn,
-	.btnAdd,
 	.btnEdit,
 	.btnDelete {
-		font-size: 0.9rem;
-		padding: 0.45rem 0.9rem;
+		font-size: 1.6rem;
+		padding: 0.55rem 1rem;
 	}
 }
 
+/* MOBILE */
+/* 
+  En mobile :
+  - le bouton retour reste à gauche
+  - le titre, le texte et le bouton d’ajout sont centrés
+  - les cartes passent sur une seule colonne
+*/
 @media screen and (max-width: 768px) {
 	.container {
 		max-width: 100%;
 		padding: 1rem 0.8rem;
-		gap: 1.5rem;
+		gap: 1.25rem;
+	}
+
+	.headerContent {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.9rem;
+	}
+
+	.headerIntro {
+		align-items: center;
+		text-align: center;
+		max-width: 100%;
+		margin: 0.8rem;
 	}
 
 	.title {
 		font-size: 1.35rem;
 	}
 
+	.subtitle {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		max-width: 100%;
+	}
+
+	.btnAdd {
+		align-self: center;
+		justify-self: center;
+		font-size: 0.95rem;
+		padding: 0.55rem 0.95rem;
+		margin-bottom: 0.5rem;
+	}
+
 	.List {
 		grid-template-columns: 1fr;
-		gap: 1rem;
+		gap: 1.2rem;
 		margin-top: 1rem;
 	}
 
 	.Card {
+		padding: 0;
+		gap: 0;
+	}
+
+	.CardName {
+		font-size: 1rem;
+		padding: 0.7rem 0.75rem;
+	}
+
+	.cardContent {
 		padding: 0.85rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
 	}
 
 	.buttons {
@@ -173,13 +327,10 @@
 		gap: 0.6rem;
 	}
 
-	.btnAdd {
-		width: fit-content;
-		align-self: center;
-	}
-
 	.btnEdit,
 	.btnDelete {
 		width: auto;
+		font-size: 0.92rem;
+		padding: 0.5rem 0.85rem;
 	}
 }

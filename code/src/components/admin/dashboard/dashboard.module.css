@@ -1,30 +1,54 @@
+/* 
+  Conteneur global du dashboard admin
+*/
 .dashboardContainer {
 	width: 100%;
+
+	/* 
+    Espace autour du dashboard
+    → important pour respirer visuellement
+  */
 	padding: 2rem;
+
 	display: flex;
 	justify-content: center;
 }
 
+/* 
+  Grille contenant toutes les cartes
+*/
 .statsGrid {
 	display: grid;
+
+	/* Desktop standard */
 	grid-template-columns: repeat(6, 1fr);
+
 	width: 100%;
 	max-width: 1200px;
+
 	gap: 0.8rem;
-	background-color: transparent;
 }
 
+/* 
+  Carte statistique
+*/
 .card {
 	background-color: var(--btn-color);
+
 	padding: 0.9rem 0.6rem;
+
 	border-radius: 0.8rem;
+
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
 	text-align: center;
 	gap: 0.3rem;
+
 	min-height: 110px;
 }
 
@@ -45,7 +69,8 @@
 	color: var(--text-color);
 }
 
-/* Carte actions en attente */
+/* ===================== CARTES SPÉCIALES ===================== */
+
 .pendingCard {
 	background-color: rgb(132, 110, 110);
 }
@@ -53,11 +78,9 @@
 .pendingTitle,
 .pendingNumber {
 	color: var(--card-color);
-	font-family: var(--font-body);
 	padding-bottom: 0.5rem;
 }
 
-/* Carte témoignages */
 .testimonialCard {
 	background-color: rgb(178, 154, 143);
 }
@@ -65,15 +88,104 @@
 .testimonialTitle,
 .testimonialNumber {
 	color: var(--card-color);
-	font-family: var(--font-body);
 	padding-bottom: 0.5rem;
 }
 
-.pendingLink:hover {
-	opacity: 0.8;
+/* ===================== GRAND ÉCRAN ===================== */
+/* 
+  → plus d’air + plus large + descendu sous le header
+*/
+@media screen and (min-width: 1500px) {
+	.dashboardContainer {
+		/* 
+      IMPORTANT :
+      espace au-dessus pour décoller du header
+    */
+		padding: 3rem;
+	}
+
+	.statsGrid {
+		/* 
+      On élargit fortement le dashboard
+    */
+		max-width: 1500px;
+
+		gap: 1.3rem;
+	}
+
+	.card {
+		padding: 1.3rem 1rem;
+		min-height: 150px;
+		gap: 0.5rem;
+	}
+
+	.card h3,
+	.card h4 {
+		font-size: 1.05rem;
+	}
+
+	.number {
+		font-size: 2rem;
+	}
 }
 
-@media screen and (max-width: 1399px) {
+/* ===================== TABLETTE ===================== */
+/* 
+  Sur tablette :
+  - les 4 cartes statistiques restent sur une première ligne
+  - les 2 cartes spéciales passent en dessous
+  - elles prennent plus de largeur pour former 2 rectangles
+*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.dashboardContainer {
+		padding: 1.8rem 1.2rem;
+	}
+
+	.statsGrid {
+		grid-template-columns: repeat(4, 1fr);
+		max-width: 980px;
+		margin: 0 auto;
+		gap: 1.2rem;
+	}
+
+	.card {
+		padding: 1.15rem 0.9rem;
+		min-height: 145px;
+		gap: 0.4rem;
+	}
+
+	.card h3,
+	.card h4 {
+		font-size: 1.1rem;
+		line-height: 1.3;
+	}
+
+	.number {
+		font-size: 2.5rem;
+	}
+
+	/* 
+	  Les deux cartes spéciales prennent chacune 2 colonnes
+	  pour créer une deuxième ligne plus large et plus équilibrée
+	*/
+	.pendingCard,
+	.testimonialCard {
+		grid-column: span 2;
+	}
+
+	.pendingTitle,
+	.pendingNumber,
+	.testimonialTitle,
+	.testimonialNumber {
+		padding-bottom: 0.35rem;
+	}
+}
+
+/* ===================== MOBILE ===================== */
+/* 
+  → on garde exactement ton comportement actuel
+*/
+@media screen and (max-width: 768px) {
 	.dashboardContainer {
 		padding: 1rem;
 	}

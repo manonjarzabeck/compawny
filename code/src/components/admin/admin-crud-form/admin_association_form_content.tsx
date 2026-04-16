@@ -154,7 +154,7 @@ const AdminAssociationsFormContent = ({
 		table de jointure : cases à cocher 
 			> sélection de plusieurs choix 
 		*/}
-			<BackBtn fallbackLink="/admin-association-homepage" />
+			<BackBtn fallbackLink="/admin/association-homepage" />
 			<section className={styles.wrapper}>
 				<div className={styles.card}>
 					<h1 className={styles.title}>

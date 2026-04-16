@@ -21,6 +21,7 @@ const RegisterForm = () => {
 		formState: { errors },
 	} = useForm<Partial<User>>();
 
+	// Envoi du formulaire d'inscription
 	const submitForm = async (data: Partial<User>) => {
 		setServerErrors({});
 

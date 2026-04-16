@@ -6,10 +6,15 @@ const ActionPropositionInformations = ({
 	validator,
 }: UserActionsFormContentProps) => {
 	return (
+		/* 
+			Dernière grande section de la homepage
+			→ permet aux visiteurs de proposer une action locale
+		*/
 		<section className={styles.container}>
 			<p className={styles.sectionTag}>Et pour aller plus loin…</p>
 
 			<div className={styles.contentGrid}>
+				{/* Colonne de gauche : texte + image */}
 				<div className={styles.textContent}>
 					<h2 className={styles.title}>
 						Vous connaissez une belle initiative locale, une action solidaire ou
@@ -35,6 +40,7 @@ const ActionPropositionInformations = ({
 					</p>
 				</div>
 
+				{/* Colonne de droite : texte d'introduction + formulaire */}
 				<div className={styles.formColumn}>
 					<p className={styles.introText}>
 						Vous pouvez la partager ici en quelques clics 🐾

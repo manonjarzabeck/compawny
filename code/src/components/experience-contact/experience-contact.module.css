@@ -1,13 +1,21 @@
 .wrapper {
+	/* 
+    Conteneur global de la page :
+    il englobe le bouton retour + l'intro + la grille
+  */
 	padding: 2rem 1rem;
 	position: relative;
 }
 
 .backBtnWrapper {
+	/* 
+    En desktop, le bouton retour flotte en haut à gauche
+  */
 	position: absolute;
 	top: 1rem;
 	left: 1rem;
 	z-index: 10;
+
 	background: rgba(255, 255, 255, 0.8);
 	padding: 0.2rem;
 	border-radius: 999px;
@@ -21,6 +29,10 @@
 }
 
 .grid {
+	/* 
+    Desktop :
+    formulaire à gauche / témoignages à droite
+  */
 	display: grid;
 	grid-template-columns: 0.95fr 1.25fr;
 	gap: 2rem;
@@ -28,7 +40,7 @@
 	align-items: start;
 }
 
-/* COLONNE GAUCHE */
+/* ===================== COLONNE GAUCHE ===================== */
 
 .formSection {
 	display: flex;
@@ -66,16 +78,18 @@
 	border-radius: 1.25rem;
 	padding: 1.5rem;
 	box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+
 	display: flex;
 	flex-direction: column;
 	gap: 1.2rem;
+
 	width: 100%;
 	max-width: 500px;
 	margin: 0 auto;
 	box-sizing: border-box;
 }
 
-/* COLONNE DROITE */
+/* ===================== COLONNE DROITE ===================== */
 
 .reviewsSection {
 	display: flex;
@@ -108,13 +122,14 @@
 	list-style: none;
 	padding: 0;
 	margin: 0;
+
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	width: 100%;
 }
 
-/* BULLES */
+/* ===================== BULLES ===================== */
 
 .reviewBubble {
 	background-color: var(--text-color);
@@ -122,10 +137,13 @@
 	font-family: var(--font-body);
 	border-radius: 2.5rem;
 	padding: 1.5rem;
+
 	display: flex;
 	align-items: center;
+
 	max-width: 80%;
 	width: fit-content;
+
 	transition: transform 0.2s ease;
 	box-sizing: border-box;
 }
@@ -134,7 +152,7 @@
 	transform: translateY(-2px);
 }
 
-/* effet décalé */
+/* Effet décalé desktop */
 .reviewBubble:nth-child(1) {
 	width: 80%;
 	align-self: flex-start;
@@ -173,14 +191,195 @@
 	text-align: end;
 }
 
-/* RESPONSIVE */
+/* ===================== GRAND ÉCRAN ===================== */
+/* 
+  En grand écran :
+  on garde la structure desktop
+  mais on lui donne un peu plus de présence
+*/
+@media screen and (min-width: 1500px) {
+	.wrapper {
+		padding: 2.4rem 1.5rem 2.5rem;
+	}
 
-@media screen and (max-width: 1399px) {
+	.backBtnWrapper {
+		top: 1.2rem;
+		left: 1.2rem;
+	}
+
+	.container {
+		max-width: 1550px;
+	}
+
+	.grid {
+		gap: 2.6rem;
+		margin-top: 3.5rem;
+	}
+
+	.introText {
+		max-width: 980px;
+		gap: 0.45rem;
+	}
+
+	.pageTitle {
+		font-size: 1.8rem;
+	}
+
+	.pageDescription {
+		font-size: 1.08rem;
+		line-height: 1.45;
+	}
+
+	.formCard {
+		max-width: 560px;
+		padding: 1.8rem;
+		gap: 1.35rem;
+	}
+
+	.sectionTitle,
+	.sectionTitleRight {
+		font-size: 1.35rem;
+	}
+
+	.reviewsSection {
+		gap: 1.5rem;
+		margin-top: 0.1rem;
+	}
+
+	.reviewList {
+		gap: 1.2rem;
+	}
+
+	.reviewBubble {
+		padding: 1.7rem;
+		max-width: 82%;
+		border-radius: 2.7rem;
+	}
+
+	.quote {
+		font-size: 1rem;
+		line-height: 1.55;
+	}
+
+	.author {
+		font-size: 0.9rem;
+	}
+}
+
+/* ===================== TABLETTE ===================== */
+/* 
+  En tablette :
+  - bouton retour au-dessus
+  - formulaire au-dessus
+  - témoignages en dessous
+  - largeur visuellement limitée pour éviter les gros blocs pleins écran
+*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.backBtnWrapper {
+		position: static;
+		margin-bottom: 1.2rem;
+		display: flex;
+		justify-content: flex-start;
+		padding: 0;
+		background: transparent;
+		backdrop-filter: none;
+	}
+
+	.wrapper {
+		padding: 1.4rem 1.2rem 1.8rem;
+	}
+
+	.container {
+		max-width: 100%;
+		margin-top: 3rem;
+	}
+
+	.grid {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		margin-top: 1.6rem;
+	}
+
+	.introText {
+		max-width: 760px;
+		gap: 0.45rem;
+	}
+
+	.pageTitle {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.pageDescription {
+		font-size: 1.8rem;
+		line-height: 1.5;
+		margin: 1rem;
+	}
+
+	.formSection {
+		width: 100%;
+	}
+
+	.formCard {
+		max-width: 680px;
+		padding: 1.5rem;
+		gap: 1.1rem;
+	}
+
+	.sectionTitle {
+		font-size: 1.8rem;
+		margin-bottom: 0.3rem;
+	}
+
+	.sectionTitleRight {
+		font-size: 1.8rem;
+		text-align: center;
+		margin: 1.5rem 0 0.7rem;
+	}
+
+	.reviewsSection {
+		margin-top: 0;
+		width: 100%;
+		align-items: center;
+		gap: 1.2rem;
+	}
+
+	.reviewList {
+		width: 100%;
+		max-width: 760px;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.reviewBubble,
+	.reviewBubble:nth-child(1),
+	.reviewBubble:nth-child(2),
+	.reviewBubble:nth-child(3) {
+		width: auto;
+		max-width: 90%;
+		align-self: center;
+		border-radius: 1.8rem;
+		padding: 1.25rem 1.35rem;
+	}
+
+	.quote {
+		font-size: 1.4rem;
+		line-height: 1.5;
+	}
+
+	.author {
+		font-size: 1.2rem;
+	}
+}
+
+/* ===================== MOBILE ===================== */
+
+@media screen and (max-width: 768px) {
 	.backBtnWrapper {
 		position: static;
 		margin-bottom: 1rem;
 		display: flex;
-		justify-content: center;
+		justify-content: flex-start;
 		padding: 0;
 		background: transparent;
 		backdrop-filter: none;
@@ -192,6 +391,8 @@
 
 	.container {
 		max-width: 100%;
+		margin: 2rem 0 1rem;
+		padding: 0 1rem;
 	}
 
 	.grid {
@@ -206,6 +407,7 @@
 
 	.pageTitle {
 		font-size: 1.3rem;
+		margin-bottom: 1rem;
 	}
 
 	.pageDescription {
@@ -229,12 +431,12 @@
 	}
 
 	.sectionTitleRight {
-		font-size: 1.1rem;
+		font-size: 1.2rem;
 		text-align: center;
 	}
 
 	.reviewsSection {
-		margin-top: 0;
+		margin-top: 1rem;
 		width: 100%;
 	}
 

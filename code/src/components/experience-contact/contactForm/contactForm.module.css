@@ -33,7 +33,7 @@
 
 .form textarea {
 	resize: none;
-	max-height: 7rem;
+	max-height: 9rem;
 }
 
 .form button {
@@ -70,7 +70,68 @@
 	text-align: center;
 }
 
-@media screen and (max-width: 1399px) {
+/* ===================== GRAND ÉCRAN ===================== */
+@media screen and (min-width: 1500px) {
+	.form {
+		gap: 1rem;
+	}
+
+	.form label {
+		font-size: 1rem;
+	}
+
+	.form input,
+	.form textarea {
+		font-size: 1rem;
+		padding: 0.95rem 1rem;
+	}
+
+	.form button {
+		font-size: 1rem;
+		padding: 0.95rem 1rem;
+	}
+
+	.error {
+		font-size: 0.82rem;
+	}
+
+	.feedback {
+		font-size: 0.95rem;
+	}
+}
+
+/* ===================== TABLETTE ===================== */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.form {
+		gap: 0.8rem;
+	}
+
+	.form label {
+		font-size: 1.5rem;
+	}
+
+	.form input,
+	.form textarea {
+		font-size: 1.5rem;
+		padding: 1rem;
+	}
+
+	.form button {
+		font-size: 1.6rem;
+		padding: 0.9rem 1rem;
+	}
+
+	.error {
+		font-size: 1rem;
+	}
+
+	.feedback {
+		font-size: 1rem;
+	}
+}
+
+/* ===================== MOBILE ===================== */
+@media screen and (max-width: 768px) {
 	.form {
 		gap: 0.8rem;
 	}

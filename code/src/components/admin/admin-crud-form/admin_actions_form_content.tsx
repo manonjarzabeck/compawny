@@ -16,6 +16,7 @@ const AdminActionsFormContent = ({
 	validator,
 	dataToUpdate,
 }: AdminActionsFormContentProps) => {
+	// Génère des identifiants uniques pour relier chaque label à son champ
 	const nameId = useId();
 	const descriptionId = useId();
 	const isactiveId = useId();
@@ -24,8 +25,14 @@ const AdminActionsFormContent = ({
 	const imageId = useId();
 	const publishedId = useId();
 
-	const [serverErrors, setServerErrors] = useState<Partial<Action>>();
+	// Stocke les erreurs renvoyées par la validation côté serveur
+	const [serverErrors, setServerErrors] = useState<Partial<Action>>({});
 
+	// React Hook Form :
+	// - register : relie les champs au formulaire
+	// - handleSubmit : intercepte la soumission
+	// - reset : permet de préremplir les champs en mode modification
+	// - errors : contient les erreurs de validation côté client
 	const {
 		register,
 		handleSubmit,
@@ -33,10 +40,12 @@ const AdminActionsFormContent = ({
 		formState: { errors },
 	} = useForm<Partial<Action>>();
 
+	// Si on édite une action existante, on préremplit le formulaire
 	useEffect(() => {
 		if (dataToUpdate) {
 			const normalizedData = {
 				...dataToUpdate,
+				// Normalise la date pour qu’elle soit compatible avec un input type="date"
 				published: dataToUpdate.published
 					? new Date(dataToUpdate.published).toISOString().split("T")[0]
 					: "",
@@ -46,15 +55,22 @@ const AdminActionsFormContent = ({
 		}
 	}, [dataToUpdate, reset]);
 
+	// Message global affiché sous le formulaire si besoin
 	const [message, setMessage] = useState<string>("");
 
+	// Permet de rediriger après une action réussie
 	const navigate = useNavigate();
 
+	// Soumission du formulaire
 	const submitForm = async (data: Partial<Action>) => {
+		// Normalisation des données :
+		// pour un input file, on récupère le premier fichier sélectionné
 		const normalizedData = { ...data, image: (data.image as string)[0] };
 
+		// Validation personnalisée avec le validateur fourni en props
 		const validation = await validator(normalizedData);
 
+		// Si la validation échoue, on reconstruit les messages d'erreur
 		if (validation instanceof Error) {
 			let errors = {};
 
@@ -67,6 +83,8 @@ const AdminActionsFormContent = ({
 			return;
 		}
 
+		// Si la validation réussit, on prépare un FormData
+		// car le formulaire contient un champ de type fichier
 		const formData = new FormData();
 
 		formData.set("id", normalizedData.id as unknown as string);
@@ -83,16 +101,16 @@ const AdminActionsFormContent = ({
 			normalizedData.association_id as unknown as string,
 		);
 
+		// En mode modification, on appelle update
+		// Sinon, on appelle insert
 		const process = dataToUpdate
 			? await new ActionApiService().update(
 					formData,
 					new SecurityService().getToken() as string,
 				)
-			: await new ActionApiService().insert(
-					formData,
-					new SecurityService().getToken() as string,
-				);
+			: await new ActionApiService().insert(formData);
 
+		// Si la requête réussit, on redirige avec un message flash
 		if ([200, 201].includes(process.status)) {
 			navigate("/admin/action-homepage", {
 				state: {
@@ -108,13 +126,19 @@ const AdminActionsFormContent = ({
 
 	return (
 		<>
+			{/* Bouton de retour vers la page de gestion des actions */}
 			<BackBtn fallbackLink="/admin-action-homepage" />
+
 			<section className={styles.wrapper}>
 				<div className={styles.card}>
 					<h1 className={styles.title}>
 						{dataToUpdate ? "Modifier une action" : "Ajouter une action"}
 					</h1>
 
+					{/* 
+						Le formulaire utilise multipart/form-data
+						car un fichier image peut être envoyé.
+					*/}
 					<form
 						className={styles.form}
 						encType="multipart/form-data"
@@ -230,6 +254,10 @@ const AdminActionsFormContent = ({
 							<small role="alert">{errors.association_id?.message}</small>
 						</div>
 
+						{/* 
+							Case à cocher :
+							permet d’indiquer si l’action est visible en ligne ou non.
+						*/}
 						<div className={styles.checkboxRow}>
 							<label htmlFor={isactiveId}>En ligne</label>
 							<input
@@ -239,6 +267,7 @@ const AdminActionsFormContent = ({
 							/>
 						</div>
 
+						{/* Champ caché utile en mode modification */}
 						<input type="hidden" id={idId} {...register("id")} />
 
 						<button className={styles.submitButton} type="submit">

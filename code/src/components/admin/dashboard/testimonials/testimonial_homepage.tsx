@@ -8,9 +8,13 @@ import Btn from "../../../btn/Btn";
 import styles from "./testimonial_homepage.module.css";
 
 const TestimonialHomepage = () => {
+	// Stocke la liste des témoignages récupérés depuis l’API
 	const [testimonials, setTestimonials] = useState<Contact[]>([]);
+
+	// Permet d’afficher un message de chargement au démarrage
 	const [loading, setLoading] = useState(true);
 
+	// Récupération des témoignages
 	const fetchTestimonials = async () => {
 		try {
 			const results: ApiResponse<Contact[]> =
@@ -29,13 +33,17 @@ const TestimonialHomepage = () => {
 		}
 	};
 
+	// Chargement des témoignages à l’affichage du composant
 	useEffect(() => {
 		fetchTestimonials();
 	}, []);
 
 	return (
 		<section className={styles.wrapper}>
+			{/* Bouton de retour vers le tableau de bord admin */}
 			<Btn link="/admin">Revenir au tableau de bord</Btn>
+
+			{/* Introduction de la page */}
 			<div className={styles.header}>
 				<div className={styles.intro}>
 					<h1 className={styles.title}>Retours d’expérience</h1>
@@ -45,6 +53,7 @@ const TestimonialHomepage = () => {
 				</div>
 			</div>
 
+			{/* États d’affichage : chargement, liste ou état vide */}
 			{loading ? (
 				<p className={styles.message}>Chargement des témoignages...</p>
 			) : testimonials.length > 0 ? (

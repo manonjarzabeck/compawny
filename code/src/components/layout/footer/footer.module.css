@@ -1,27 +1,82 @@
+/* Footer global */
 .footer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 0.2rem;
+	gap: 0.3rem;
 	background-color: var(--footer);
-	padding: 0.5rem;
+	padding: 0.55rem 0.7rem;
 	font-family: var(--font-body);
+	flex-wrap: wrap;
+	text-align: center;
 }
 
+/* Nom du site */
 .brand {
-	font-size: 0.9rem;
+	font-size: 0.95rem;
 	font-weight: 600;
 	color: var(--text-color);
 }
 
+/* Liens du footer */
 .legal {
-	font-size: 0.7rem;
+	font-size: 0.78rem;
 	color: var(--text-color);
 	text-decoration: none;
 	transition: 0.2s ease;
 }
+
 .legal:hover {
 	text-decoration: underline;
 	text-underline-offset: 2px;
 	text-decoration-thickness: 1px;
+}
+
+/* TABLETTE */
+@media screen and (max-width: 1200px) {
+	.footer {
+		gap: 0.35rem;
+		padding: 0.65rem 0.85rem;
+	}
+
+	.brand {
+		font-size: 1.5rem;
+	}
+
+	.legal {
+		font-size: 1.5rem;
+	}
+}
+
+/* MOBILE */
+@media screen and (max-width: 768px) {
+	.footer {
+		gap: 0.25rem;
+		padding: 0.7rem 0.8rem;
+		line-height: 1.4;
+	}
+
+	.brand {
+		font-size: 1rem;
+	}
+
+	.legal {
+		font-size: 0.88rem;
+	}
+}
+
+/* GRAND ECRAN */
+@media screen and (min-width: 1500px) {
+	.footer {
+		gap: 0.4rem;
+		padding: 0.7rem 1rem;
+	}
+
+	.brand {
+		font-size: 1.05rem;
+	}
+
+	.legal {
+		font-size: 0.9rem;
+	}
 }

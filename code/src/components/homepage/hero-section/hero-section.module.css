@@ -1,68 +1,176 @@
+/* 
+=====================================================
+ HERO SECTION
+=====================================================
+*/
+
 .heroSection {
 	background-color: var(--homepage-bg);
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
-	padding-bottom: 1rem;
+
+	/* 
+    Hauteur principale de la section :
+    prend quasiment tout l'écran
+  */
+	min-height: calc(100vh - 110px);
+
+	padding: 0 1rem 1rem;
 }
 
+/* 
+=====================================================
+ CONTENEUR INTERNE (TRÈS IMPORTANT)
+=====================================================
+*/
 .heroContainer {
 	width: 100%;
+	max-width: 1200px;
+
+	flex: 1;
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-evenly;
 }
 
+/* 
+=====================================================
+ TITRE
+=====================================================
+*/
 .heroTitle {
+	margin: 0;
 	padding: 1.2rem;
+
 	font-family: var(--font-title);
-	font-size: 1.4rem;
+	font-size: 1.6rem;
 	font-weight: 700;
 	line-height: 1.4;
+
 	color: var(--text-color);
 }
 
+/* 
+=====================================================
+ IMAGE
+=====================================================
+*/
 .heroImage {
 	width: 100%;
-	max-width: 77vh;
-	object-fit: cover;
+	max-width: 760px;
+
+	max-height: 64vh;
+
+	height: auto;
+	object-fit: contain;
+
 	display: block;
 }
 
+/* 
+=====================================================
+ TEXTE
+=====================================================
+*/
 .heroDescription {
+	margin: 0;
 	max-width: 1000px;
 	padding: 0.7rem;
+
 	font-family: var(--font-body);
-	font-size: 0.9rem;
+	font-size: 1rem;
 	font-weight: 700;
 	line-height: 1.4;
+
 	color: var(--text-color);
 }
 
+/* 
+=====================================================
+ SCROLL BUTTON
+=====================================================
+*/
 .scrollWrapper {
 	margin: 0;
 }
 
-/* tablette + mobile */
+/* 
+=====================================================
+ GRAND ÉCRAN
+=====================================================
+*/
+@media screen and (min-width: 1500px) {
+	.heroSection {
+		min-height: calc(100vh - 120px);
+		padding: 0 1.5rem 1.2rem;
+	}
+
+	.heroContainer {
+		max-width: 1350px;
+	}
+
+	.heroTitle {
+		max-width: 1200px;
+		font-size: 1.8rem;
+		padding: 1.2rem 1rem;
+	}
+
+	.heroImage {
+		max-width: 860px;
+		max-height: 65vh;
+	}
+
+	.heroDescription {
+		max-width: 1120px;
+		font-size: 1.1rem;
+		line-height: 1.55;
+		padding: 0.8rem 1rem 0.6rem;
+	}
+
+	.scrollWrapper {
+		margin-top: 0.3rem;
+	}
+}
+
+/* ===================== PETIT DESKTOP ===================== */
+
 @media screen and (max-width: 1399px) {
 	.heroSection {
+		min-height: auto;
 		padding: 1rem 0.9rem 1.5rem;
+	}
+
+	.heroContainer {
+		width: 100%;
+		max-width: 1000px;
+		flex: initial;
+		justify-content: flex-start;
+		gap: 0.8rem;
 	}
 
 	.heroTitle {
 		max-width: 900px;
-		font-size: clamp(1.4rem, 3vw, 2rem);
+		font-size: 1.7rem;
+		line-height: 1.3;
+		padding: 1rem 0.8rem 0.4rem;
 	}
 
 	.heroImage {
 		width: min(100%, 72vw);
 		max-width: 620px;
+		max-height: none;
 	}
 
 	.heroDescription {
 		max-width: 850px;
 		font-size: 1rem;
+		line-height: 1.5;
+		padding: 0.7rem 0.8rem 0.2rem;
 	}
 
 	.scrollWrapper {
@@ -70,16 +178,48 @@
 	}
 }
 
-/* mobile */
+/* ===================== TABLETTE ===================== */
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.heroContainer {
+		max-width: 100%;
+		gap: 1rem;
+		padding: 1rem 0.8rem 1.2rem;
+	}
+
+	.heroTitle {
+		font-size: 2.2rem;
+		line-height: 1.3;
+		padding: 1rem;
+	}
+
+	.heroImage {
+		width: min(100%, 90vw);
+		max-width: 700px;
+		margin: 0.5rem;
+	}
+
+	.heroDescription {
+		font-size: 1.6rem;
+		line-height: 1.55;
+	}
+}
+
+/* ===================== MOBILE ===================== */
 @media screen and (max-width: 768px) {
-	/* .heroSection {
-		padding: 1.2rem;
-	} */
+	.heroSection {
+		min-height: auto;
+		padding: 1rem 0.85rem 1.25rem;
+	}
+
+	.heroContainer {
+		gap: 0.7rem;
+	}
 
 	.heroTitle {
 		font-size: 1.4rem;
 		line-height: 1.2;
-		padding: 1rem;
+		padding: 0.9rem 0.7rem 0.3rem;
 	}
 
 	.heroImage {
@@ -90,6 +230,24 @@
 	.heroDescription {
 		font-size: 0.9rem;
 		line-height: 1.45;
-		padding: 1rem;
+		padding: 0.7rem 0.7rem 0.2rem;
+	}
+}
+
+/* ===================== PETITS MOBILES ===================== */
+
+@media screen and (max-width: 400px) {
+	.heroTitle {
+		font-size: 1.4rem;
+		line-height: 1.2;
+	}
+
+	.heroImage {
+		max-width: 400px;
+	}
+
+	.heroDescription {
+		font-size: 0.95rem;
+		line-height: 1.4;
 	}
 }

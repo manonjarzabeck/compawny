@@ -7,16 +7,19 @@ import styles from "../footer/footer.module.css";
 const Footer = () => {
 	return (
 		<footer className={styles.footer}>
+			{/* Nom du site */}
 			<div className={styles.brand}>Ⓒ Compawny -</div>
+
+			{/* Lien vers les mentions légales */}
 			<NavLink to={"/mentions"} className={styles.legal}>
 				Mentions légales
 			</NavLink>
 
 			{
-				// si l'utilisateur est admin
+				// Affichage du lien admin uniquement si l'utilisateur connecté est admin
 				new SecurityService().getUser()?.role.name === "admin" ? (
 					<>
-						<p>-</p>
+						<span>-</span>
 						<NavLink to={"/admin"} className={styles.legal}>
 							Espace Admin 🔐
 						</NavLink>

@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router";
-import Btn from "../../btn/Btn";
 import styles from "./adminHeader.module.css";
 
 const AdminHeader = () => {
 	return (
 		<header className={styles.adminHeader}>
 			<div className={styles.headerInner}>
+				{/* Bloc logo + titres menant vers le tableau de bord admin */}
 				<NavLink to="/admin" className={styles.logoLink}>
 					<div className={styles.leftBlock}>
 						<img
@@ -20,9 +20,6 @@ const AdminHeader = () => {
 						</div>
 					</div>
 				</NavLink>
-				<div className={styles.rightBlock}>
-					<Btn link={"/"}>Retourner sur le site 🐾</Btn>
-				</div>
 			</div>
 		</header>
 	);
