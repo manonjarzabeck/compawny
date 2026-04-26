@@ -197,9 +197,9 @@ POST         | /api/contact    | Envoyer un message
 
 ### Documents 
 
-[Cahier des charges](/code/public/livrables/JARZABECK_Manon_Cahier-des-charges_DWWM_P8.pdf)
-[Présentation](/code/public/livrables/Présentation%20du%20projet.mp4)
-[Dossier professionnel](/code/public/livrables/JARZABECK_Manon_Dossier-Professionnel_DWWM_P8.pdf)
-[Résumé projet](/code/public/livrables/Résumé%20projet%20-%20Manon%20Jarzabeck%20-%20DWWM%202026.pdf)
-[ECF](/code/public/livrables/JARZABECK_Manon_ECF_DWWM_P8.pdf)
-[Figma](/code/public/livrables/Compawny%20🐾.png)
+* [Cahier des charges](/code/public/livrables/JARZABECK_Manon_Cahier-des-charges_DWWM_P8.pdf)
+* [Présentation](/code/public/livrables/Présentation%20du%20projet.mp4)
+* [Dossier professionnel](/code/public/livrables/JARZABECK_Manon_Dossier-Professionnel_DWWM_P8.pdf)
+* [Résumé projet](/code/public/livrables/Résumé%20projet%20-%20Manon%20Jarzabeck%20-%20DWWM%202026.pdf)
+* [ECF](/code/public/livrables/JARZABECK_Manon_ECF_DWWM_P8.pdf)
+* [Figma](/code/public/livrables/Compawny%20🐾.png)
