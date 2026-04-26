@@ -11,11 +11,13 @@ const ActionDetailPage = ({ params }: ActionDetailsParams) => {
 	// récuperer les données
 	const result = use(new ActionApiService().selectOne(id));
 
-	// console.log(result);
-
 	return (
 		<>
-			<Seo title="Actions" description="Détails des actions" url="" />
+			<Seo
+				title="Actions"
+				description="Détails des actions"
+				url="/actions/:id"
+			/>
 			<ActionDetailsContent data={result.data as Action} />
 		</>
 	);

@@ -7,7 +7,7 @@ const ExperienceFormulairePage = () => {
 			<Seo
 				title="Ils en parlent..."
 				description="Page retour d'experience et formulaire de contact"
-				url=""
+				url="contact"
 			/>
 			<ExperienceContact />
 		</>

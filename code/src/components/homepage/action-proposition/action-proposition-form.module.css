@@ -6,7 +6,7 @@
 	max-width: 620px;
 	background: var(--card-color);
 	border-radius: 1.5rem;
-	padding: 2rem;
+	padding: 1.2rem;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
@@ -16,7 +16,7 @@
 .form {
 	display: flex;
 	flex-direction: column;
-	gap: 1.1rem;
+	gap: 0.2rem;
 }
 
 /* 
@@ -25,7 +25,7 @@
 .field {
 	display: flex;
 	flex-direction: column;
-	gap: 0.45rem;
+	gap: 0.3rem;
 	font-family: var(--font-body);
 	color: var(--text-color);
 	font-size: 0.9rem;
@@ -37,7 +37,7 @@
 	width: 100%;
 	border: 1px solid rgba(0, 0, 0, 0.12);
 	border-radius: 0.9rem;
-	padding: 0.85rem 1rem;
+	padding: 0.7rem 1rem;
 	font: inherit;
 	background: #fff;
 	color: var(--text-color);
@@ -50,6 +50,7 @@
 .field textarea::placeholder {
 	color: rgba(0, 0, 0, 0.45);
 	font-weight: 400;
+	font-size: 0.8rem;
 }
 
 .field input:focus,
@@ -104,116 +105,47 @@
 	gap: 1rem;
 }
 
+.formTitle {
+	font-family: var(--font-body);
+	color: #986b79;
+}
+
 .successText {
 	margin: 0;
 	line-height: 1.7;
+	font-family: var(--font-body);
+	color: #986b79;
 }
 
-/* ===================== GRAND ÉCRAN ===================== */
-
-@media screen and (min-width: 1500px) {
-	.formCard {
-		max-width: 680px;
-		padding: 2.3rem;
-	}
-
-	.form {
-		gap: 1.2rem;
-	}
-
-	.field {
-		font-size: 0.98rem;
-	}
-
-	.field input,
-	.field textarea {
-		padding: 0.95rem 1.05rem;
-	}
-
-	.field textarea {
-		min-height: 160px;
-	}
-
-	.submitButton {
-		padding: 1rem 1.3rem;
-	}
-}
-
-/* ===================== TABLETTE ===================== */
 /* 
-  En tablette :
-  on agrandit légèrement les textes
-  pour éviter un rendu trop petit
+=====================================================
+ TABLETTE
+=====================================================
 */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
 	.formCard {
-		padding: 2.2rem;
+		max-width: 540px;
+		padding: 1.5rem;
+		border-radius: 1.35rem;
 	}
 
 	.form {
-		gap: 1rem;
+		gap: 0.5rem;
 	}
 
 	.field {
-		font-size: 1.5rem;
+		gap: 0.2rem;
+		font-size: 0.92rem;
 	}
 
 	.field input,
 	.field textarea {
-		padding: 0.9rem 1rem;
-		font-size: 1.4rem;
+		padding: 0.78rem 0.9rem;
+		font-size: 0.92rem;
 	}
 
 	.field textarea {
-		min-height: 150px;
-	}
-
-	.field small {
-		font-size: 1.2rem;
-	}
-
-	.submitButton {
-		padding: 0.95rem 1.2rem;
-		font-size: 1.6rem;
-	}
-
-	.feedbackMessage {
-		font-size: 1.2rem;
-	}
-
-	.successText {
-		font-size: 1.2rem;
-	}
-}
-
-/* ===================== MOBILE ===================== */
-/* 
-  En mobile :
-  on compacte un peu la carte et les champs en hauteur
-  pour garder un bloc plus léger visuellement
-*/
-@media screen and (max-width: 768px) {
-	.formCard {
-		padding: 1.3rem;
-		border-radius: 1.2rem;
-	}
-
-	.form {
-		gap: 0.9rem;
-	}
-
-	.field {
-		gap: 0.35rem;
-		font-size: 0.88rem;
-	}
-
-	.field input,
-	.field textarea {
-		padding: 0.75rem 0.9rem;
-	}
-
-	.field textarea {
-		min-height: 115px;
+		min-height: 120px;
 	}
 
 	.field small {
@@ -221,20 +153,87 @@
 	}
 
 	.submitButton {
-		padding: 0.8rem 1rem;
-		font-size: 0.9rem;
+		padding: 0.82rem 1rem;
+		font-size: 0.92rem;
 	}
 
 	.feedbackMessage {
-		font-size: 0.88rem;
+		font-size: 0.9rem;
 	}
 
 	.successBox {
-		gap: 0.8rem;
+		gap: 0.85rem;
+	}
+
+	.formTitle {
+		font-size: 1.2rem;
 	}
 
 	.successText {
-		font-size: 0.9rem;
+		font-size: 0.95rem;
 		line-height: 1.6;
+	}
+}
+
+/* 
+=====================================================
+ MOBILE
+=====================================================
+*/
+@media screen and (max-width: 768px) {
+	.formCard {
+		max-width: 300px;
+		padding: 1.1rem;
+		border-radius: 1.15rem;
+	}
+
+	.form {
+		gap: 0.4rem;
+	}
+
+	.field {
+		gap: 0.1rem;
+		font-size: 0.84rem;
+	}
+
+	.field input,
+	.field textarea {
+		padding: 0.4rem 0.8rem;
+		font-size: 0.75rem;
+	}
+
+	.field textarea {
+		min-height: 100px;
+	}
+
+	.field small {
+		font-size: 0.72rem;
+	}
+
+	.field input::placeholder,
+	.field textarea::placeholder {
+		font-size: 0.65rem;
+	}
+
+	.submitButton {
+		padding: 0.74rem 0.95rem;
+		font-size: 0.84rem;
+	}
+
+	.feedbackMessage {
+		font-size: 0.84rem;
+	}
+
+	.successBox {
+		gap: 0.75rem;
+	}
+
+	.formTitle {
+		font-size: 1.05rem;
+	}
+
+	.successText {
+		font-size: 0.86rem;
+		line-height: 1.55;
 	}
 }

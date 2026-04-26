@@ -1,45 +1,180 @@
+/* 
+=====================================================
+ SECTION PRINCIPALE
+→ englobe toute la page
+→ padding pour respirer autour du contenu
+=====================================================
+*/
 .wrapper {
-	padding: 2rem 1.5rem 3rem;
+	padding: 1.2rem 1rem 2.4rem;
 	font-family: var(--font-body);
 	color: var(--text-color);
 }
 
+/* 
+=====================================================
+ BOUTON RETOUR
+→ placé en haut avec un espace propre
+=====================================================
+*/
+.backBtnWrapper {
+	margin-bottom: 1rem;
+	display: flex;
+	justify-content: flex-start;
+}
+
+/* 
+=====================================================
+ CONTENEUR CENTRAL
+→ limite la largeur du texte pour une meilleure lisibilité
+=====================================================
+*/
 .container {
 	max-width: 50rem;
 	margin: 0 auto;
 }
 
+/* 
+=====================================================
+ TITRE PRINCIPAL
+=====================================================
+*/
 .title {
-	margin: 0 0 2rem 0;
-	font-size: 2rem;
+	margin: 0 0 1.6rem 0;
+	font-size: 1.8rem;
 	line-height: 1.2;
 	text-align: center;
 }
 
+/* 
+=====================================================
+ CONTENU GLOBAL
+→ organisation verticale des blocs
+=====================================================
+*/
 .content {
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
+	gap: 1.3rem;
 }
 
+/* 
+=====================================================
+ BLOC DE TEXTE
+→ chaque section légale
+→ carte avec ombre légère
+=====================================================
+*/
 .block {
 	border-radius: 1rem;
-	padding: 1.5rem;
+	padding: 1.35rem;
 	box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.06);
+	background: white;
 }
 
+/* Sous-titres */
 .block h2 {
-	margin: 0 0 0.75rem 0;
-	font-size: 1.2rem;
+	margin: 0 0 0.7rem 0;
+	font-size: 1.1rem;
 	line-height: 1.3;
 }
 
+/* Paragraphes */
 .block p {
-	margin: 0 0 0.75rem 0;
+	margin: 0 0 0.7rem 0;
 	line-height: 1.7;
-	font-size: 1rem;
+	font-size: 0.95rem;
 }
 
+/* Supprime la marge du dernier paragraphe */
 .block p:last-child {
 	margin-bottom: 0;
+}
+
+/* 
+=====================================================
+ TABLETTE
+→ légère réduction des tailles
+→ garder confort de lecture
+=====================================================
+*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.wrapper {
+		padding: 1.1rem 1rem 2rem;
+	}
+
+	.backBtnWrapper {
+		margin-bottom: 0.9rem;
+	}
+
+	.container {
+		max-width: 46rem;
+	}
+
+	.title {
+		font-size: 1.65rem;
+		margin-bottom: 1.4rem;
+	}
+
+	.content {
+		gap: 1.15rem;
+	}
+
+	.block {
+		padding: 1.2rem;
+	}
+
+	.block h2 {
+		font-size: 1.02rem;
+	}
+
+	.block p {
+		font-size: 0.92rem;
+		line-height: 1.65;
+	}
+}
+
+/* 
+=====================================================
+ MOBILE
+→ réduction importante des tailles
+→ éviter un effet "gros pavé"
+=====================================================
+*/
+@media screen and (max-width: 768px) {
+	.wrapper {
+		padding: 0.9rem 0.85rem 1.6rem;
+	}
+
+	.backBtnWrapper {
+		margin-bottom: 0.8rem;
+	}
+
+	.container {
+		max-width: 100%;
+		margin-top: 2rem;
+	}
+
+	.title {
+		font-size: 1.35rem;
+		margin-bottom: 1.15rem;
+	}
+
+	.content {
+		gap: 0.95rem;
+	}
+
+	.block {
+		padding: 1rem;
+		border-radius: 0.9rem;
+	}
+
+	.block h2 {
+		font-size: 0.98rem;
+	}
+
+	.block p {
+		font-size: 0.86rem;
+		line-height: 1.55;
+	}
 }

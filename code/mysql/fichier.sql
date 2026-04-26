@@ -9,8 +9,8 @@ VALUES
 -- user@user.fr / user
 INSERT INTO compawny_dev.user (id, email, password, role_id)
 VALUES
-    ( NULL, 'admin@admin.fr', '$argon2i$v=19$m=16,t=2,p=1$SHhIaUptM256UXBtZjF3VA$0cfqFjyvBxio+CPnUL6wAg', 1),
-    ( NULL, 'user@user.fr', '$argon2i$v=19$m=16,t=2,p=1$WW9wbDgzTnY0UWZzWUVqOA$wCk7rcuN6I4GwT/kwDB1Uw', 2)
+    ( NULL, 'admin@admin.fr', '$argon2i$v=19$m=16,t=2,p=1$WTR0clg5SnhXY0oyMWV4Rg$IBoK3eGBPCvRQBibyOugIg', 1),
+    ( NULL, 'user@user.fr', '$argon2i$v=19$m=16,t=2,p=1$SWV2NkdEVFNETk9oQlVuYw$tgrVP86snOGn6U7kUUf39g', 2)
 ;
 
 INSERT INTO compawny_dev.country (id, name) VALUES
@@ -792,7 +792,9 @@ INSERT INTO compawny_dev.action
 ( 15 , 'Promenade des Chiens', 'a16.jpg', 'Venez promener les chiens du refuge et leur offrir un moment de liberté et d’attention. Vous pouvez vous rapprocher de l’association pour leur donner vos disponibilités.', '2025-10-30', 1, NULL, 'admin', 13),
 ( 16 , 'Sensibilisation dans les Écoles', 'a20.jpg', 'Participez à des ateliers éducatifs pour sensibiliser les enfants à la protection animale. Pour plus de détails, vous pouvez contacter directement l’association.', '2025-09-15', 1, NULL, 'admin', 14),
 ( 17 , 'Portes Ouvertes du Sanctuaire', 'a12.jpg', 'Chaque dimanche,  venez seul ou en famille, découvrir le sanctuaire, ses habitants à plumes et les actions quotidiennes menées pour leur bien-être.', '2025-11-20', 1, NULL, 'admin', 15),
-( 18 , 'Atelier Éducation Chiots', 'a5.jpg', 'Initiez-vous à l’éducation canine avec des chiots et découvrez les bonnes pratiques pour les futurs adoptants. Des ateliers sont organisés plusieurs fois par mois.', '2025-05-08', 1, NULL, 'admin', 16)
+( 18 , 'Atelier Éducation Chiots', 'a5.jpg', 'Initiez-vous à l’éducation canine avec des chiots et découvrez les bonnes pratiques pour les futurs adoptants. Des ateliers sont organisés plusieurs fois par mois.', '2025-05-08', 1, NULL, 'admin', 16),
+( 19, 'Collecte solidaire', NULL, 'Tous les samedis, l’association Ani’meaux organise une collecte solidaire au sein du magasin Truffaut situé à Coutevroult (77)', NULL, 0, 'Association Ani’meaux', 'visitor', NULL),
+( 20, 'Découverte animaux sauvages', NULL, 'Plusieurs fois par mois, l’association SPA de Beauval, organise des visites spéciales au Zoo de Beauval pour sensibiliser et mieux connaître les besoins des animaux sauvages.', NULL, 0, 'Association SPA de Beauval', 'visitor', NULL )
 ;
 
 INSERT INTO compawny_dev.animal
@@ -822,7 +824,10 @@ INSERT INTO compawny_dev.animal
 INSERT INTO compawny_dev.user_action 
 (user_id, action_id)
 VALUES 
-(2, 5);
+(2, 4),
+(2, 8),
+(2, 10),
+(2, 9);
 
 -- -- Transaction SQL 
 -- START TRANSACTION;
@@ -858,7 +863,7 @@ VALUES
 -- sélectionner toutes les colonnes d'une table 
 -- SELECT action.* 
 -- SELECT country.name
--- FROM compawny_dev.asso
+-- FROM compawny_dev.association
 
 -- START TRANSACTION;
 

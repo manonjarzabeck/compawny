@@ -20,6 +20,7 @@ const AdminAssociationsFormContent = ({
 	// créer des indentifiants pour les champs de formulaire
 	const nameId = useId();
 	const descriptionId = useId();
+	const introductionId = useId();
 	const idId = useId();
 	const countryId = useId();
 	const departmentId = useId();
@@ -46,6 +47,8 @@ const AdminAssociationsFormContent = ({
 		register,
 		handleSubmit,
 		reset,
+		watch,
+		setValue,
 		formState: { errors },
 	} = useForm<Partial<Association>>();
 
@@ -59,6 +62,15 @@ const AdminAssociationsFormContent = ({
 			reset(normalizedData);
 		}
 	}, [dataToUpdate, reset]);
+
+	// désactiver les départements pour pays autre que la France
+	const selectedCountry = watch("country_id");
+
+	useEffect(() => {
+		if (selectedCountry !== 1) {
+			setValue("department_id", undefined);
+		}
+	}, [selectedCountry, setValue]);
 
 	// message lié à la soumission du formulaire
 	const [message, setMessage] = useState<string>("");
@@ -99,6 +111,10 @@ const AdminAssociationsFormContent = ({
 		formData.set("id", normalizedData.id as unknown as string);
 		formData.set("name", normalizedData.name as unknown as string);
 		formData.set("image", normalizedData.image as unknown as string);
+		formData.set(
+			"introduction",
+			normalizedData.introduction as unknown as string,
+		);
 		formData.set(
 			"description",
 			normalizedData.description as unknown as string,
@@ -213,6 +229,22 @@ const AdminAssociationsFormContent = ({
 						</div>
 
 						<div className={styles.field}>
+							<label htmlFor={introductionId}>Introduction :</label>
+							<textarea
+								id={introductionId}
+								{...register("introduction", {
+									maxLength: {
+										value: 200,
+										message:
+											"L'introduction doit comporter, au maximum, 200 caractères",
+									},
+								})}
+							/>
+							<small role="alert">
+								{errors.introduction?.message ?? serverErrors?.introduction}
+							</small>
+						</div>
+						<div className={styles.field}>
 							<label htmlFor={descriptionId}>Description :</label>
 							<textarea
 								id={descriptionId}
@@ -316,7 +348,7 @@ const AdminAssociationsFormContent = ({
 						</div>
 
 						<div className={styles.field}>
-							<label htmlFor={websiteId}>Latitude :</label>
+							<label htmlFor={latitudeId}>Latitude :</label>
 							<input
 								type="text"
 								id={latitudeId}
@@ -392,7 +424,10 @@ const AdminAssociationsFormContent = ({
 						</div>
 						<div className={styles.field}>
 							<label htmlFor={departmentId}>Département :</label>
-							<select {...register("department_id")}>
+							<select
+								disabled={selectedCountry !== 64} // 64 = ID de la France
+								{...register("department_id")}
+							>
 								<option value="">Sélectionner un département</option>
 								{department.map((item) => {
 									return (
@@ -404,7 +439,10 @@ const AdminAssociationsFormContent = ({
 							</select>
 						</div>
 						<div className={styles.checkboxRow}>
-							<label htmlFor={isInternationalId}>En ligne</label>
+							<label htmlFor={isInternationalId}>
+								{" "}
+								Association internationale :
+							</label>
 							<input
 								type="checkbox"
 								id={isInternationalId}

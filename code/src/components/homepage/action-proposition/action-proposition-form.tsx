@@ -21,6 +21,11 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 	// Stocke les erreurs de validation renvoyées côté serveur
 	const [serverErrors, setServerErrors] = useState<Partial<Action>>({});
 
+	// React Hook Form :
+	// - register : relie les champs au formulaire
+	// - handleSubmit : intercepte la soumission
+	// - reset : permet de préremplir les champs en mode modification
+	// - errors : contient les erreurs de validation côté client
 	const {
 		register,
 		handleSubmit,
@@ -28,6 +33,7 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 		formState: { errors },
 	} = useForm<Partial<Action>>();
 
+	// Soumission du formulaire
 	const submitForm = async (data: Partial<Action>) => {
 		const normalizedData = { ...data };
 
@@ -36,7 +42,6 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 
 		if (validation instanceof Error) {
 			let formErrors = {};
-
 			// Transformation des erreurs de validation
 			// en objet exploitable dans le formulaire
 			(JSON.parse(validation.message) as ZodIssue[]).map((item) => {
@@ -46,11 +51,9 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 				};
 				return formErrors;
 			});
-
 			setServerErrors(formErrors);
 			return;
 		}
-
 		setServerErrors({});
 
 		// Préparation des données à envoyer à l’API
@@ -72,6 +75,7 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 		// Champs laissés vides car ils seront complétés ou validés plus tard
 		formData.set("published", "");
 		formData.set("association_id", "");
+		formData.set("image", "");
 
 		// Envoi du formulaire à l’API
 		const process = await new ActionApiService().insert(formData);
@@ -90,7 +94,7 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 		return (
 			<div className={styles.formCard}>
 				<div className={styles.successBox}>
-					<h2 className={styles.formTitle}>Merci beaucoup 💚</h2>
+					<h2 className={styles.formTitle}>Merci beaucoup 🤎</h2>
 					<p className={styles.successText}>{message}</p>
 				</div>
 			</div>
@@ -116,7 +120,6 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 					/>
 					<small>{errors.name?.message ?? serverErrors?.name}</small>
 				</div>
-
 				<div className={styles.field}>
 					<label htmlFor={associationProposalId}>Nom de l'association</label>
 					<input
@@ -126,8 +129,8 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 						{...register("association_proposal", {
 							required: "Le nom de l'association est obligatoire",
 							minLength: {
-								value: 2,
-								message: "Minimum 2 caractères",
+								value: 5,
+								message: "Minimum 5 caractères",
 							},
 						})}
 					/>
@@ -136,7 +139,6 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 							serverErrors?.association_proposal}
 					</small>
 				</div>
-
 				<div className={styles.field}>
 					<label htmlFor={descriptionId}>Description</label>
 					<textarea
@@ -155,11 +157,9 @@ const UserActionForm = ({ validator }: UserActionsFormContentProps) => {
 						{errors.description?.message ?? serverErrors?.description}
 					</small>
 				</div>
-
 				<button className={styles.submitButton} type="submit">
 					Proposer une action 🫶🏼
 				</button>
-
 				{message && !submitted && (
 					<p className={styles.feedbackMessage}>{message}</p>
 				)}

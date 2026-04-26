@@ -9,6 +9,20 @@ import UserActionApiService from "../../../services/user_action_api_service";
 import ActionListItem from "../action-list-item/action_list_item";
 import style from "./action_list.module.css";
 
+/* 
+=====================================================
+ ACTION LIST (AFFICHAGE DE LA LISTE)
+→ gère l'affichage des actions
+
+- reçoit la liste des actions (déjà filtrées)
+- parcourt les données avec map()
+- affiche chaque action via ActionListItem
+- gère éventuellement les états vides (aucun résultat)
+
+👉 rôle : afficher une collection d’éléments
+=====================================================
+*/
+
 const ActionList = ({ actions }: FilterActionsProps) => {
 	const user = new SecurityService().getUser();
 	const token = new SecurityService().getToken();

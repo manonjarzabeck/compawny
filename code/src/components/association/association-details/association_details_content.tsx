@@ -1,5 +1,5 @@
 import type { AssociationDetailsContentProps } from "../../../models/props/details_content/association_details_content_props";
-import Btn from "../../btn/Btn";
+import BackBtn from "../../btn/backBtn";
 import MapLibre from "../../maplibre/maplibre";
 import styles from "./association_details_content.module.css";
 
@@ -7,15 +7,34 @@ const AssociationDetailsContent = ({
 	data,
 	zoom = 4,
 	mapStyle,
+	showBackButton = true,
+	tabletLayout = "column",
+	size = "default",
 }: AssociationDetailsContentProps) => {
 	return (
 		<>
-			{/* <div>
-				<Btn link="/associations">Retour</Btn>
-			</div> */}
-
-			<section className={styles.card}>
-				<div className={styles.topSection}>
+			{/* 
+				Bouton retour optionnel :
+				affiché uniquement si le composant est utilisé
+				comme contenu principal de la page association
+			*/}
+			{showBackButton && <BackBtn fallbackLink="/associations" />}
+			<section
+				className={`${styles.card} ${
+					size === "compact" ? styles.compactCard : styles.defaultCard
+				}`}
+			>
+				{/* 
+				Partie haute :
+				- infos de l’association
+				- image associée
+				La mise en page tablette peut varier selon la prop tabletLayout
+			*/}
+				<div
+					className={`${styles.topSection} ${
+						tabletLayout === "row" ? styles.tabletRow : styles.tabletColumn
+					}`}
+				>
 					<div className={styles.infos}>
 						<h2 className={styles.name}>{data.name}</h2>
 
@@ -48,6 +67,10 @@ const AssociationDetailsContent = ({
 					</div>
 				</div>
 
+				{/* 
+				Carte interactive affichant la localisation
+				de l’association
+			*/}
 				<div className={styles.mapContainer}>
 					<MapLibre
 						latitude={data.latitude}

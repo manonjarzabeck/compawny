@@ -11,16 +11,19 @@ const AssociationDetailPage = ({ params }: AssociationDetailsParams) => {
 	// récuperer les données
 	const result = use(new AssociationApiService().selectOne(id));
 
-	// console.log(result);
-
 	return (
 		<>
 			<Seo
 				title="Associations"
 				description="Détails des Associations internationales"
-				url=""
+				url="/associations/:id"
 			/>
-			<AssociationDetailsContent data={result.data as Association} />
+			<AssociationDetailsContent
+				data={result.data as Association}
+				showBackButton={true}
+				tabletLayout="column"
+				size="default"
+			/>
 		</>
 	);
 };

@@ -9,7 +9,7 @@ const Guard = ({ roles, children }: GuardProps) => {
 	// useNavigate permet de créer une redirection
 	const navigate = useNavigate();
 
-	// vérifier le rôle à l'afficage du composant / page
+	// vérifier le rôle à l'affichage du composant / page
 	useEffect(() => {
 		const user = new SecurityService().getUser();
 		if (roles.indexOf(user?.role?.name as string) === -1) {

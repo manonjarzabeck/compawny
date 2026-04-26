@@ -3,8 +3,10 @@ import UserActionRepository from "../repository/user_action_repository";
 
 class UserActionController {
 	public selectByUser = async (req: Request, res: Response) => {
+		// récupération des résultats de la requête
 		const results = await new UserActionRepository().SelectByUser(req.params);
 
+		// si la requête renvoie une erreur
 		if (results instanceof Error) {
 			res.status(400).json({
 				status: 400,
@@ -14,6 +16,7 @@ class UserActionController {
 			return;
 		}
 
+		// renvoyer une réponse avec un code de statut HTTP et au format JSON
 		res.status(200).json({
 			status: 200,
 			message: "ok",

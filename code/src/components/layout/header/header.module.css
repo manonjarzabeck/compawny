@@ -2,22 +2,9 @@
   Header public visible sur les pages du site côté utilisateur
 */
 .publicHeader {
-	/* Couleur de fond du header */
 	background-color: var(--nav-bar);
-
-	/* Prend toute la largeur disponible */
 	width: 100%;
-
-	/* 
-    Position relative :
-    utile si certains éléments internes ont besoin de se positionner
-    par rapport au header
-  */
 	position: relative;
-
-	/* 
-    Permet de garder le header au-dessus d'autres éléments si besoin
-  */
 	z-index: 20;
 }
 
@@ -26,69 +13,32 @@
   → structure les 3 zones principales :
   1. logo / titre
   2. navigation
-  3. bouton desktop
+  3. bouton CTA
 */
 .headerInner {
-	/* Le conteneur prend toute la largeur */
 	width: 100%;
-
-	/* 
-    Largeur maximale sur desktop standard
-    → évite que le contenu soit trop étalé
-    → reste centré dans la page
-  */
-	max-width: 1400px;
-
-	/* Centre horizontalement le contenu */
+	max-width: 1500px;
 	margin: 0 auto;
-
-	/* 
-    Espaces internes :
-    0.45rem en haut/bas
-    1.25rem à gauche/droite
-  */
 	padding: 0.45rem 1.25rem;
 
-	/* 
-    Grille sur desktop :
-    - colonne 1 : logo / titre
-    - colonne 2 : navigation
-    - colonne 3 : bouton CTA
-  */
 	display: grid;
 	grid-template-columns: auto 1fr auto;
-
-	/* Aligne verticalement les éléments au centre */
 	align-items: center;
-
-	/* Espace entre les 3 colonnes */
 	gap: 1.25rem;
 }
 
-/* 
-  Bloc contenant le logo et le titre
-*/
+/* Bloc logo / identité */
 .publicBrand {
 	display: flex;
 	align-items: center;
-
-	/* 
-    min-width: 0 permet d'éviter certains débordements
-    dans les layouts grid/flex
-  */
 	min-width: 0;
 }
 
-/* 
-  Lien global sur le logo + titre
-*/
+/* Lien global sur le logo + titre */
 .logoLink {
 	display: flex;
 	align-items: center;
-
-	/* Espace entre le logo et le texte */
 	gap: 0.8rem;
-
 	text-decoration: none;
 	color: inherit;
 }
@@ -98,150 +48,119 @@
 	cursor: pointer;
 }
 
-/* 
-  Logo du site
-*/
+/* Logo du site */
 .publicLogo {
-	/* Taille du logo sur desktop standard */
 	width: 4.4rem;
-
 	height: auto;
 	object-fit: contain;
-
-	/* 
-    Empêche le logo de rétrécir si l'espace devient serré
-  */
 	flex-shrink: 0;
 }
 
-/* 
-  Titre du site
-*/
+/* Titre du site */
 .publicTitle {
 	margin: 0;
 	font-family: var(--font-title);
 	font-size: 2.5rem;
 	font-weight: 700;
 	color: var(--text-color);
+	line-height: 1;
 }
 
-/* 
-  Zone qui contient la navigation
-*/
+/* Zone navigation */
 .navWrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 	min-width: 0;
 
 	/* 
-    Décalage vertical léger pour l'équilibre visuel actuel
-    (on garde ta structure car elle fonctionne déjà)
+    On garde ton petit équilibrage visuel en desktop
   */
 	margin-top: 2rem;
-
 	position: relative;
 }
 
-/* 
-  Bouton "Mon espace personnel" version desktop
-*/
+/* Bouton desktop */
 .desktopCta {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-
-	/* Léger décalage vertical conservé */
 	margin-top: 1rem;
 }
 
-/* 
-  GRAND ÉCRAN
-  → quand la fenêtre est vraiment large, on augmente légèrement
-  les tailles pour que le header paraisse moins petit visuellement
-*/
-@media screen and (min-width: 1500px) {
-	.headerInner {
-		/* On autorise un peu plus d'espace sur très grand écran */
-		max-width: 1520px;
-
-		/* On augmente légèrement les marges internes */
-		padding: 0.7rem 2rem;
-
-		/* Un peu plus d'espace entre les blocs */
-		gap: 1.75rem;
-	}
-
-	.publicLogo {
-		/* Logo légèrement plus grand sur écran large */
-		width: 5rem;
-	}
-
-	.publicTitle {
-		/* Titre légèrement plus grand sur écran large */
-		font-size: 2.9rem;
-	}
-
-	.navWrapper {
-		/* On garde l'équilibre visuel, un peu plus ample */
-		margin-top: 2.15rem;
-	}
-
-	.desktopCta {
-		margin-top: 1.15rem;
-	}
-}
-
-/* 
-  TABLETTE
-  → on garde la structure à 2 colonnes :
-  logo / titre à gauche + menu burger à droite
-  mais on agrandit légèrement les éléments
-*/
-@media screen and (min-width: 769px) and (max-width: 1300px) {
+/* =========================================================
+   PALIER INTERMÉDIAIRE : petit desktop / grand laptop
+   → en dessous de 1300px on passe en burger
+========================================================= */
+@media screen and (min-width: 1025px) and (max-width: 1300px) {
 	.headerInner {
 		grid-template-columns: 1fr auto;
-		gap: 1rem;
-		padding: 0.9rem 1.25rem;
+		gap: 0.9rem;
+		padding: 0.65rem 1.1rem;
 	}
 
 	.publicLogo {
-		width: 7rem;
+		width: 4.6rem;
 	}
 
 	.publicTitle {
-		margin-top: 0.35rem;
-		font-size: 3.4rem;
+		font-size: 2.35rem;
 	}
 
 	.logoLink {
-		gap: 0.7rem;
+		gap: 0.65rem;
 	}
 
 	.navWrapper {
-		margin-top: 0.35rem;
+		margin-top: 0.2rem;
 		justify-content: flex-end;
 	}
 
-	/* 
-    Le bouton desktop reste masqué sur tablette
-    car le lien est déjà dans le menu mobile
-  */
 	.desktopCta {
 		display: none;
 	}
 }
 
-/* 
-  MOBILE
-  → version plus compacte du header
-*/
+/* =========================================================
+   TABLETTE
+========================================================= */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.headerInner {
+		grid-template-columns: 1fr auto;
+		gap: 0.85rem;
+		padding: 0.7rem 1rem;
+	}
+
+	.publicLogo {
+		width: 4.2rem;
+	}
+
+	.publicTitle {
+		font-size: 2.2rem;
+	}
+
+	.logoLink {
+		gap: 0.6rem;
+	}
+
+	.navWrapper {
+		margin-top: 0.15rem;
+		justify-content: flex-end;
+	}
+
+	.desktopCta {
+		display: none;
+	}
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
 @media screen and (max-width: 768px) {
 	.headerInner {
 		grid-template-columns: 1fr auto;
-		gap: 0.75rem;
-		padding: 0.7rem 1rem;
+		gap: 0.7rem;
+		padding: 0.65rem 0.95rem;
 	}
 
 	.publicLogo {
@@ -249,24 +168,19 @@
 	}
 
 	.publicTitle {
-		margin-top: 0.5rem;
-		font-size: 2.1rem;
-	}
-
-	.navWrapper {
-		margin-top: 0.5rem;
-		justify-content: flex-end;
-	}
-
-	/* 
-    On masque le bouton desktop sur mobile
-    car le lien existe déjà dans le menu burger
-  */
-	.desktopCta {
-		display: none;
+		font-size: 2.05rem;
 	}
 
 	.logoLink {
-		gap: 0.55rem;
+		gap: 0.5rem;
+	}
+
+	.navWrapper {
+		margin-top: 0.1rem;
+		justify-content: flex-end;
+	}
+
+	.desktopCta {
+		display: none;
 	}
 }

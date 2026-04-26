@@ -10,7 +10,7 @@ class UserActionFormValidator {
 		const constraints = z.object({
 			name: z
 				.string("Le nom est obligatoire")
-				.min(5, "Un nom doit comporter, au minimum, 5 caractères")
+				.min(2, "Un nom doit comporter, au minimum, 2 caractères")
 				.max(50, "Un nom doit comporter, au maximum, 50 caractères"),
 
 			description: z
@@ -28,10 +28,6 @@ class UserActionFormValidator {
 					100,
 					"Le nom de l'association doit comporter au maximum 100 caractères",
 				),
-
-			is_active: z.union([z.string(), z.boolean()]).optional(),
-
-			source: z.string().optional(),
 		});
 
 		const validation = await constraints.safeParseAsync(data);

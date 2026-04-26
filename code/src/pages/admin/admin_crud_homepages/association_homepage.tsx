@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { NavLink } from "react-router";
 import Btn from "../../../components/btn/Btn";
+import FlashMessage from "../../../components/flash-msg/flash-msg";
 import AssociationApiService from "../../../services/association_api_service";
 import styles from "./admin_homepage.module.css";
 
@@ -18,7 +19,7 @@ const AdminAssociationHomepage = () => {
 			{/* En-tête de la page : titre, texte explicatif et bouton d’ajout */}
 			<div className={styles.headerContent}>
 				<div className={styles.headerIntro}>
-					<h2 className={styles.title}>Gérer les associations</h2>
+					<h2 className={styles.title}>Gestion des associations</h2>
 					<p className={styles.subtitle}>
 						Sur cette page vous pouvez ajouter, modifier ou supprimer les
 						associations visibles sur le site, ainsi que mettre à jour leurs
@@ -33,6 +34,9 @@ const AdminAssociationHomepage = () => {
 					Ajouter une association
 				</NavLink>
 			</div>
+
+			{/* Message flash affiché après une action d’administration */}
+			<FlashMessage />
 
 			{/* Liste des cartes d’associations */}
 			<div className={styles.List}>

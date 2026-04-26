@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { NavLink } from "react-router";
 import Btn from "../../../components/btn/Btn";
+import FlashMessage from "../../../components/flash-msg/flash-msg";
 import AdoptionApiService from "../../../services/adoption_api_service";
 import styles from "./admin_homepage.module.css";
 
@@ -18,7 +19,7 @@ const AdminAdoptionHomepage = () => {
 			{/* En-tête de la page : titre, texte explicatif et bouton d’ajout */}
 			<div className={styles.headerContent}>
 				<div className={styles.headerIntro}>
-					<h2 className={styles.title}>Gérer les adoptions SOS</h2>
+					<h2 className={styles.title}>Gestion des adoptions SOS</h2>
 					<p className={styles.subtitle}>
 						Sur cette page vous pouvez ajouter, modifier ou supprimer les
 						profils d’animaux proposés à l’adoption sur le site.
@@ -32,6 +33,9 @@ const AdminAdoptionHomepage = () => {
 					Ajouter une adoption
 				</NavLink>
 			</div>
+
+			{/* Message flash affiché après une action d’administration */}
+			<FlashMessage />
 
 			{/* Liste des cartes d’adoptions */}
 			<div className={styles.List}>

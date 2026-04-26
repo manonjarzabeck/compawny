@@ -19,7 +19,7 @@ const HeroSection = () => {
 				{/* Illustration principale */}
 				<img
 					src="/img/homepage/ImgPrincipale.png"
-					alt="Humains et animaux solidaires"
+					alt="Illustration solidaire d'humains et d'animaux"
 					className={styles.heroImage}
 				/>
 

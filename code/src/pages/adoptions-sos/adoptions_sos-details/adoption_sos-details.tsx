@@ -11,11 +11,13 @@ const AdoptionDetailPage = ({ params }: AdoptionDetailsParams) => {
 	// récuperer les données
 	const result = use(new AdoptionApiService().selectOne(id));
 
-	// console.log(result);
-
 	return (
 		<>
-			<Seo title="Adoptions" description="Détails des Adoptions SOS" url="" />
+			<Seo
+				title="Adoptions"
+				description="Détails des Adoptions SOS"
+				url="/adoptions/:id"
+			/>
 			<AdoptionDetailsContent data={result.data as Animal} />
 		</>
 	);

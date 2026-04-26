@@ -28,7 +28,6 @@ class AuthorizationMiddleware {
 
 			// récupérer le payload concernant les données de l'utilisateur
 			const payload = jose.decodeJwt(token as string) as User;
-			// console.log(payload.role.name);
 
 			// si le rôle n'est pas autorisé
 			if (roles.indexOf(payload.role.name) === -1) {

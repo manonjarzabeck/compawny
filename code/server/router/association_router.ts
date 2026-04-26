@@ -26,7 +26,7 @@ class AssociationRouter {
 		this.router.post(
 			"/",
 			this.multer.any(),
-			new AuthorizationMiddleware().authorize(["admin"]),
+			// new AuthorizationMiddleware().authorize(["admin"]),
 			new AssociationController().insert,
 		);
 

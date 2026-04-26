@@ -34,10 +34,10 @@
 
 /* Titre principal */
 .title {
-	font-size: 2rem;
-	font-weight: 600;
+	font-size: 1.7rem;
+	font-weight: 800;
 	margin: 0;
-	font-family: var(--font-title);
+	font-family: var(--font-body);
 	color: var(--text-color);
 }
 
@@ -45,7 +45,7 @@
 .subtitle {
 	margin: 0;
 	max-width: 600px;
-	font-size: 1rem;
+	font-size: 0.9rem;
 	line-height: 1.6;
 	color: #6f5b52;
 	font-family: var(--font-body);
@@ -145,8 +145,8 @@
 .btnAdd {
 	background: var(--text-color);
 	color: var(--card-color);
-	font-size: 1.2rem;
-	padding: 1rem;
+	font-size: 1rem;
+	padding: 0.8rem;
 }
 
 .btnAdd:hover {
@@ -174,13 +174,7 @@
 }
 
 /* TABLETTE */
-/* 
-  On garde :
-  - le bouton retour à gauche
-  - le bloc titre/texte au centre
-  - le bouton d’ajout en dessous
-  Les cartes restent en 2 colonnes.
-*/
+
 @media screen and (min-width: 769px) and (max-width: 1024px) {
 	.container {
 		max-width: 95%;
@@ -203,11 +197,11 @@
 	}
 
 	.title {
-		font-size: 2.4rem;
+		font-size: 1.6rem;
 	}
 
 	.subtitle {
-		font-size: 1.5rem;
+		font-size: 1rem;
 		line-height: 1.65;
 	}
 
@@ -247,7 +241,7 @@
 	.btn,
 	.btnEdit,
 	.btnDelete {
-		font-size: 1.6rem;
+		font-size: 1.2rem;
 		padding: 0.55rem 1rem;
 	}
 }
@@ -281,11 +275,11 @@
 	}
 
 	.title {
-		font-size: 1.35rem;
+		font-size: 1.3rem;
 	}
 
 	.subtitle {
-		font-size: 0.95rem;
+		font-size: 0.9rem;
 		line-height: 1.6;
 		max-width: 100%;
 	}
@@ -327,10 +321,10 @@
 		gap: 0.6rem;
 	}
 
-	.btnEdit,
+	.btn .btnEdit,
 	.btnDelete {
 		width: auto;
-		font-size: 0.92rem;
+		font-size: 1rem;
 		padding: 0.5rem 0.85rem;
 	}
 }

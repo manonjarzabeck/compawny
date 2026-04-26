@@ -16,7 +16,6 @@ class AssociationRepository {
 		const connection = await new MySQLService().connect();
 
 		// requête SQL
-		// select species.* from coeurdecompagnon_dev.species;
 		const sql = `
             SELECT ${this.table}.*
             FROM ${process.env.MYSQL_DATABASE}.${this.table};
@@ -105,6 +104,7 @@ class AssociationRepository {
 		NULL,
 		:name,
 		:image,
+		:introduction,
 		:description,
 		:website,
 		:address,
@@ -154,6 +154,7 @@ class AssociationRepository {
 
 		name = :name,
 		image = :image,
+		introduction = :introduction,
 		description = :description,
 		website = :website,
 		address = :address,

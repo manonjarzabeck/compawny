@@ -46,9 +46,10 @@ const TestimonialHomepage = () => {
 			{/* Introduction de la page */}
 			<div className={styles.header}>
 				<div className={styles.intro}>
-					<h1 className={styles.title}>Retours d’expérience</h1>
+					<h1 className={styles.title}>Messages & retours d'expériences</h1>
 					<p className={styles.subtitle}>
-						Consultez ici les témoignages envoyés depuis le formulaire public.
+						Consultez ici les témoignages et messages envoyés depuis le
+						formulaire public.
 					</p>
 				</div>
 			</div>

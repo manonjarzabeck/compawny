@@ -1,29 +1,79 @@
-.form {
-	display: flex;
-	flex-direction: column;
-	gap: 0.9rem;
+/* ===================== CONTENEUR GLOBAL ===================== */
+/* Encadre le formulaire ou le message de succès */
+.formCard {
 	width: 100%;
 }
 
+/* ===================== MESSAGE DE SUCCÈS ===================== */
+/* Bloc affiché après un envoi réussi du formulaire */
+.successBox {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.8rem;
+	padding: 1.5rem 1.2rem;
+	border-radius: 1rem;
+	background-color: rgba(255, 255, 255, 0.7);
+	text-align: center;
+}
+
+/* Titre du message de confirmation */
+.formTitle {
+	margin: 0;
+	font-family: var(--font-title);
+	font-size: 1.3rem;
+	color: var(--text-color);
+}
+
+/* Texte du message de confirmation */
+.successText {
+	margin: 0;
+	font-family: var(--font-body);
+	font-size: 0.95rem;
+	color: var(--text-color);
+	line-height: 1.5;
+}
+
+/* ===================== FORMULAIRE ===================== */
+/* Structure principale du formulaire */
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+	width: 100%;
+}
+
+/* Regroupe chaque champ (label + input + message d’erreur) */
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.32rem;
+	width: 100%;
+}
+
+/* Style des labels */
 .form label {
 	font-weight: 600;
 	font-family: var(--font-body);
 	color: var(--text-color);
-	font-size: 0.95rem;
+	font-size: 0.88rem;
 }
 
+/* Style des champs de saisie */
 .form input,
 .form textarea {
-	padding: 0.85rem 1rem;
+	padding: 0.8rem 0.9rem;
 	border-radius: 0.75rem;
 	border: 0.0625rem solid rgba(0, 0, 0, 0.15);
-	font-size: 0.95rem;
+	font-size: 0.88rem;
 	font-family: inherit;
 	background-color: white;
 	width: 100%;
 	box-sizing: border-box;
 }
 
+/* Effet au focus pour améliorer l’accessibilité */
 .form input:focus,
 .form textarea:focus {
 	outline: none;
@@ -31,14 +81,17 @@
 	box-shadow: 0 0 0 0.125rem rgba(0, 0, 0, 0.08);
 }
 
+/* Limite la taille du textarea */
 .form textarea {
 	resize: none;
-	max-height: 9rem;
+	max-height: 8.5rem;
 }
 
-.form button {
-	margin-top: 0.7rem;
-	padding: 0.9rem 1rem;
+/* ===================== BOUTON ===================== */
+/* Bouton principal d’envoi */
+.submitButton {
+	margin-top: 0.55rem;
+	padding: 0.82rem 0.95rem;
 	border-radius: 0.75rem;
 	border: none;
 	background-color: var(--text-color);
@@ -50,112 +103,117 @@
 		transform 0.2s ease;
 }
 
-.form button:hover {
+/* Effet hover */
+.submitButton:hover {
 	background-color: #5c4a3f;
 	transform: translateY(-0.0625rem);
 }
 
-.error {
-	margin: -0.3rem 0 0 0;
-	font-size: 0.8rem;
+/* État désactivé pendant l’envoi */
+.submitButton:disabled {
+	opacity: 0.7;
+	cursor: not-allowed;
+	transform: none;
+}
+
+/* ===================== MESSAGES ===================== */
+/* Messages d’erreur sous les champs */
+.form small {
+	margin: 0;
+	font-size: 0.74rem;
 	font-family: var(--font-body);
 	color: #a33b3b;
 }
 
-.feedback {
-	margin: 0.3rem 0 0 0;
-	font-size: 0.9rem;
+/* Message global (succès ou erreur après envoi) */
+.feedbackMessage {
+	margin: 0.25rem 0 0 0;
+	font-size: 0.84rem;
 	font-family: var(--font-body);
 	color: var(--text-color);
 	text-align: center;
 }
 
-/* ===================== GRAND ÉCRAN ===================== */
-@media screen and (min-width: 1500px) {
-	.form {
-		gap: 1rem;
-	}
-
-	.form label {
-		font-size: 1rem;
-	}
-
-	.form input,
-	.form textarea {
-		font-size: 1rem;
-		padding: 0.95rem 1rem;
-	}
-
-	.form button {
-		font-size: 1rem;
-		padding: 0.95rem 1rem;
-	}
-
-	.error {
-		font-size: 0.82rem;
-	}
-
-	.feedback {
-		font-size: 0.95rem;
-	}
-}
-
 /* ===================== TABLETTE ===================== */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+	.successBox {
+		padding: 1.35rem 1.1rem;
+	}
+
+	.formTitle {
+		font-size: 1.2rem;
+	}
+
+	.successText {
+		font-size: 0.92rem;
+	}
+
 	.form {
-		gap: 0.8rem;
+		gap: 0.78rem;
 	}
 
 	.form label {
-		font-size: 1.5rem;
+		font-size: 0.86rem;
 	}
 
 	.form input,
 	.form textarea {
-		font-size: 1.5rem;
-		padding: 1rem;
+		font-size: 0.86rem;
+		padding: 0.75rem 0.85rem;
 	}
 
-	.form button {
-		font-size: 1.6rem;
-		padding: 0.9rem 1rem;
+	.submitButton {
+		font-size: 0.9rem;
+		padding: 0.8rem 0.9rem;
 	}
 
-	.error {
-		font-size: 1rem;
+	.form small {
+		font-size: 0.72rem;
 	}
 
-	.feedback {
-		font-size: 1rem;
+	.feedbackMessage {
+		font-size: 0.82rem;
 	}
 }
 
 /* ===================== MOBILE ===================== */
 @media screen and (max-width: 768px) {
+	.successBox {
+		padding: 1.2rem 0.9rem;
+	}
+
+	.formTitle {
+		font-size: 1.12rem;
+	}
+
+	.successText {
+		font-size: 0.88rem;
+	}
+
 	.form {
-		gap: 0.8rem;
+		gap: 0.75rem;
 	}
 
 	.form label {
-		font-size: 0.9rem;
+		font-size: 0.84rem;
 	}
 
 	.form input,
 	.form textarea {
-		font-size: 0.9rem;
-		padding: 0.8rem 0.9rem;
+		font-size: 0.84rem;
+		padding: 0.72rem 0.82rem;
 	}
 
-	.form button {
-		font-size: 0.9rem;
-		padding: 0.85rem 1rem;
+	.submitButton {
+		font-size: 0.86rem;
+		padding: 0.78rem 0.9rem;
 	}
 
-	.error {
-		font-size: 0.75rem;
+	.form small {
+		font-size: 0.7rem;
 	}
 
-	.feedback {
-		font-size: 0.85rem;
+	.feedbackMessage {
+		font-size: 0.8rem;
 	}
 }

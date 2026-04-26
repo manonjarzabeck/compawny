@@ -1,9 +1,19 @@
 "use client";
 
+import ContactFormValidator from "../../validators/contact_form_validator";
 import Btn from "../btn/Btn";
 import ContactForm from "./contactForm/contactForm";
 import styles from "./experience-contact.module.css";
 
+/* ===================== VALIDATEUR ===================== */
+/* Instanciation du validateur Zod.
+   La méthode validate est extraite pour être passée au formulaire,
+   afin d’harmoniser l’utilisation des validateurs dans l’application. */
+const validator = new ContactFormValidator().validate;
+
+/* ===================== DONNÉES STATIQUES ===================== */
+/* Liste de témoignages affichés à droite du formulaire.
+   Ces données sont statiques et permettent d’illustrer l’impact du site. */
 const Reviews = [
 	{
 		_id: "1",
@@ -31,35 +41,45 @@ const ExperienceContact = () => {
 			className={styles.wrapper}
 			aria-labelledby="experience-contact-title"
 		>
+			{/* Bouton de navigation vers la page d’accueil */}
 			<div className={styles.backBtnWrapper}>
 				<Btn link="/">Retour à l'accueil</Btn>
 			</div>
 
 			<div className={styles.container}>
+				{/* ===================== INTRODUCTION ===================== */}
+				{/* Présentation de la section et explication du formulaire */}
 				<div className={styles.introText}>
 					<h1 id="experience-contact-title" className={styles.pageTitle}>
-						Partagez votre expérience 💌
+						Partagez un message ou une expérience 💌
 					</h1>
 					<p className={styles.pageDescription}>
 						Vous avez adopté, participé à une action locale ou vécu une belle
 						aventure au sein d’une association grâce à <strong>Compawny</strong>{" "}
 						? <br />
 						Racontez-nous ce que cette expérience vous a apporté. Vos mots
-						peuvent inspirer d’autres personnes à se lancer à leur tour.
+						peuvent inspirer d’autres personnes à se lancer à leur tour. <br />
+						<strong>
+							Ce formulaire vous permet également de nous contacter pour toute
+							question, suggestion ou demande.
+						</strong>
 					</p>
 				</div>
 
 				<div className={styles.grid}>
+					{/* ===================== FORMULAIRE ===================== */}
+					{/* Zone de saisie du message / expérience utilisateur */}
 					<article className={styles.formSection}>
 						<div className={styles.formCard}>
-							<h2 className={styles.sectionTitle}>
-								Racontez-nous votre histoire...
-							</h2>
+							<h2 className={styles.sectionTitle}>Partagez votre message 🐾</h2>
 
-							<ContactForm />
+							{/* Appel du composant ContactForm avec le validateur */}
+							<ContactForm validator={validator} />
 						</div>
 					</article>
 
+					{/* ===================== TÉMOIGNAGES ===================== */}
+					{/* Affichage de retours d’expérience pour inspirer les utilisateurs */}
 					<article
 						className={styles.reviewsSection}
 						aria-labelledby="reviews-title"

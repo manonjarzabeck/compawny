@@ -29,7 +29,6 @@ class AnimalController {
 	};
 
 	public selectOne = async (req: Request, res: Response) => {
-
 		// récupération des résultats de la requête
 		const results = await new AnimalRepository().SelectOne(req.params);
 
@@ -88,6 +87,8 @@ class AnimalController {
 			message: "Created",
 			data: results,
 		});
+
+		console.log("CONTROLLER INSERT ANIMAL");
 	};
 
 	public update = async (req: Request, res: Response) => {

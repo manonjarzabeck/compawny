@@ -1,22 +1,42 @@
+/* 
+=====================================================
+ BOUTON FAVORI
+→ bouton icône (ex : cœur)
+→ style minimal pour garder un rendu léger
+=====================================================
+*/
 .favoriteBtn {
-	border: none;
-	background: transparent;
-	cursor: pointer;
-	font-size: 1.7rem;
-	line-height: 1;
-	padding: 0.2rem;
+	border: none; /* supprime le style bouton natif */
+	background: transparent; /* fond transparent pour ne garder que l’icône */
+	cursor: pointer; /* indique que c’est cliquable */
+	font-size: 1.7rem; /* taille de l’icône (emoji ou icône) */
+	line-height: 1; /* évite les décalages verticaux */
+	padding: 0.2rem; /* petite zone cliquable autour */
 	transition:
-		transform 0.2s ease,
+		transform 0.2s ease, /* animation légère au hover */
 		opacity 0.2s ease;
 }
 
+/* 
+=====================================================
+ HOVER
+→ feedback visuel au survol
+=====================================================
+*/
 .favoriteBtn:hover {
-	transform: scale(1.12);
-	opacity: 0.85;
+	transform: scale(1.12); /* effet zoom léger */
+	opacity: 0.85; /* légère transparence pour interaction */
 }
 
+/* 
+=====================================================
+ FOCUS ACCESSIBILITÉ
+→ visible uniquement au clavier (focus-visible)
+→ améliore la navigation clavier
+=====================================================
+*/
 .favoriteBtn:focus-visible {
-	outline: 2px solid var(--text-color);
-	outline-offset: 4px;
-	border-radius: 50%;
+	outline: 2px solid var(--text-color); /* contour visible */
+	outline-offset: 4px; /* espace autour pour lisibilité */
+	border-radius: 50%; /* contour arrondi (adapté à une icône) */
 }

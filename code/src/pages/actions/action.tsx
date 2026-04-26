@@ -9,24 +9,57 @@ import ActionApiService from "../../services/action_api_service";
 import DepartmentApiService from "../../services/department_api_service";
 
 const ListeActionsPage = () => {
+	/* 
+	=====================================================
+	RÉCUPÉRATION DES DONNÉES ACTIONS
+	→ appel API pour récupérer toutes les actions
+	→ use() permet d’attendre directement la réponse
+	=====================================================
+	*/
 	const results = use<ApiResponse<Action[]>>(
 		new ActionApiService().selectAll(),
 	);
 
+	/* 
+	=====================================================
+	RÉCUPÉRATION DES DÉPARTEMENTS
+	→ utilisé pour filtrer les actions côté utilisateur
+	=====================================================
+	*/
 	const departmentResults = use<ApiResponse<Department[]>>(
 		new DepartmentApiService().selectAll(),
 	);
 
+	/* 
+	=====================================================
+	SÉCURISATION DES DONNÉES
+	→ si data est undefined (chargement ou erreur),
+	   on retourne un tableau vide pour éviter les crashs
+	=====================================================
+	*/
 	const actions = results.data ?? [];
 	const departments = departmentResults.data ?? [];
 
 	return (
 		<>
+			{/* 
+			=====================================================
+			SEO
+			→ améliore le référencement de la page
+			=====================================================
+			*/}
 			<Seo
 				title="Actions bénévoles"
 				description="Les actions de bénévolat autour de chez vous"
-				url=""
+				url="/actions"
 			/>
+
+			{/* 
+			=====================================================
+			SECTION INTRODUCTION
+			→ présentation de la page + contexte utilisateur
+			=====================================================
+			*/}
 			<IntroPage
 				image="/img/pages/Action.png"
 				alt="Dessin bénévoles animaliers de la section Actions Locales"
@@ -38,29 +71,16 @@ const ListeActionsPage = () => {
 					avec tes valeurs."
 			/>
 
+			{/* 
+			=====================================================
+			AFFICHAGE DES ACTIONS
+			→ envoie les actions + départements au composant
+			   qui gère la liste + le filtre
+			=====================================================
+			*/}
 			<PageActions actions={actions} departments={departments} />
 		</>
 	);
 };
 
 export default ListeActionsPage;
-
-// const ListeActionsPage = () => {
-// 	/*
-// use permet de récupérer les données d'une promesse dans un composant serveur de React
-// */
-
-// 	return (
-// 		<>
-// 			<Seo
-// 				title="Actions bénévoles"
-// 				description="Les actions de bénévolat autour de chez vous"
-// 				url=""
-// 			/>
-// 			<IntroAction />
-// 			<ActionList />
-// 		</>
-// 	);
-// };
-
-// export default ListeActionsPage;

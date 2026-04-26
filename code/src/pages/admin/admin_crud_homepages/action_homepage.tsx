@@ -1,7 +1,7 @@
 import React, { use } from "react";
 import { NavLink } from "react-router";
-import AdminFlashMessage from "../../../components/admin/admin-flash-msg/admin-flash-msg";
 import Btn from "../../../components/btn/Btn";
+import FlashMessage from "../../../components/flash-msg/flash-msg";
 import ActionApiService from "../../../services/action_api_service";
 import styles from "./admin_homepage.module.css";
 
@@ -19,7 +19,7 @@ const AdminActionHomepage = () => {
 			{/* En-tête de la page : titre, texte d’introduction et bouton d’ajout */}
 			<div className={styles.headerContent}>
 				<div className={styles.headerIntro}>
-					<h2 className={styles.title}>Gérer les actions</h2>
+					<h2 className={styles.title}>Gestion des actions</h2>
 					<p className={styles.subtitle}>
 						Sur cette page vous pouvez ajouter, modifier ou supprimer les
 						actions affichées sur le site, ainsi que mettre à jour leur contenu.
@@ -35,7 +35,7 @@ const AdminActionHomepage = () => {
 			</div>
 
 			{/* Message flash affiché après une action d’administration */}
-			<AdminFlashMessage />
+			<FlashMessage />
 
 			{/* Liste des cartes d’actions */}
 			<div className={styles.List}>

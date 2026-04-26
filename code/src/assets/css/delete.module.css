@@ -1,27 +1,49 @@
+/* 
+=====================================================
+ OVERLAY
+→ fond sombre derrière la fenêtre modale
+→ bloque visuellement le reste de la page
+=====================================================
+*/
 .overlay {
 	position: fixed;
 	inset: 0;
 	background: rgba(0, 0, 0, 0.45);
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
 	padding: 1rem;
 	z-index: 1000;
 }
 
+/* 
+=====================================================
+ MODALE
+→ boîte centrale de confirmation
+=====================================================
+*/
 .modal {
 	width: min(100%, 500px);
 	background: #fffaf7;
 	border: 1px solid #eadfd8;
 	border-radius: 1rem;
 	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+
 	padding: 1.5rem;
+
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	text-align: center;
 }
 
+/* 
+=====================================================
+ TITRE
+=====================================================
+*/
 .title {
 	margin: 0;
 	font-family: var(--font-title);
@@ -29,6 +51,11 @@
 	color: var(--text-color);
 }
 
+/* 
+=====================================================
+ TEXTE PRINCIPAL
+=====================================================
+*/
 .text {
 	margin: 0;
 	font-family: var(--font-body);
@@ -37,6 +64,11 @@
 	color: var(--text-color);
 }
 
+/* 
+=====================================================
+ MESSAGE D’AVERTISSEMENT
+=====================================================
+*/
 .warning {
 	margin: 0;
 	font-family: var(--font-body);
@@ -45,6 +77,11 @@
 	color: #9a4f4f;
 }
 
+/* 
+=====================================================
+ ZONE DES BOUTONS
+=====================================================
+*/
 .actions {
 	display: flex;
 	justify-content: center;
@@ -53,6 +90,11 @@
 	margin-top: 0.5rem;
 }
 
+/* 
+=====================================================
+ STYLE COMMUN DES BOUTONS
+=====================================================
+*/
 .btn {
 	border: none;
 	border-radius: 999px;
@@ -61,6 +103,7 @@
 	font-size: 0.95rem;
 	font-weight: 700;
 	cursor: pointer;
+
 	transition:
 		transform 0.2s ease,
 		background-color 0.2s ease,
@@ -76,6 +119,11 @@
 	cursor: not-allowed;
 }
 
+/* 
+=====================================================
+ BOUTON ANNULER
+=====================================================
+*/
 .cancelBtn {
 	background: #f2e4dc;
 	color: #5c3b2e;
@@ -85,6 +133,11 @@
 	background: #ead7cc;
 }
 
+/* 
+=====================================================
+ BOUTON SUPPRIMER
+=====================================================
+*/
 .deleteBtn {
 	background: #9a4f4f;
 	color: white;

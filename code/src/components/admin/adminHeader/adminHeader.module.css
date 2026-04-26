@@ -1,21 +1,35 @@
-/* Conteneur global du header admin */
+/* 
+=====================================================
+ CONTENEUR GLOBAL DU HEADER ADMIN
+=====================================================
+*/
 .adminHeader {
 	width: 100%;
 	background-color: var(--homepage-bg);
-	padding: 1rem;
+	padding: 0.9rem 1rem;
 }
 
-/* Bloc interne centré */
+/* 
+=====================================================
+ BLOC INTERNE CENTRÉ
+→ limite la largeur du header
+=====================================================
+*/
 .headerInner {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	max-width: 1400px;
 	margin: 0 auto;
-	gap: 1.5rem;
+	gap: 1.2rem;
 }
 
-/* Lien englobant le logo et les titres */
+/* 
+=====================================================
+ LIEN GLOBAL
+→ englobe le logo + les titres
+=====================================================
+*/
 .logoLink {
 	text-decoration: none;
 	color: inherit;
@@ -27,29 +41,46 @@
 	cursor: pointer;
 }
 
-/* Partie gauche : logo + titres */
+/* 
+=====================================================
+ BLOC GAUCHE
+→ logo + titres
+=====================================================
+*/
 .leftBlock {
 	display: flex;
 	align-items: center;
-	gap: 1.5rem;
+	gap: 1.2rem;
 }
 
-/* Logo */
+/* 
+=====================================================
+ LOGO
+=====================================================
+*/
 .adminLogo {
-	height: 8rem;
+	height: 5rem;
 	width: auto;
 	object-fit: contain;
 }
 
-/* Bloc texte */
+/* 
+=====================================================
+ BLOC TEXTE
+=====================================================
+*/
 .titleBlock {
 	display: flex;
 	flex-direction: column;
 }
 
-/* Titre principal */
+/* 
+=====================================================
+ TITRE PRINCIPAL
+=====================================================
+*/
 .adminTitle {
-	font-size: 3rem;
+	font-size: 2.3rem;
 	font-weight: 700;
 	font-family: var(--font-title);
 	color: var(--text-color);
@@ -57,101 +88,95 @@
 	line-height: 1.1;
 }
 
-/* Sous-titre */
+/* 
+=====================================================
+ SOUS-TITRE
+=====================================================
+*/
 .adminSubtitle {
-	font-size: 1.5rem;
+	font-size: 1.28rem;
 	font-weight: 500;
 	font-family: var(--font-title);
 	color: var(--text-color);
-	margin: 0.2rem 0 0 0;
+	margin: 0.15rem 0 0 0;
 	letter-spacing: 0.05em;
+	line-height: 1.2;
 }
 
-/* GRAND ECRAN */
-@media screen and (min-width: 1500px) {
-	.headerInner {
-		max-width: 1500px;
-		justify-content: flex-start;
-	}
-
-	.leftBlock {
-		gap: 1.7rem;
-	}
-
-	.adminLogo {
-		height: 8.7rem;
-	}
-
-	.adminTitle {
-		font-size: 3.25rem;
-	}
-
-	.adminSubtitle {
-		font-size: 1.65rem;
-	}
-}
-
-@media screen and (max-width: 1024px) {
+/* 
+=====================================================
+ TABLETTE
+=====================================================
+*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
 	.adminHeader {
-		padding: 1rem 1.1rem;
+		padding: 0.8rem 1rem;
 	}
 
 	.headerInner {
-		justify-content: flex-start;
-		gap: 1.2rem;
+		gap: 1rem;
 	}
 
 	.leftBlock {
 		flex-direction: row;
 		align-items: center;
-		gap: 1rem;
+		gap: 0.9rem;
 		text-align: left;
 	}
 
 	.adminLogo {
-		height: 8rem;
+		height: 5.8rem;
 	}
 
 	.adminTitle {
-		font-size: 4rem;
-		margin-top: 1rem;
+		font-size: 2rem;
+		margin-top: 0;
 		line-height: 1.1;
 	}
 
 	.adminSubtitle {
-		font-size: 2rem;
+		font-size: 1.05rem;
 		line-height: 1.2;
 	}
 }
-/* MOBILE */
+
+/* 
+=====================================================
+ MOBILE
+=====================================================
+*/
 @media screen and (max-width: 768px) {
 	.adminHeader {
-		padding: 0.8rem;
+		padding: 0.75rem 0.85rem;
 	}
 
 	.headerInner {
-		flex-direction: column;
+		flex-direction: row;
 		align-items: center;
-		gap: 0.5rem;
+		justify-content: center;
+		gap: 0.75rem;
 	}
 
 	.leftBlock {
-		flex-direction: column;
+		flex-direction: row;
 		align-items: center;
-		gap: 0.5rem;
-		text-align: center;
+		gap: 0.7rem;
+		text-align: left;
 	}
 
 	.adminLogo {
-		height: 6rem;
+		height: 4.4rem;
 	}
 
 	.adminTitle {
-		font-size: 2.5rem;
+		font-size: 1.65rem;
 		margin-top: 0;
+		line-height: 1.05;
 	}
 
 	.adminSubtitle {
-		font-size: 1.2rem;
+		font-size: 0.88rem;
+		line-height: 1.15;
+		margin-top: 0.1rem;
 	}
 }

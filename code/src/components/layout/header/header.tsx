@@ -16,6 +16,11 @@ const Header = () => {
 	// → il redirige vers la page d'authentification
 	const personalLink = user ? "/espace-utilisateur" : "/authentification";
 
+	// Définition du texte du bouton selon l'état de connexion
+	const personalLabel = user
+		? "Mon espace personnel 👤"
+		: "Connexion / Inscription";
+
 	return (
 		/* Header public affiché sur tout le site côté visiteur */
 		<header className={styles.publicHeader}>
@@ -44,7 +49,7 @@ const Header = () => {
 					→ sur mobile/tablette : menu burger
 				*/}
 				<div className={styles.navWrapper}>
-					<NavBar personalLink={personalLink} />
+					<NavBar personalLink={personalLink} personalLabel={personalLabel} />
 				</div>
 
 				{/* 
@@ -52,7 +57,7 @@ const Header = () => {
 					Sur mobile/tablette, ce lien est déjà présent dans le menu burger
 				*/}
 				<div className={styles.desktopCta}>
-					<Btn link={personalLink}>Mon espace personnel 👤</Btn>
+					<Btn link={personalLink}>{personalLabel}</Btn>
 				</div>
 			</div>
 		</header>

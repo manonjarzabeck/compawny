@@ -7,7 +7,7 @@ const UserSpacePage = () => {
 			<Seo
 				title="Espace utilisateur"
 				description="Espace utilisateur - Dashboard favoris"
-				url=""
+				url="/espace-utilisateur"
 			/>
 			<UserEspace />
 		</>

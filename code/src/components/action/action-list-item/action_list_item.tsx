@@ -8,6 +8,19 @@ import Btn from "../../btn/Btn";
 import FavoritesBtn from "../../btn/favorites-btn/favorites-btn";
 import style from "./action_list_item.module.css";
 
+/* 
+=====================================================
+ ACTION LIST ITEM (CARTE INDIVIDUELLE)
+→ représente une seule action
+
+- affiche les données d'une action (image, titre, description…)
+- structure visuellement la carte
+- gère les interactions (bouton, lien, favoris…)
+
+👉 rôle : composant UI pur (présentation uniquement)
+=====================================================
+*/
+
 const ActionListItem = ({
 	data,
 	favoriteIds,

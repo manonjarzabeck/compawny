@@ -90,7 +90,7 @@ class RouterService {
 							},
 							{
 								id: "mentions",
-								path: "mentions",
+								path: "mentions-legales",
 								lazy: () =>
 									import("../pages/mentions-legales/mentions-legales"),
 							},

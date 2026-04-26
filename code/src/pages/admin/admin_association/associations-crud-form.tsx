@@ -23,7 +23,6 @@ const AdminAssociationsForm = ({ params }: AdminAssociationsParams) => {
 	if (id) {
 		dataToUpdate = use(new AssociationApiService().selectOne(id))
 			.data as Association;
-		// console.log(dataToUpdate);
 	}
 
 	return (

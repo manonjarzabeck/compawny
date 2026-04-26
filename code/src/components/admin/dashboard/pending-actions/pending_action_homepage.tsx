@@ -2,7 +2,7 @@ import React, { use } from "react";
 import { NavLink } from "react-router";
 import ActionApiService from "../../../../services/action_api_service";
 import Btn from "../../../btn/Btn";
-import AdminFlashMessage from "../../admin-flash-msg/admin-flash-msg";
+import FlashMessage from "../../../flash-msg/flash-msg";
 import styles from "./pending_action_homepage.module.css";
 
 const PendingActionHomepage = () => {
@@ -29,8 +29,8 @@ const PendingActionHomepage = () => {
 				</p>
 			</div>
 
-			{/* Message flash admin éventuel */}
-			<AdminFlashMessage />
+			{/* Message flash affiché après une action d’administration */}
+			<FlashMessage />
 
 			{/* Si aucune action n’est en attente */}
 			{pendingActions.length === 0 ? (

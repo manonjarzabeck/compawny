@@ -1,10 +1,14 @@
-import type { UserActionsFormContentProps } from "../../../../models/props/user_action_form_content_props";
+import UserActionFormValidator from "../../../../validators/user_action_form_validator";
 import UserActionForm from "../action-proposition-form";
 import styles from "./proposition-informations.module.css";
 
-const ActionPropositionInformations = ({
-	validator,
-}: UserActionsFormContentProps) => {
+/* ===================== VALIDATEUR ===================== */
+/* Instanciation du validateur Zod.
+   La méthode validate est extraite pour être passée au formulaire,
+   afin d’harmoniser l’utilisation des validateurs dans l’application. */
+const validator = new UserActionFormValidator().validate;
+
+const ActionPropositionInformations = () => {
 	return (
 		/* 
 			Dernière grande section de la homepage

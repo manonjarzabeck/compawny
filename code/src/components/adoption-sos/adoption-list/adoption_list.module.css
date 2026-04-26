@@ -1,28 +1,47 @@
+/* 
+=====================================================
+ GRILLE GLOBALE DES ADOPTIONS
+→ disposition générale des cartes
+=====================================================
+*/
 .grid {
 	display: grid;
-	gap: 3rem;
-	max-width: 1400px;
+	grid-template-columns: repeat(3, minmax(0, 360px));
+	gap: 2.8rem;
+
+	width: 100%;
+	max-width: 1240px;
 	margin: 0 auto;
-	padding: 2rem 1rem;
+	padding: 1.8rem 1rem 2rem;
+
+	align-items: stretch;
+	justify-content: center;
 }
 
-/* Desktop - 3 colonnes */
-@media (min-width: 1024px) {
+/* 
+=====================================================
+ TABLETTE
+=====================================================
+*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
 	.grid {
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, minmax(0, 340px));
+		gap: 2.4rem;
+		max-width: 900px;
+		padding: 1.5rem 1.2rem 1.8rem;
 	}
 }
 
-/* Tablet - 2 colonnes */
-@media (min-width: 600px) and (max-width: 1023px) {
-	.grid {
-		grid-template-columns: repeat(2, 1fr);
-	}
-}
-
-/* Mobile - 1 colonne */
-@media (max-width: 599px) {
+/* 
+=====================================================
+ MOBILE
+=====================================================
+*/
+@media screen and (max-width: 768px) {
 	.grid {
 		grid-template-columns: 1fr;
+		gap: 1.1rem;
+		max-width: 350px;
+		padding: 1.2rem 0.9rem 1.4rem;
 	}
 }

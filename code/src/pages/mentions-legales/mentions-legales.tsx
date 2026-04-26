@@ -5,12 +5,31 @@ import styles from "./mentions-legales.module.css";
 const MentionsLegales = () => {
 	return (
 		<>
-			<Btn link="/">Retour</Btn>
+			{/* 
+        SEO : améliore le référencement de la page
+      */}
 			<Seo title="Mentions légales" description="Mentions légales" url="/" />
+
+			{/* 
+        Section principale de la page
+      */}
 			<section className={styles.wrapper}>
+				{/* 
+          Bouton retour avec espace autour
+        */}
+				<div className={styles.backBtnWrapper}>
+					<Btn link="/">Retour à l'accueil</Btn>
+				</div>
+
+				{/* 
+          Conteneur centré pour améliorer la lisibilité
+        */}
 				<div className={styles.container}>
 					<h1 className={styles.title}>Mentions légales</h1>
 
+					{/* 
+            Contenu structuré en plusieurs sections
+          */}
 					<div className={styles.content}>
 						<section className={styles.block}>
 							<h2>Éditeur du site</h2>

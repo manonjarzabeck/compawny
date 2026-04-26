@@ -1,44 +1,50 @@
 /* 
-  Conteneur global du dashboard admin
+=====================================================
+ CONTENEUR GLOBAL DU DASHBOARD ADMIN
+=====================================================
 */
 .dashboardContainer {
 	width: 100%;
 
 	/* 
     Espace autour du dashboard
-    → important pour respirer visuellement
+    → permet de bien détacher les cartes du header
   */
-	padding: 2rem;
+	padding: 2rem 1.4rem;
 
 	display: flex;
 	justify-content: center;
 }
 
 /* 
-  Grille contenant toutes les cartes
+=====================================================
+ GRILLE DES CARTES
+=====================================================
 */
 .statsGrid {
 	display: grid;
 
-	/* Desktop standard */
+	/* 
+    Desktop :
+    6 colonnes pour afficher toutes les cartes sur une même ligne
+  */
 	grid-template-columns: repeat(6, 1fr);
 
 	width: 100%;
-	max-width: 1200px;
+	max-width: 1300px;
 
 	gap: 0.8rem;
 }
 
 /* 
-  Carte statistique
+=====================================================
+ CARTE STATISTIQUE
+=====================================================
 */
 .card {
 	background-color: var(--btn-color);
-
 	padding: 0.9rem 0.6rem;
-
 	border-radius: 0.8rem;
-
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
 	display: flex;
@@ -63,14 +69,17 @@
 
 .number {
 	margin: 0;
-	font-size: 1.4rem;
+	font-size: 1.35rem;
 	font-weight: 700;
 	font-family: var(--font-body);
 	color: var(--text-color);
 }
 
-/* ===================== CARTES SPÉCIALES ===================== */
-
+/* 
+=====================================================
+ CARTES SPÉCIALES
+=====================================================
+*/
 .pendingCard {
 	background-color: rgb(132, 110, 110);
 }
@@ -78,7 +87,7 @@
 .pendingTitle,
 .pendingNumber {
 	color: var(--card-color);
-	padding-bottom: 0.5rem;
+	padding-bottom: 0.45rem;
 }
 
 .testimonialCard {
@@ -88,85 +97,44 @@
 .testimonialTitle,
 .testimonialNumber {
 	color: var(--card-color);
-	padding-bottom: 0.5rem;
+	padding-bottom: 0.45rem;
 }
 
-/* ===================== GRAND ÉCRAN ===================== */
 /* 
-  → plus d’air + plus large + descendu sous le header
-*/
-@media screen and (min-width: 1500px) {
-	.dashboardContainer {
-		/* 
-      IMPORTANT :
-      espace au-dessus pour décoller du header
-    */
-		padding: 3rem;
-	}
-
-	.statsGrid {
-		/* 
-      On élargit fortement le dashboard
-    */
-		max-width: 1500px;
-
-		gap: 1.3rem;
-	}
-
-	.card {
-		padding: 1.3rem 1rem;
-		min-height: 150px;
-		gap: 0.5rem;
-	}
-
-	.card h3,
-	.card h4 {
-		font-size: 1.05rem;
-	}
-
-	.number {
-		font-size: 2rem;
-	}
-}
-
-/* ===================== TABLETTE ===================== */
-/* 
-  Sur tablette :
-  - les 4 cartes statistiques restent sur une première ligne
-  - les 2 cartes spéciales passent en dessous
-  - elles prennent plus de largeur pour former 2 rectangles
+=====================================================
+ TABLETTE
+=====================================================
 */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
 	.dashboardContainer {
-		padding: 1.8rem 1.2rem;
+		padding: 1.4rem 1rem;
 	}
 
 	.statsGrid {
 		grid-template-columns: repeat(4, 1fr);
-		max-width: 980px;
+		max-width: 920px;
 		margin: 0 auto;
-		gap: 1.2rem;
+		gap: 1rem;
 	}
 
 	.card {
-		padding: 1.15rem 0.9rem;
-		min-height: 145px;
-		gap: 0.4rem;
+		padding: 1rem 0.8rem;
+		min-height: 125px;
+		gap: 0.35rem;
 	}
 
 	.card h3,
 	.card h4 {
-		font-size: 1.1rem;
-		line-height: 1.3;
+		font-size: 0.92rem;
+		line-height: 1.25;
 	}
 
 	.number {
-		font-size: 2.5rem;
+		font-size: 1.75rem;
 	}
 
 	/* 
 	  Les deux cartes spéciales prennent chacune 2 colonnes
-	  pour créer une deuxième ligne plus large et plus équilibrée
 	*/
 	.pendingCard,
 	.testimonialCard {
@@ -177,37 +145,40 @@
 	.pendingNumber,
 	.testimonialTitle,
 	.testimonialNumber {
-		padding-bottom: 0.35rem;
+		padding-bottom: 0.3rem;
 	}
 }
 
-/* ===================== MOBILE ===================== */
 /* 
-  → on garde exactement ton comportement actuel
+=====================================================
+ MOBILE
+=====================================================
 */
 @media screen and (max-width: 768px) {
 	.dashboardContainer {
-		padding: 1rem;
+		padding: 0.9rem 0.85rem 1rem;
 	}
 
 	.statsGrid {
 		grid-template-columns: repeat(2, 1fr);
-		gap: 0.8rem;
+		max-width: 100%;
+		gap: 0.75rem;
 	}
 
 	.card {
-		padding: 1rem 0.8rem;
-		min-height: 130px;
+		padding: 0.85rem 0.65rem;
+		min-height: 115px;
+		gap: 0.25rem;
 	}
 
 	.card h3,
 	.card h4 {
-		font-size: 0.9rem;
-		line-height: 1.3;
+		font-size: 0.82rem;
+		line-height: 1.25;
 	}
 
 	.number {
-		font-size: 1.6rem;
+		font-size: 1.35rem;
 	}
 
 	.pendingCard,
@@ -219,6 +190,6 @@
 	.pendingNumber,
 	.testimonialTitle,
 	.testimonialNumber {
-		padding-bottom: 0.3rem;
+		padding-bottom: 0.25rem;
 	}
 }

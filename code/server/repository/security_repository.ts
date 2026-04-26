@@ -16,7 +16,6 @@ class SecurityRepository {
 		const connection = await new MySQLService().connect();
 
 		// requête SQL
-		// select species.* from coeurdecompagnon_dev.species;
 		const sql = `
            INSERT INTO ${process.env.MYSQL_DATABASE}.${this.table}
            
@@ -48,7 +47,6 @@ class SecurityRepository {
 		const connection = await new MySQLService().connect();
 
 		// requête SQL
-		// select species.* from coeurdecompagnon_dev.species;
 		const sql = `
            SELECT ${this.table}.*
 		   FROM ${process.env.MYSQL_DATABASE}.${this.table}

@@ -34,7 +34,7 @@ const AdminAdoptionsFormContent = ({
 		register,
 		handleSubmit,
 		reset,
-		formState: { errors },
+		formState: { errors, isSubmitting },
 	} = useForm<Partial<Animal>>();
 
 	// préremplir le formulaire avant l'affichage du composant
@@ -57,6 +57,7 @@ const AdminAdoptionsFormContent = ({
 	// soumission du formulaire
 	// data stocke la saisie du formulaire
 	const submitForm = async (data: Partial<Animal>) => {
+		console.log("SUBMIT FORM ADOPTION");
 		// normaliser les données saisies : se baser sur les données testées dans flashpost pour que les données marchent
 		const normalizedData = { ...data, image: (data.image as string)[0] };
 
@@ -286,8 +287,12 @@ const AdminAdoptionsFormContent = ({
 						</div>
 
 						<input type="hidden" {...register("id")} id={idId} />
-						<button className={styles.submitButton} type="submit">
-							Soumettre
+						<button
+							className={styles.submitButton}
+							type="submit"
+							disabled={isSubmitting}
+						>
+							{isSubmitting ? "Envoi..." : "Soumettre"}
 						</button>
 
 						{message && <p className={styles.message}>{message}</p>}

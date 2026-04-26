@@ -45,7 +45,7 @@ const AdminActionsFormContent = ({
 		if (dataToUpdate) {
 			const normalizedData = {
 				...dataToUpdate,
-				// Normalise la date pour qu’elle soit compatible avec un input type="date"
+				// Normaliser la date pour qu’elle soit compatible avec un input type="date"
 				published: dataToUpdate.published
 					? new Date(dataToUpdate.published).toISOString().split("T")[0]
 					: "",
@@ -173,11 +173,9 @@ const AdminActionsFormContent = ({
 								id={imageId}
 								{...register(
 									"image",
-									dataToUpdate
+									dataToUpdate?.image
 										? {}
-										: {
-												required: "L'image est obligatoire",
-											},
+										: { required: "L'image est obligatoire" },
 								)}
 							/>
 							<small role="alert">
@@ -216,7 +214,7 @@ const AdminActionsFormContent = ({
 								id={publishedId}
 								{...register(
 									"published",
-									dataToUpdate
+									dataToUpdate?.published
 										? {}
 										: {
 												required: "La date de publication est obligatoire",

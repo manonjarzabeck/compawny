@@ -1,7 +1,9 @@
 :root {
+	/* Variables de polices */
 	--font-title: "Nunito", sans-serif;
 	--font-body: "Inter", sans-serif;
 
+	/* Variables de couleurs */
 	--text-color: #544541;
 	--homepage-bg: #feedde;
 	--btn-color: #f6c9c6;

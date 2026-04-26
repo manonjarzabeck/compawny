@@ -2,17 +2,6 @@ import { FILE } from "node:dns";
 import fs from "node:fs/promises";
 import { fileTypeFromFile } from "file-type/node";
 
-// {
-//     fieldname: 'image',
-//     originalname: 'CateÌ\x81gorieAsso.jpg',
-//     encoding: '7bit',
-//     mimetype: 'image/jpeg',
-//     destination: 'public/img/action',
-//     filename: '5007e2931c137facdea9504493a483ac',
-//     path: 'public/img/action/5007e2931c137facdea9504493a483ac',
-//     size: 409159
-//   }
-
 class FileService {
 	// renommer le fichier transféré en ajoutant l'extension
 	// doit retourner le nom complet du fichier

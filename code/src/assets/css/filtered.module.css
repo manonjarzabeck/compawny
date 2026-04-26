@@ -1,21 +1,42 @@
+/* 
+=====================================================
+ CONTENEUR DU FILTRE
+→ centre le select horizontalement
+→ ajoute un espacement autour pour respirer
+=====================================================
+*/
 .filter {
-	margin: 2rem;
-	display: flex;
-	justify-content: center;
+	margin: 1rem; /* espace autour du filtre */
+	display: flex; /* permet de centrer facilement */
+	justify-content: center; /* centre horizontalement */
 }
 
+/* 
+=====================================================
+ SELECT (LISTE DÉROULANTE)
+→ élément principal du filtre
+→ style simple, lisible et accessible
+=====================================================
+*/
 .select {
-	padding: 1rem;
-	font-size: 1rem;
-	border-radius: 8px;
-	border: 1px solid var(--text-color);
-	cursor: pointer;
-	background-color: white;
+	padding: 1rem; /* zone cliquable confortable */
+	font-size: 1rem; /* taille de texte lisible */
+	border-radius: 8px; /* coins arrondis pour un rendu moderne */
+	border: 1px solid var(--text-color); /* cohérence avec le thème */
+	cursor: pointer; /* indique que c'est interactif */
+	background-color: white; /* fond neutre */
 }
 
+/* 
+=====================================================
+ MESSAGE "AUCUN RÉSULTAT"
+→ affiché lorsqu’il n’y a aucune donnée filtrée
+→ permet de guider l’utilisateur
+=====================================================
+*/
 .nothingToSee {
-	text-align: center;
-	font-style: italic;
-	color: var(--text-color);
-	margin: 2rem;
+	text-align: center; /* centré pour visibilité */
+	font-style: italic; /* différenciation visuelle */
+	color: var(--text-color); /* cohérence graphique */
+	margin: 2rem; /* espace pour respirer */
 }

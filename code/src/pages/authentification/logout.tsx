@@ -5,26 +5,37 @@ import { useNavigate } from "react-router";
 import SecurityService from "../../services/security_service";
 
 const Logout = () => {
-	// useNavigate permet de créer une redirection
+	// Permet de rediriger l'utilisateur
 	const navigate = useNavigate();
-	// // supprimer à l'affichage du composant / page
+
+	// Déconnexion automatique au chargement de la page
 	useEffect(() => {
-		// 	const reset = async () => {
-		// 		// supprimer l'utilisateur stocké
-		// 		new SecurityService().setUser(null);
-		// 		// supprimer le token JWT
-		// 	await new SecurityService().setToken(null);
-		// };
+		const reset = async () => {
+			// Suppression des informations utilisateur
+			new SecurityService().setUser(null);
 
-		// 	reset();
-		// déconnexion
-		new SecurityService().logout();
+			// Suppression du token JWT
+			await new SecurityService().setToken(null);
 
-		// redirection vers une route React
-		navigate("/authentification");
+			// Nettoyage complémentaire (si logique interne)
+			new SecurityService().logout();
+
+			/* 
+			=====================================================
+			REDIRECTION AVEC MESSAGE
+			→ permet d'afficher un feedback utilisateur
+			sur la page d'authentification
+			=====================================================
+			*/
+			navigate("/authentification", {
+				state: { message: "Vous avez bien été déconnecté." },
+			});
+		};
+
+		reset();
 	}, [navigate]);
 
-	return <></>;
+	return null;
 };
 
 export default Logout;

@@ -2,7 +2,6 @@ import ActionPropositionInformations from "../../components/homepage/action-prop
 import GuideSection from "../../components/homepage/guide-section/guide-section";
 import HeroSection from "../../components/homepage/hero-section/hero-section";
 import Seo from "../../components/seo/seo";
-import UserActionFormValidator from "../../validators/user_action_form_validator";
 
 const HomePage = () => {
 	return (
@@ -21,9 +20,7 @@ const HomePage = () => {
 			<GuideSection />
 
 			{/* Section permettant aux visiteurs de proposer une action locale */}
-			<ActionPropositionInformations
-				validator={new UserActionFormValidator().validate}
-			/>
+			<ActionPropositionInformations />
 		</>
 	);
 };

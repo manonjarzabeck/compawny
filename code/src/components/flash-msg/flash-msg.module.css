@@ -1,0 +1,39 @@
+/* 
+=====================================================
+ MESSAGE FLASH
+→ affiché après certaines redirections
+→ ex : déconnexion réussie, action ajoutée
+=====================================================
+*/
+.flashMessage {
+	max-width: 520px;
+	margin: 0 auto 1.2rem;
+	padding: 0.85rem 1rem;
+	border-radius: 0.9rem;
+
+	background-color: #e6f4ea;
+	color: #2e7d32;
+
+	font-family: var(--font-body);
+	font-size: 0.92rem;
+	font-weight: 600;
+	line-height: 1.5;
+	text-align: center;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.flashMessage {
+		max-width: 500px;
+		font-size: 0.88rem;
+		margin-bottom: 1rem;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.flashMessage {
+		max-width: 100%;
+		font-size: 0.86rem;
+		padding: 0.8rem 0.9rem;
+		margin-bottom: 1rem;
+	}
+}

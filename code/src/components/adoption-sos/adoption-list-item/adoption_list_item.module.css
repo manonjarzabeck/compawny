@@ -1,3 +1,8 @@
+/* 
+=====================================================
+ CARTE GLOBALE
+=====================================================
+*/
 .card {
 	background-color: var(--card-color);
 	border-radius: 10px;
@@ -13,23 +18,26 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	transition: transform 0.3s ease; /* zoom léger de tout le contenu */
+	transition: transform 0.3s ease;
 }
 
 .card:hover .cardInner {
-	transform: scale(1.03); /* zoom léger sur l’ensemble */
+	transform: scale(1.03);
 }
 
-/* IMAGE */
-
+/* 
+=====================================================
+ IMAGE
+=====================================================
+*/
 .imageWrapper {
 	width: 100%;
-	padding: 1rem; /* marge autour de l’image */
+	padding: 1rem;
 }
 
 .imageWrapper img {
 	width: 100%;
-	height: 280px;
+	height: 270px;
 	object-fit: cover;
 	border-radius: 10px;
 	display: block;
@@ -37,41 +45,129 @@
 }
 
 .card:hover .imageWrapper img {
-	filter: brightness(0.85); /* plus sombre au hover */
+	filter: brightness(0.85);
 }
 
-/* TITLE */
-
+/* 
+=====================================================
+ TITRE
+=====================================================
+*/
 .title {
-	font-size: 1.2rem;
+	margin: 0;
+	font-size: 1.1rem;
 	font-family: var(--font-title);
 	line-height: 1.4;
 	text-align: center;
 	color: var(--text-color);
-	padding: 0.5rem;
+	padding: 0.45rem 0.7rem;
 }
 
+/* 
+=====================================================
+ NOM ASSOCIATION
+=====================================================
+*/
 .name {
+	margin: 0;
 	font-size: 0.8rem;
 	font-family: var(--font-body);
 	line-height: 1.4;
 	text-align: center;
 	font-style: italic;
 	color: var(--text-color);
-	padding: 0.2rem;
+	padding: 0.15rem 0.7rem;
 }
 
+/* 
+=====================================================
+ DÉPARTEMENT
+=====================================================
+*/
 .departement {
-	font-size: 0.9rem;
+	margin: 0;
+	font-size: 0.88rem;
 	font-family: var(--font-body);
 	line-height: 1.4;
 	text-align: center;
 	color: var(--text-color);
-	padding-bottom: 0.8rem;
+	padding: 0 0.7rem 0.8rem 0.7rem;
 }
 
-/* Bouton centré en bas */
-.card > :last-child {
+/* 
+=====================================================
+ BOUTON
+→ bouton centré en bas
+=====================================================
+*/
+.cardInner > :last-child {
 	align-self: center;
-	margin-bottom: 1.2rem;
+	margin-bottom: 1.1rem;
+}
+
+/* 
+=====================================================
+ TABLETTE
+=====================================================
+*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.imageWrapper {
+		padding: 0.95rem;
+	}
+
+	.imageWrapper img {
+		height: 255px;
+	}
+
+	.title {
+		font-size: 1.02rem;
+		padding: 0.4rem 0.7rem;
+	}
+
+	.name {
+		font-size: 0.78rem;
+	}
+
+	.departement {
+		font-size: 0.84rem;
+		padding: 0 0.7rem 0.75rem 0.7rem;
+	}
+}
+
+/* 
+=====================================================
+ MOBILE
+=====================================================
+*/
+@media screen and (max-width: 768px) {
+	.card {
+		border-radius: 12px;
+	}
+
+	.imageWrapper {
+		padding: 0.9rem;
+	}
+
+	.imageWrapper img {
+		height: 250px;
+	}
+
+	.title {
+		font-size: 1rem;
+		padding: 0.2rem 0.65rem;
+	}
+
+	.name {
+		font-size: 0.78rem;
+		padding: 0.4rem 0.65rem;
+	}
+
+	.departement {
+		font-size: 0.84rem;
+		padding: 0 0.65rem 0.7rem 0.65rem;
+	}
+
+	.cardInner > :last-child {
+		margin-bottom: 1rem;
+	}
 }

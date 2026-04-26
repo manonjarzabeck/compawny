@@ -2,13 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router";
+import type { NavigationProps } from "../../../models/props/navbar_props";
 import styles from "./navigation.module.css";
 
-type NavBarProps = {
-	personalLink: string;
-};
-
-const NavBar = ({ personalLink }: NavBarProps) => {
+const NavBar = ({ personalLink, personalLabel }: NavigationProps) => {
 	// Gère l'ouverture / fermeture du "guide du bénévole" sur desktop
 	const [isGuideOpen, setIsGuideOpen] = useState(false);
 
@@ -173,7 +170,7 @@ const NavBar = ({ personalLink }: NavBarProps) => {
 							className={styles.mobileMainLink}
 							onClick={closeMenus}
 						>
-							Mon espace personnel 👤
+							{personalLabel}
 						</NavLink>
 					</div>
 				)}

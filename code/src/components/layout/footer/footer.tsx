@@ -11,7 +11,7 @@ const Footer = () => {
 			<div className={styles.brand}>Ⓒ Compawny -</div>
 
 			{/* Lien vers les mentions légales */}
-			<NavLink to={"/mentions"} className={styles.legal}>
+			<NavLink to={"/mentions-legales"} className={styles.legal}>
 				Mentions légales
 			</NavLink>
 

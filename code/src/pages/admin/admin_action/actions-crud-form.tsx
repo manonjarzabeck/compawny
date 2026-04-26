@@ -20,7 +20,6 @@ const AdminActionsForm = ({ params }: AdminActionsParams) => {
 	// si un identifiant est présent dans l'URL
 	if (id) {
 		dataToUpdate = use(new ActionApiService().selectOne(id)).data as Action;
-		// console.log(dataToUpdate);
 	}
 
 	return (

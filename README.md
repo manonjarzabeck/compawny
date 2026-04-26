@@ -20,9 +20,9 @@ L’objectif est de centraliser les initiatives solidaires et de rendre l’enga
 * 🗺️ Localisation — visualisation des associations via une carte interactive
 * 📢 Proposition d’actions — suggestion d’initiatives avec modération
 * 💬 Partage d’expériences — publication de témoignages
+* 👤 Création de compte — inscription et connexion
 
 ### 👤 Utilisateurs
-* 👤 Création de compte — inscription et connexion
 * 🤎 Mise en favoris — sauvegarde des actions
 * ⭐ Espace utilisateur — gestion des actions enregistrées
 
@@ -66,7 +66,7 @@ L’objectif est de centraliser les initiatives solidaires et de rendre l’enga
 
 📦 Cloner le projet 
 ```bash
-git clone <https://github.com/manonjarzabeck/compawny>
+https://github.com/manonjarzabeck/compawny.git
 cd compawny
 ```
 
@@ -197,8 +197,9 @@ POST         | /api/contact    | Envoyer un message
 
 ### Documents 
 
-[Cahier des charges](/code/public/)
-[Présentation](/code/public/)
-[Dossier professionnel](/code/public)
-[Résumé projet](/code/public)
-[Figma](/code/public)
+[Cahier des charges](/code/public/livrables/JARZABECK_Manon_Cahier-des-charges_DWWM_P8.pdf)
+[Présentation](/code/public/livrables/Présentation%20du%20projet.mp4)
+[Dossier professionnel](/code/public/livrables/JARZABECK_Manon_Dossier-Professionnel_DWWM_P8.pdf)
+[Résumé projet](/code/public/livrables/Résumé%20projet%20-%20Manon%20Jarzabeck%20-%20DWWM%202026.pdf)
+[ECF](/code/public/livrables/JARZABECK_Manon_ECF_DWWM_P8.pdf)
+[Figma](/code/public/livrables/Compawny%20🐾.png)

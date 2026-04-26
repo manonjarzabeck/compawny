@@ -16,7 +16,6 @@ class AnimalRepository {
 		const connection = await new MySQLService().connect();
 
 		// requête SQL
-		// select species.* from coeurdecompagnon_dev.species;
 		const sql = `
             SELECT ${this.table}.*
             FROM ${process.env.MYSQL_DATABASE}.${this.table};
@@ -113,23 +112,19 @@ class AnimalRepository {
 
 		try {
 			// démarrer une transaction SQL
-			// connection.beginTransaction();
+			connection.beginTransaction();
 
 			// éxecution de la première requête
-			await connection.execute(sql, data);
-
-			// exécuter la requête SQL
-			// si la requête possède des variables, utiliser le paramètre de la méthode
-			// const [query] = await connection.execute(sql, data);
-
-			// deuxième requête SQL
 			const [query] = await connection.execute(sql, data);
+
+			// valider la transaction SQL
+			connection.commit();
 
 			return query;
 			// retourner les résultats
 		} catch (error) {
 			// annuler une transaction SQL
-			// connection.rollback();
+			connection.rollback();
 
 			return error;
 		}

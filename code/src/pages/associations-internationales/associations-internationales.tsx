@@ -1,4 +1,5 @@
 import AssoList from "../../components/association/association-list/association_list";
+import BackToTop from "../../components/btn/backToTop/backToTop";
 import IntroPage from "../../components/intro-pages/intro-pages";
 import Seo from "../../components/seo/seo";
 
@@ -8,7 +9,7 @@ const AssoMondePage = () => {
 			<Seo
 				title="Associations internationales"
 				description="Liste des associations internationales pour la protection des animaux"
-				url=""
+				url="/associations"
 			/>
 			<IntroPage
 				image="/img/pages/Association.png"
@@ -22,6 +23,7 @@ const AssoMondePage = () => {
 			/>
 
 			<AssoList />
+			<BackToTop />
 		</>
 	);
 };

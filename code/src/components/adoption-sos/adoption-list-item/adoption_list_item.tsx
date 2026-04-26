@@ -3,18 +3,49 @@ import type { AdoptionListItemProps } from "../../../models/props/list_item/adop
 import Btn from "../../btn/Btn";
 import style from "./adoption_list_item.module.css";
 
+/* 
+=====================================================
+ ADOPTION LIST ITEM (CARTE INDIVIDUELLE)
+→ représente un animal à l’adoption
+
+- affiche les informations principales :
+  image, nom, association, localisation
+- propose un bouton pour accéder à la fiche détail
+
+👉 rôle : composant UI (affichage uniquement)
+=====================================================
+*/
+
 const AdoptionListItem = ({ data }: AdoptionListItemProps) => {
 	return (
 		<article className={style.card}>
 			<div className={style.cardInner}>
+				{/* 
+				=====================================================
+				IMAGE DE L’ANIMAL
+				→ affichée depuis le dossier public
+				→ le alt reprend le nom pour l’accessibilité
+				=====================================================
+				*/}
 				<div className={style.imageWrapper}>
 					<img src={`/img/adoption/${data.image}`} alt={data.name} />
 				</div>
+
+				{/* Nom de l’animal */}
 				<h2 className={style.title}>🤎 {data.name} 🤎</h2>
+
+				{/* Nom de l’association */}
 				<p className={style.name}>{data.association.name}</p>
+
+				{/* Localisation de l’association */}
 				<p className={style.departement}>
 					📍 {data.association.department.name}
 				</p>
+
+				{/* 
+				Bouton vers la fiche détail de l’animal
+				→ navigation dynamique avec l’id
+				*/}
 				<Btn link={`/adoptions/${data.id}`}>Je veux l'adopter 🤎</Btn>
 			</div>
 		</article>

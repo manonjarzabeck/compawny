@@ -22,7 +22,6 @@ const AdminAdoptionsForm = ({ params }: AdminAdoptionsParams) => {
 	// si un identifiant est présent dans l'URL
 	if (id) {
 		dataToUpdate = use(new AdoptionApiService().selectOne(id)).data as Animal;
-		// console.log(dataToUpdate);
 	}
 
 	return (

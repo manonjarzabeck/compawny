@@ -3,8 +3,23 @@
 import { useMemo, useState } from "react";
 import styles from "../../../assets/css/filtered.module.css";
 import type { PageActionsProps } from "../../../models/props/pages/page_actions_props";
+import BackToTop from "../../btn/backToTop/backToTop";
 import ActionList from "../action-list/action_list";
 import FilterActions from "./filtered-action/filtered-action";
+
+/* 
+=====================================================
+ PAGE ACTIONS (COMPOSANT PRINCIPAL)
+→ gère la logique globale de la page
+
+- reçoit les données (actions + départements)
+- gère le filtre sélectionné (state)
+- filtre les actions en fonction du département choisi
+- transmet les données filtrées aux composants enfants
+
+👉 rôle : orchestrer les données et la logique métier
+=====================================================
+*/
 
 const PageActions = ({ actions, departments }: PageActionsProps) => {
 	// Stocke le département sélectionné par l’utilisateur
@@ -42,12 +57,15 @@ const PageActions = ({ actions, departments }: PageActionsProps) => {
 					Aucune action disponible pour ce département.
 				</p>
 			) : (
-				<ActionList
-					actions={filteredActions}
-					departments={departments}
-					selectedDepartment={selectedDepartment}
-					onChange={setSelectedDepartment}
-				/>
+				<>
+					<ActionList
+						actions={filteredActions}
+						departments={departments}
+						selectedDepartment={selectedDepartment}
+						onChange={setSelectedDepartment}
+					/>
+					<BackToTop />
+				</>
 			)}
 		</>
 	);
